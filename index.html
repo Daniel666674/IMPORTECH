@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parra Shop — Tecnología & Accesorios · Bogotá</title>
+<meta name="description" content="iPhone y Samsung Galaxy de última generación, AirPods y accesorios originales. Con garantía y al mejor precio en Bogotá. Envíos a toda Colombia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1a4fa0;--blue-h:#2560b8;--gold:#d4a017;--dark:#1d1d1f;--bg:#06060a;--card:#111115;--card2:#18181c;--off:#f5f5f7;--mid:#6e6e73;--white:#fff;--dborder:rgba(255,255,255,.08);--nuevo:#34c759;--semi:#1a4fa0;--reac:#ff9500;--seg:#8e8e93;--samsung:#1428a0;--airpods:#0071e3}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
+img{display:block}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(6,6,10,.92);backdrop-filter:blur(20px) saturate(1.8);border-bottom:1px solid var(--dborder)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#1a4fa0,#0d2f6b);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;overflow:hidden}
+.logo-mark svg{width:28px;height:28px}
+.nav-name{font-size:15px;font-weight:700;color:#fff;letter-spacing:.02em}
+.nav-name span{color:rgba(255,255,255,.4);font-weight:400;font-size:13px;margin-left:6px}
+.nav-links{display:flex;align-items:center;gap:24px;list-style:none}
+.nav-links a{color:rgba(255,255,255,.62);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:20px;background:var(--blue);color:#fff!important;font-size:13px!important;font-weight:600!important;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--blue-h)}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:72px 48px 60px;position:relative;overflow:hidden;background:#06060a}
+.hero-grid-bg{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse 70% 80% at 50% 40%,black 0%,transparent 70%);mask-image:radial-gradient(ellipse 70% 80% at 50% 40%,black 0%,transparent 70%)}
+.hb{position:absolute;border-radius:50%;pointer-events:none}
+.hb1{width:800px;height:600px;background:radial-gradient(ellipse,rgba(26,79,160,.14) 0%,transparent 60%);top:-20%;right:-10%;animation:hb 20s ease-in-out infinite alternate}
+.hb2{width:600px;height:600px;background:radial-gradient(ellipse,rgba(26,79,160,.08) 0%,transparent 60%);bottom:-20%;left:-8%;animation:hb 25s ease-in-out infinite alternate-reverse}
+@keyframes hb{from{transform:scale(1)}to{transform:scale(1.2) translate(40px,-40px)}}
+.hero-inner{position:relative;z-index:2;max-width:780px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:24px}
+.hero-h1{font-size:clamp(48px,7vw,88px);font-weight:800;line-height:1.04;color:#fff;margin-bottom:20px;letter-spacing:-.03em}
+.hero-h1 em{font-style:normal;color:rgba(255,255,255,.38)}
+.hero-p{font-size:18px;color:rgba(255,255,255,.52);line-height:1.65;max-width:540px;margin:0 auto 36px}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:52px}
+.btn-blue{display:inline-flex;align-items:center;gap:7px;padding:14px 30px;border-radius:50px;background:var(--blue);color:#fff;font-size:15px;font-weight:600;text-decoration:none;transition:all .25s}
+.btn-blue:hover{background:var(--blue-h);transform:translateY(-2px);box-shadow:0 10px 26px rgba(26,79,160,.35)}
+.btn-ghost{display:inline-flex;align-items:center;gap:7px;padding:14px 30px;border-radius:50px;color:rgba(255,255,255,.7);font-size:15px;font-weight:500;text-decoration:none;border:1.5px solid rgba(255,255,255,.18);transition:all .25s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.5);color:#fff}
+.cond-pills{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.cond-pill{display:flex;align-items:center;gap:7px;padding:8px 16px;border-radius:50px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);font-size:12px;font-weight:600;color:rgba(255,255,255,.7)}
+.cond-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.hero-phone-area{position:relative;margin-top:54px;display:flex;justify-content:center;align-items:flex-end;min-height:420px;width:100%}
+.hero-phone{height:440px;width:auto;max-width:88%;object-fit:contain;animation:phonefloat 5.5s ease-in-out infinite;filter:drop-shadow(0 40px 80px rgba(0,0,0,.7)) drop-shadow(0 0 60px rgba(26,79,160,.28));position:relative;z-index:2;border-radius:18px}
+@keyframes phonefloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+.phone-glow{position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(ellipse,rgba(26,79,160,.20) 0%,transparent 65%);left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hero-model-tag{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:600;color:rgba(255,255,255,.34);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+
+/* SECTION COMMON */
+.sec{padding:88px 52px}
+.inner{max-width:1200px;margin:0 auto}
+.sec-eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;display:block}
+.sec-h2{font-size:clamp(30px,3.5vw,46px);font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:8px}
+.sec-p{font-size:16px;color:rgba(255,255,255,.42);max-width:540px;line-height:1.65}
+
+/* CATALOG */
+#catalog{background:#0a0a0e}
+.catalog-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;gap:24px;flex-wrap:wrap}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{padding:8px 18px;border-radius:20px;font-size:13px;font-weight:600;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.48);cursor:pointer;transition:all .2s;font-family:inherit}
+.tab:hover{border-color:var(--blue);color:var(--blue)}
+.tab.active{background:var(--white);border-color:var(--white);color:#111}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pc{background:var(--card);border-radius:18px;border:1px solid rgba(255,255,255,.07);overflow:hidden;transition:all .3s;display:flex;flex-direction:column}
+.pc:hover{transform:translateY(-5px);box-shadow:0 20px 52px rgba(26,79,160,.18),0 0 0 1px rgba(26,79,160,.25);border-color:rgba(26,79,160,.3)}
+.pc-top{height:250px;display:flex;align-items:center;justify-content:center;position:relative;background:#f4f4f6;overflow:hidden;padding:18px}
+.pc-top img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 10px 22px rgba(0,0,0,.14));transition:transform .45s ease}
+.pc:hover .pc-top img{transform:scale(1.06)}
+.pc-top::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 25%,rgba(255,255,255,.5) 50%,transparent 75%);transform:translateX(-100%);transition:transform .6s;pointer-events:none}
+.pc:hover .pc-top::after{transform:translateX(160%)}
+.cond-badge{position:absolute;top:12px;left:12px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;color:#fff;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.b-nuevo{background:var(--nuevo)}.b-semi{background:var(--semi)}.b-reac{background:var(--reac)}.b-seg{background:var(--seg)}.b-samsung{background:var(--samsung)}.b-airpods{background:var(--airpods)}.b-impr{background:var(--gold)}
+.pc-body{padding:20px 22px 22px;flex:1;display:flex;flex-direction:column}
+.pc-model{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:5px}
+.pc-name{font-size:17px;font-weight:700;color:#fff;margin-bottom:3px;line-height:1.2}
+.pc-spec{font-size:12px;color:rgba(255,255,255,.38);margin-bottom:14px}
+.pc-price{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.01em;margin-top:auto;margin-bottom:14px}
+.pc-price small{font-size:12px;font-weight:400;color:rgba(255,255,255,.38);display:block;margin-bottom:3px}
+.pc-btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;border-radius:12px;background:var(--blue);color:#fff;font-size:13px;font-weight:600;text-decoration:none;transition:background .2s}
+.pc-btn:hover{background:var(--blue-h)}
+
+/* CALCULATOR */
+#calculator{background:var(--dark);position:relative;overflow:hidden}
+#calculator::before{content:'';position:absolute;top:-300px;right:-200px;width:700px;height:700px;border-radius:50%;background:radial-gradient(ellipse,rgba(26,79,160,.07) 0%,transparent 65%);pointer-events:none}
+.calc-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
+.calc-info h2{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:14px}
+.calc-info h2 span{color:var(--blue)}
+.calc-info p{font-size:16px;color:rgba(255,255,255,.48);line-height:1.68;margin-bottom:28px}
+.calc-bullet{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:14px;color:rgba(255,255,255,.6)}
+.calc-bullet svg{flex-shrink:0;color:var(--blue)}
+.calc-form{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:36px}
+.step-label{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.step-num{width:20px;height:20px;border-radius:50%;background:var(--blue);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.calc-step{margin-bottom:24px}
+.calc-select{width:100%;padding:13px 16px;border-radius:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:14px;font-weight:500;font-family:inherit;appearance:none;cursor:pointer;transition:border-color .2s}
+.calc-select:focus{outline:none;border-color:var(--blue)}
+.calc-select option{background:#2d2d2f;color:#fff}
+.cond-radios{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.cond-radio{border:1.5px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 10px;text-align:center;cursor:pointer;transition:all .2s}
+.cond-radio:hover{border-color:rgba(255,255,255,.28)}
+.cond-radio.selected{border-color:var(--blue);background:rgba(26,79,160,.12)}
+.cond-radio .cr-label{font-size:12px;font-weight:600;color:#fff}
+.cond-radio .cr-sub{font-size:10px;color:rgba(255,255,255,.38);margin-top:2px}
+.calc-submit{width:100%;padding:15px;border-radius:12px;border:none;background:var(--blue);color:#fff;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;transition:all .25s;margin-top:8px}
+.calc-submit:hover{background:var(--blue-h);box-shadow:0 8px 24px rgba(26,79,160,.4)}
+.calc-result{display:none;margin-top:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px}
+.calc-result.show{display:block;animation:resultIn .4s ease}
+@keyframes resultIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.result-main{background:var(--blue);border-radius:12px;padding:18px 22px;margin:12px 0;text-align:center}
+.result-main .rm-label{font-size:12px;color:rgba(255,255,255,.75);margin-bottom:4px}
+.result-main .rm-amount{font-size:32px;font-weight:800;color:#fff;letter-spacing:-.02em}
+.result-main .rm-sub{font-size:11px;color:rgba(255,255,255,.7);margin-top:3px}
+.result-cta{display:flex;align-items:center;justify-content:center;gap:7px;padding:12px;border-radius:10px;background:#25d366;color:#fff;font-size:13px;font-weight:700;text-decoration:none;margin-top:4px;transition:background .2s}
+.result-cta:hover{background:#1db857}
+.result-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
+.result-row:last-of-type{border:none}
+.result-row .rl{color:rgba(255,255,255,.5)}
+.result-row .rv{font-weight:700;color:#fff}
+
+/* BUNDLES */
+#bundles{background:#07070b}
+.bundles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
+.bundle{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:18px;overflow:hidden;transition:all .3s;position:relative}
+.bundle:hover{transform:translateY(-5px);box-shadow:0 18px 48px rgba(26,79,160,.18);border-color:rgba(26,79,160,.28)}
+.bundle-tag{position:absolute;top:14px;right:14px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;background:var(--blue);color:#fff;z-index:2}
+.bundle-head{padding:22px 22px 18px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:14px}
+.bundle-thumb{width:56px;height:56px;border-radius:13px;background:#f4f4f6;display:flex;align-items:center;justify-content:center;padding:6px;flex-shrink:0}
+.bundle-thumb img{max-width:100%;max-height:100%;object-fit:contain}
+.bundle-head h3{font-size:17px;font-weight:700;color:#fff;margin-bottom:2px}
+.bundle-head span{font-size:11px;color:rgba(255,255,255,.42)}
+.bundle-items{padding:16px 22px 6px}
+.bundle-item{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12.5px;color:rgba(255,255,255,.58)}
+.bundle-item:last-child{border:none}
+.bundle-check{color:var(--blue);font-weight:700;font-size:13px;margin-left:auto}
+.bundle-foot{padding:12px 22px 18px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.06)}
+.bundle-price{font-size:20px;font-weight:800;color:#fff}
+.bundle-price small{display:block;font-size:10px;font-weight:400;color:rgba(255,255,255,.38);margin-bottom:2px}
+.bundle-save{font-size:11px;font-weight:700;color:var(--nuevo);background:rgba(52,199,89,.12);padding:3px 10px;border-radius:20px}
+.bundle-cta{display:block;margin:0 22px 18px;padding:11px;border-radius:10px;background:var(--blue);color:#fff;text-align:center;font-size:13px;font-weight:600;text-decoration:none;transition:background .2s}
+.bundle-cta:hover{background:var(--blue-h)}
+
+/* ACCESSORIES */
+#accessories{background:var(--dark);padding:70px 52px}
+.acc-inner{max-width:1200px;margin:0 auto}
+.acc-pills{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.acc-pill{display:flex;align-items:center;gap:10px;padding:14px 20px;border:1px solid rgba(255,255,255,.1);border-radius:50px;background:rgba(255,255,255,.04);transition:all .3s;cursor:pointer}
+.acc-pill:hover{background:rgba(26,79,160,.12);border-color:rgba(26,79,160,.35);transform:translateY(-2px)}
+.acc-pill span:first-child{font-size:20px}
+.acc-pill .ap-name{font-size:13px;font-weight:600;color:#fff}
+.acc-pill .ap-price{font-size:12px;font-weight:700;color:var(--blue);margin-left:4px}
+
+/* TRUST */
+#trust{background:#0a0a0e;padding:60px 52px;border-top:1px solid rgba(255,255,255,.06)}
+.trust-row{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.tc{text-align:center;padding:8px}
+.tc-ico{font-size:28px;margin-bottom:12px}
+.tc h3{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px}
+.tc p{font-size:13px;color:rgba(255,255,255,.4);line-height:1.62}
+
+/* CTA */
+#cta{background:#0a0a0e;padding:80px 52px;text-align:center}
+.cta-inner{max-width:520px;margin:0 auto}
+#cta h2{font-size:clamp(28px,4vw,46px);font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:10px}
+#cta p{font-size:16px;color:rgba(255,255,255,.48);margin-bottom:30px;line-height:1.6}
+.btn-wa-big{display:inline-flex;align-items:center;gap:9px;padding:16px 32px;border-radius:50px;background:#25d366;color:#fff;font-size:15px;font-weight:700;text-decoration:none;box-shadow:0 8px 24px rgba(37,211,102,.35);transition:all .25s}
+.btn-wa-big:hover{background:#1db857;transform:translateY(-2px)}
+.addr-chip{margin-top:22px;display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:50px;border:1px solid rgba(255,255,255,.1);font-size:13px;color:rgba(255,255,255,.42)}
+
+/* FOOTER */
+footer{background:#060608;border-top:1px solid rgba(255,255,255,.06);padding:32px 52px}
+.foot-top{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:20px}
+.foot-links{display:flex;gap:22px;list-style:none;flex-wrap:wrap}
+.foot-links a{color:rgba(255,255,255,.28);text-decoration:none;font-size:12.5px;transition:color .2s}
+.foot-links a:hover{color:#fff}
+.foot-bottom{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid rgba(255,255,255,.06);font-size:12px;color:rgba(255,255,255,.2);flex-wrap:wrap;gap:8px}
+.foot-bottom a{color:rgba(255,255,255,.28);text-decoration:none}
+
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,.4);transition:transform .2s}
+.wa-float:hover{transform:scale(1.1)}
+.wa-float::before{content:'';position:absolute;inset:-6px;border-radius:50%;background:rgba(37,211,102,.18);animation:wap 2.2s ease-out infinite}
+@keyframes wap{0%{transform:scale(.95);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rev.in{opacity:1;transform:translateY(0)}
+
+/* TWEAKS PANEL */
+.tw-fab{position:fixed;bottom:28px;left:28px;z-index:1000;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(20,20,26,.82);backdrop-filter:blur(12px);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s,background .2s}
+.tw-fab:hover{transform:scale(1.08);background:rgba(30,30,40,.92)}
+.tw-fab.open{background:var(--blue)}
+.tw-panel{position:fixed;bottom:88px;left:28px;z-index:1000;width:286px;background:rgba(14,14,20,.96);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.55);opacity:0;transform:translateY(10px) scale(.97);pointer-events:none;transition:opacity .22s ease,transform .22s ease;overflow:hidden}
+.tw-panel.show{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.tw-head{padding:16px 18px 12px;font-size:13px;font-weight:700;color:#fff;border-bottom:1px solid rgba(255,255,255,.07)}
+.tw-body{padding:8px 18px 14px}
+.tw-section{padding:12px 0 6px}
+.tw-sec-title{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:10px}
+.tw-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.tw-label{font-size:13px;color:rgba(255,255,255,.78)}
+.tw-swatches{display:flex;align-items:center;gap:6px}
+.tw-swatch{width:20px;height:20px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;transition:transform .15s}
+.tw-swatch:hover{transform:scale(1.15)}
+.tw-swatch.on{border-color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.25)}
+.tw-custom{width:20px;height:20px;border-radius:50%;overflow:hidden;cursor:pointer;border:1px dashed rgba(255,255,255,.3);position:relative}
+.tw-custom input{position:absolute;inset:-4px;width:30px;height:30px;border:none;background:none;cursor:pointer;padding:0}
+.tw-toggle{width:40px;height:23px;border-radius:50px;border:none;background:rgba(255,255,255,.16);cursor:pointer;position:relative;transition:background .2s;padding:0}
+.tw-toggle.on{background:var(--blue)}
+.tw-knob{position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;background:#fff;transition:left .2s}
+.tw-toggle.on .tw-knob{left:20px}
+.tw-foot{padding:10px 18px 14px;font-size:10.5px;color:rgba(255,255,255,.3);border-top:1px solid rgba(255,255,255,.07);line-height:1.5}
+
+/* WATERMARK */
+.wm-badge{position:fixed;bottom:18px;left:88px;z-index:990;display:flex;align-items:center;gap:8px;padding:7px 13px;border-radius:50px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(12px);font-size:11px;font-weight:600;letter-spacing:.04em;color:rgba(255,255,255,.72);pointer-events:none;user-select:none}
+.wm-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0;box-shadow:0 0 6px rgba(26,79,160,.8)}
+
+/* RESPONSIVE */
+@media(max-width:1100px){.prod-grid{grid-template-columns:repeat(2,1fr)}.bundles-grid{grid-template-columns:1fr}.calc-layout{grid-template-columns:1fr}.trust-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){nav{padding:0 20px}.nav-links{display:none}.sec{padding:60px 22px}#catalog,#calculator,#accessories,#trust,#cta,footer{padding-left:22px;padding-right:22px}.prod-grid{grid-template-columns:1fr}.trust-row{grid-template-columns:1fr}.hero-phone{height:340px}.hero-phone-area{min-height:340px}.foot-top{flex-direction:column;gap:12px}.foot-bottom{flex-direction:column;text-align:center}.wm-badge{display:none}}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="tweaks-panel.jsx" type="text/babel"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="14" cy="14" r="13" fill="url(#ps-grad)" stroke="rgba(255,255,255,.2)" stroke-width=".8"/>
+        <text x="14" y="11.5" font-family="'Plus Jakarta Sans',sans-serif" font-weight="800" font-size="7.5" fill="white" text-anchor="middle" letter-spacing=".5">PARRA</text>
+        <text x="14" y="20" font-family="Georgia,serif" font-style="italic" font-weight="700" font-size="6.5" fill="#7eb8ff" text-anchor="middle" letter-spacing=".2">Shop</text>
+        <defs>
+          <linearGradient id="ps-grad" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#2560b8"/>
+            <stop offset="100%" stop-color="#0d2f6b"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <span class="nav-name">PARRA SHOP <span>Accesorios &amp; Tecnología</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#catalog">Catálogo</a></li>
+    <li><a href="#calculator">Cambio</a></li>
+    <li><a href="#bundles">Combos</a></li>
+    <li><a href="#accessories">Accesorios</a></li>
+    <li><a href="https://wa.me/573022522545" class="nav-cta"><svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>Contáctanos</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hb hb1"></div>
+  <div class="hb hb2"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Bogotá, Colombia · Envíos a todo el país</div>
+    <h1 class="hero-h1">Tecnología para<br><em>todos.</em></h1>
+    <p class="hero-p">iPhone y Samsung Galaxy de última generación, AirPods y accesorios 100% originales. Nuevos y seminuevos, con garantía y al mejor precio de Bogotá.</p>
+    <div class="hero-btns">
+      <a href="#catalog" class="btn-blue">Ver catálogo →</a>
+      <a href="#calculator" class="btn-ghost">💱 Calcular mi cambio</a>
+    </div>
+    <div class="cond-pills">
+      <div class="cond-pill"><span class="cond-dot" style="background:#34c759"></span>iPhone — Nuevos y seminuevos</div>
+      <div class="cond-pill"><span class="cond-dot" style="background:#1428a0"></span>Samsung — Línea Galaxy Ultra</div>
+      <div class="cond-pill"><span class="cond-dot" style="background:#0071e3"></span>AirPods — Originales</div>
+      <div class="cond-pill"><span class="cond-dot" style="background:#d4a017"></span>Garantía incluida</div>
+    </div>
+  </div>
+  <div class="hero-phone-area">
+    <div class="phone-glow"></div>
+    <img class="hero-phone" src="assets/products/iphone-16-pro-max-natural-titanium.jpg" alt="iPhone 16 Pro Max — Natural Titanium" loading="eager">
+    <div class="hero-model-tag">iPhone 16 Pro Max · Natural Titanium</div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section class="sec" id="catalog">
+  <div class="inner">
+    <div class="catalog-top">
+      <div>
+        <span class="sec-eyebrow">Disponibles Ahora</span>
+        <h2 class="sec-h2">Catálogo Parra Shop</h2>
+        <p class="sec-p">Equipos reales en stock. Consulta disponibilidad y precios por WhatsApp — el inventario rota constantemente.</p>
+      </div>
+      <div class="tabs">
+        <button class="tab active" data-filter="all">Todos</button>
+        <button class="tab" data-filter="iphone">📱 iPhones</button>
+        <button class="tab" data-filter="samsung">🟦 Samsung</button>
+        <button class="tab" data-filter="airpods">🎧 AirPods</button>
+      </div>
+    </div>
+    <div class="prod-grid">
+
+      <!-- iPhone 17 Pro Cosmic Orange -->
+      <div class="pc rev" data-cat="iphone">
+        <div class="pc-top"><span class="cond-badge b-nuevo">Nuevo</span>
+          <img src="assets/products/iphone-17-pro-cosmic-orange.jpg" alt="iPhone 17 Pro Cosmic Orange" loading="lazy">
+        </div>
+        <div class="pc-body"><div class="pc-model">iPhone 17 Pro</div><div class="pc-name">Cosmic Orange</div><div class="pc-spec">256 GB · Garantía oficial · Nuevo sellado</div><div class="pc-price"><small>Desde</small>$6.200.000</div><a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20me%20interesa%20el%20iPhone%2017%20Pro%20Cosmic%20Orange" class="pc-btn">Cotizar ahora</a></div>
+      </div>
+
+      <!-- iPhone 17 Pro White Titanium -->
+      <div class="pc rev" data-cat="iphone">
+        <div class="pc-top"><span class="cond-badge b-nuevo">Nuevo</span>
+          <img src="assets/products/iphone-17-pro-white-titanium.jpg" alt="iPhone 17 Pro White Titanium" loading="lazy">
+        </div>
+        <div class="pc-body"><div class="pc-model">iPhone 17 Pro</div><div class="pc-name">White Titanium</div><div class="pc-spec">256 GB · Cámara Pro 48MP · Nuevo sellado</div><div class="pc-price"><small>Desde</small>$6.200.000</div><a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20me%20interesa%20el%20iPhone%2017%20Pro%20White%20Titanium" class="pc-btn">Cotizar ahora</a></div>
+      </div>
+
+      <!-- iPhone 15 Pro Blue Titanium -->
+      <div class="pc rev" data-cat="iphone">
+        <div class="pc-top"><span class="cond-badge b-semi">Seminuevo</span>
+          <img src="assets/products/iphone-15-pro-blue-titanium.jpg" alt="iPhone 15 Pro Blue Titanium" loading="lazy">
+        </div>
+        <div class="pc-body"><div class="pc-model">iPhone 15 Pro</div><div class="pc-name">Blue Titanium</div><div class="pc-spec">256 GB · Estado 9/10 · Batería 92%</div><div class="pc-price"><small>Desde</small>$3.500.000</div><a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20me%20interesa%20el%20iPhone%2015%20Pro%20Blue%20Titanium" class="pc-btn">Cotizar ahora</a></div>
+      </div>
+
+      <!-- iPhone 14 Pro Max Deep Purple -->
+      <div class="pc rev" data-cat="iphone">
+        <div class="pc-top"><span class="cond-badge b-semi">Seminuevo</span>
+          <img src="assets/products/iphone-14-pro-max-deep-purple.jpg" alt="iPhone 14 Pro Max Deep Purple" loading="lazy">
+        </div>
+        <div class="pc-body"><div class="pc-model">iPhone 14 Pro Max</div><div class="pc-name">Deep Purple</div><div class="pc-spec">256 GB · Estado 9/10 · Batería 89%</div><div class="pc-price"><small>Desde</small>$2.900.000</div><a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20me%20interesa%20el%20iPhone%2014%20Pro%20Max%20Deep%20Purple" class="pc-btn">Cotizar ahora</a></div>
+      </div>
+
+      <!-- iPhone 13 Pro Gold -->
+      <div class="pc rev" data-cat="iphone">
+        <div class="pc-top"><span class="cond-badge b-semi">Seminuevo</span>
+          <img src="assets/products/iphone-13-pro-gold.jpg" alt="iPhone 13 Pro Gold" loading="lazy">
+        </div>
+        <div class="pc-body"><div class="pc-model">iPhone 13 Pro</div><div class="pc-name">Gold</div><div class="pc-spec">128 GB · Estado 9/10 · Batería 87%</div><div class="pc-price"><small>Desde</small>$2.200.000</div><a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20me%20interesa%20el%20iPhone%2013%20Pro%20Gold" class="pc-btn">Cotizar ahora</a></div>
+      </div>
+
+      <!-- Galaxy S26 Ultra Violet -->
+      <div class="pc rev" data-cat="samsung">
+        <div class="pc-top"><span class="cond-badge b-nuevo">Nuevo</span>
+          <img src="assets/products/galaxy-s26-ultra-violet.jpg" alt="Samsung Galaxy S26 Ultra Violet" loading="lazy">
+        </div>
+        <div class="pc-body"><div class="pc-model">Samsung Galaxy</div><div class="pc-name">S26 Ultra · Violet</div><div class="pc-spec">512 GB · Galaxy AI · S Pen · Nuevo sellado</div><div class="pc-price"><small>Desde</small>$5.900.000</div><a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20me%20interesa%20el%20Samsung%20Galaxy%20S26%20Ultra" class="pc-btn">Cotizar ahora</a></div>
+      </div>
+
+      <!-- Galaxy S25 Ultra Blue -->
+      <div class="pc rev" data-cat="samsung">
+        <div class="pc-top"><span class="cond-badge b-nuevo">Nuevo</span>
+          <img src="assets/products/galaxy-s25-ultra-blue.jpg" alt="Samsung Galaxy S25 Ultra Blue" loading="lazy">
+        </div>
+        <div class="pc-body"><div class="pc-model">Samsung Galaxy</div><div class="pc-name">S25 Ultra · Blue</div><div class="pc-spec">256 GB · Galaxy AI · S Pen · Nuevo sellado</div><div class="pc-price"><small>Desde</small>$4.500.000</div><a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20me%20interesa%20el%20Samsung%20Galaxy%20S25%20Ultra" class="pc-btn">Cotizar ahora</a></div>
+      </div>
+
+      <!-- Galaxy S24 Ultra Titanium -->
+      <div class="pc rev" data-cat="samsung">
+        <div class="pc-top"><span class="cond-badge b-semi">Seminuevo</span>
+          <img src="assets/products/galaxy-s24-ultra-titanium.jpg" alt="Samsung Galaxy S24 Ultra Titanium" loading="lazy">
+        </div>
+        <div class="pc-body"><div class="pc-model">Samsung Galaxy</div><div class="pc-name">S24 Ultra · Titanium</div><div class="pc-spec">256 GB · Galaxy AI · Estado 9/10</div><div class="pc-price"><small>Desde</small>$3.500.000</div><a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20me%20interesa%20el%20Samsung%20Galaxy%20S24%20Ultra" class="pc-btn">Cotizar ahora</a></div>
+      </div>
+
+      <!-- Galaxy S23 Ultra Black -->
+      <div class="pc rev" data-cat="samsung">
+        <div class="pc-top"><span class="cond-badge b-semi">Seminuevo</span>
+          <img src="assets/products/galaxy-s23-ultra-black.jpg" alt="Samsung Galaxy S23 Ultra Phantom Black" loading="lazy">
+        </div>
+        <div class="pc-body"><div class="pc-model">Samsung Galaxy</div><div class="pc-name">S23 Ultra · Black</div><div class="pc-spec">256 GB · S Pen · Estado 9/10 · Batería 90%</div><div class="pc-price"><small>Desde</small>$2.600.000</div><a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20me%20interesa%20el%20Samsung%20Galaxy%20S23%20Ultra" class="pc-btn">Cotizar ahora</a></div>
+      </div>
+
+      <!-- AirPods Pro 3 -->
+      <div class="pc rev" data-cat="airpods">
+        <div class="pc-top"><span class="cond-badge b-airpods">Nuevo</span>
+          <img src="assets/products/airpods-pro-3.jpg" alt="AirPods Pro 3" loading="lazy">
+        </div>
+        <div class="pc-body"><div class="pc-model">Apple</div><div class="pc-name">AirPods Pro 3</div><div class="pc-spec">Cancelación de ruido · USB-C · Originales</div><div class="pc-price"><small>Desde</small>$1.150.000</div><a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20me%20interesan%20los%20AirPods%20Pro%203" class="pc-btn">Cotizar ahora</a></div>
+      </div>
+
+      <!-- AirPods Pro 2 -->
+      <div class="pc rev" data-cat="airpods">
+        <div class="pc-top"><span class="cond-badge b-airpods">Nuevo</span>
+          <img src="assets/products/airpods-pro-2.jpg" alt="AirPods Pro 2 USB-C" loading="lazy">
+        </div>
+        <div class="pc-body"><div class="pc-model">Apple</div><div class="pc-name">AirPods Pro 2</div><div class="pc-spec">USB-C · Audio adaptativo · Originales</div><div class="pc-price"><small>Desde</small>$950.000</div><a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20me%20interesan%20los%20AirPods%20Pro%202" class="pc-btn">Cotizar ahora</a></div>
+      </div>
+
+      <!-- AirPods Pro -->
+      <div class="pc rev" data-cat="airpods">
+        <div class="pc-top"><span class="cond-badge b-airpods">Disponible</span>
+          <img src="assets/products/airpods-pro.jpg" alt="AirPods Pro" loading="lazy">
+        </div>
+        <div class="pc-body"><div class="pc-model">Apple</div><div class="pc-name">AirPods Pro</div><div class="pc-spec">Cancelación activa · MagSafe · Originales</div><div class="pc-price"><small>Desde</small>$750.000</div><a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20me%20interesan%20los%20AirPods%20Pro" class="pc-btn">Cotizar ahora</a></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="sec" id="calculator">
+  <div class="inner">
+    <div class="calc-layout">
+      <div class="calc-info rev">
+        <span class="sec-eyebrow">Calcula tu cambio</span>
+        <h2>¿Cuánto vale<br><span>tu celular?</span></h2>
+        <p>iPhone, Samsung, Xiaomi, Motorola… Calcula el valor de tu equipo actual y descubre cuánto te costaría cambiar a uno nuevo. Recibimos tu usado como parte de pago.</p>
+        <div class="calc-bullet"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Estimación instantánea</div>
+        <div class="calc-bullet"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>iPhone y Samsung de todas las gamas</div>
+        <div class="calc-bullet"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Precio justo de mercado</div>
+      </div>
+      <div class="calc-form rev">
+        <div class="calc-step">
+          <div class="step-label"><span class="step-num">1</span>¿Qué modelo tienes?</div>
+          <select class="calc-select" id="cModelo">
+            <option value="">Selecciona modelo</option>
+            <optgroup label="— iPhones —">
+              <option value="3600000">iPhone 16 Pro Max</option>
+              <option value="2800000">iPhone 15 Pro Max</option>
+              <option value="2200000">iPhone 15 Pro</option>
+              <option value="1600000">iPhone 15</option>
+              <option value="1400000">iPhone 14 Pro Max</option>
+              <option value="1100000">iPhone 14 Pro</option>
+              <option value="850000">iPhone 14</option>
+              <option value="700000">iPhone 13 Pro Max</option>
+              <option value="600000">iPhone 13 Pro</option>
+              <option value="480000">iPhone 13</option>
+              <option value="350000">iPhone 12</option>
+              <option value="250000">iPhone 11</option>
+            </optgroup>
+            <optgroup label="— Samsung —">
+              <option value="2400000">Samsung S25 Ultra</option>
+              <option value="1700000">Samsung S24 Ultra</option>
+              <option value="1400000">Samsung S24+</option>
+              <option value="1100000">Samsung S23 Ultra</option>
+              <option value="750000">Samsung S24</option>
+              <option value="600000">Samsung S23</option>
+              <option value="420000">Samsung A55</option>
+              <option value="280000">Samsung A35</option>
+              <option value="180000">Samsung A25</option>
+            </optgroup>
+            <optgroup label="— Xiaomi / Otros —">
+              <option value="550000">Xiaomi 14</option>
+              <option value="380000">Xiaomi Redmi Note 13 Pro</option>
+              <option value="250000">Motorola Edge 50</option>
+              <option value="180000">Infinix / Tecno</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="calc-step">
+          <div class="step-label"><span class="step-num">2</span>Estado del equipo</div>
+          <div class="cond-radios">
+            <div class="cond-radio selected" data-mult="1" onclick="selectCond(this)"><div class="cr-label">⭐ Excelente</div><div class="cr-sub">Sin rayones</div></div>
+            <div class="cond-radio" data-mult="0.85" onclick="selectCond(this)"><div class="cr-label">✅ Bueno</div><div class="cr-sub">Uso normal</div></div>
+            <div class="cond-radio" data-mult="0.65" onclick="selectCond(this)"><div class="cr-label">⚠️ Regular</div><div class="cr-sub">Detalles visibles</div></div>
+            <div class="cond-radio" data-mult="0.45" onclick="selectCond(this)"><div class="cr-label">🔧 Dañado</div><div class="cr-sub">Pantalla / más</div></div>
+          </div>
+        </div>
+        <div class="calc-step">
+          <div class="step-label"><span class="step-num">3</span>Batería aproximada</div>
+          <select class="calc-select" id="cBateria">
+            <option value="1">90% o más</option>
+            <option value="0.95">80–89%</option>
+            <option value="0.88">70–79%</option>
+            <option value="0.78">Menos de 70%</option>
+          </select>
+        </div>
+        <button class="calc-submit" onclick="calcular()">Calcular valor estimado →</button>
+        <div class="calc-result" id="calcResult">
+          <div class="result-main">
+            <div class="rm-label">Valor estimado de tu equipo</div>
+            <div class="rm-amount" id="calcAmt">—</div>
+            <div class="rm-sub">Precio referencia de mercado en Bogotá</div>
+          </div>
+          <div class="result-row"><span class="rl">Modelo</span><span class="rv" id="rModelo">—</span></div>
+          <div class="result-row"><span class="rl">Estado</span><span class="rv" id="rEstado">—</span></div>
+          <div class="result-row"><span class="rl">Batería</span><span class="rv" id="rBateria">—</span></div>
+          <a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20quiero%20cotizar%20mi%20cambio" class="result-cta"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>Cotizar mi cambio →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUNDLES -->
+<section class="sec" id="bundles">
+  <div class="inner">
+    <span class="sec-eyebrow">Combos Exclusivos</span>
+    <h2 class="sec-h2">Llévalo todo y <span style="color:var(--blue)">ahorra más</span></h2>
+    <p class="sec-p">Equipo + accesorios con descuento exclusivo por combo.</p>
+    <div class="bundles-grid">
+      <div class="bundle rev">
+        <div class="bundle-tag">Popular</div>
+        <div class="bundle-head"><div class="bundle-thumb"><img src="assets/products/iphone-13-pro-gold.jpg" alt="iPhone"></div><div><h3>Starter Pack</h3><span>iPhone + Protección completa</span></div></div>
+        <div class="bundle-items">
+          <div class="bundle-item"><span>📱</span>iPhone 15 128 GB<span class="bundle-check">✓</span></div>
+          <div class="bundle-item"><span>🔒</span>Vidrio templado premium<span class="bundle-check">✓</span></div>
+          <div class="bundle-item"><span>📦</span>Case silicona MagSafe<span class="bundle-check">✓</span></div>
+        </div>
+        <div class="bundle-foot"><div class="bundle-price"><small>Combo desde</small>$3.350.000</div><div class="bundle-save">Ahorras $150K</div></div>
+        <a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20me%20interesa%20el%20Starter%20Pack" class="bundle-cta">Cotizar este combo</a>
+      </div>
+      <div class="bundle rev">
+        <div class="bundle-tag" style="background:linear-gradient(135deg,#c9b79a,#a89070)">⭐ Best</div>
+        <div class="bundle-head"><div class="bundle-thumb"><img src="assets/products/iphone-15-pro-blue-titanium.jpg" alt="iPhone Pro"></div><div><h3>Pro Pack</h3><span>iPhone Pro + AirPods + Case</span></div></div>
+        <div class="bundle-items">
+          <div class="bundle-item"><span>📱</span>iPhone 17 Pro 256 GB<span class="bundle-check">✓</span></div>
+          <div class="bundle-item"><span>🎧</span>AirPods Pro 2<span class="bundle-check">✓</span></div>
+          <div class="bundle-item"><span>🔒</span>Vidrio templado 9H<span class="bundle-check">✓</span></div>
+          <div class="bundle-item"><span>📦</span>Case cuero MagSafe<span class="bundle-check">✓</span></div>
+        </div>
+        <div class="bundle-foot"><div class="bundle-price"><small>Combo desde</small>$7.100.000</div><div class="bundle-save">Ahorras $350K</div></div>
+        <a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20me%20interesa%20el%20Pro%20Pack" class="bundle-cta">Cotizar este combo</a>
+      </div>
+      <div class="bundle rev">
+        <div class="bundle-tag" style="background:#34c759">Máximo Ahorro</div>
+        <div class="bundle-head"><div class="bundle-thumb"><img src="assets/products/galaxy-s26-ultra-violet.jpg" alt="Galaxy Ultra"></div><div><h3>Galaxy Max Pack</h3><span>S26 Ultra + Buds + Watch</span></div></div>
+        <div class="bundle-items">
+          <div class="bundle-item"><span>📱</span>Galaxy S26 Ultra 512 GB<span class="bundle-check">✓</span></div>
+          <div class="bundle-item"><span>🎧</span>Galaxy Buds 3 Pro<span class="bundle-check">✓</span></div>
+          <div class="bundle-item"><span>⌚</span>Galaxy Watch 7<span class="bundle-check">✓</span></div>
+          <div class="bundle-item"><span>🔌</span>Cargador rápido 45W<span class="bundle-check">✓</span></div>
+        </div>
+        <div class="bundle-foot"><div class="bundle-price"><small>Combo desde</small>$7.400.000</div><div class="bundle-save">Ahorras $800K</div></div>
+        <a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20me%20interesa%20el%20Galaxy%20Max%20Pack" class="bundle-cta">Cotizar este combo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESSORIES -->
+<section id="accessories">
+  <div class="acc-inner">
+    <span class="sec-eyebrow">Accesorios Originales</span>
+    <h2 class="sec-h2">Todo lo que necesitas</h2>
+    <div class="acc-pills">
+      <div class="acc-pill"><span>🎧</span><span class="ap-name">AirPods Pro 3</span><span class="ap-price">Desde $1.15M</span></div>
+      <div class="acc-pill"><span>🎧</span><span class="ap-name">AirPods Pro 2</span><span class="ap-price">Desde $950K</span></div>
+      <div class="acc-pill"><span>⌚</span><span class="ap-name">Apple Watch S10</span><span class="ap-price">Desde $1.1M</span></div>
+      <div class="acc-pill"><span>🖊️</span><span class="ap-name">S Pen Galaxy</span><span class="ap-price">Desde $90K</span></div>
+      <div class="acc-pill"><span>🔌</span><span class="ap-name">Cargador MagSafe</span><span class="ap-price">Desde $120K</span></div>
+      <div class="acc-pill"><span>📦</span><span class="ap-name">Cases iPhone / Galaxy</span><span class="ap-price">Desde $65K</span></div>
+      <div class="acc-pill"><span>🔒</span><span class="ap-name">Vidrios templados</span><span class="ap-price">Desde $45K</span></div>
+      <div class="acc-pill"><span>🔋</span><span class="ap-name">Power Banks</span><span class="ap-price">Desde $80K</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section id="trust">
+  <div class="trust-row">
+    <div class="tc rev"><div class="tc-ico">🔒</div><h3>100% Originales</h3><p>Equipos y accesorios Apple y Samsung genuinos. Sin réplicas ni copias.</p></div>
+    <div class="tc rev"><div class="tc-ico">🚀</div><h3>Envíos Colombia</h3><p>Despachos rápidos a todo el país con seguimiento en tiempo real.</p></div>
+    <div class="tc rev"><div class="tc-ico">💳</div><h3>Pago Seguro</h3><p>Tarjetas, Nequi, Daviplata, PSE y efectivo. Compra tranquilo.</p></div>
+    <div class="tc rev"><div class="tc-ico">🛠️</div><h3>Soporte Post-venta</h3><p>Garantía y acompañamiento luego de tu compra. Estamos para ayudarte.</p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <h2>¿Listo para tu próximo equipo?</h2>
+    <p>iPhone, Samsung Galaxy, AirPods o accesorios — escríbenos y te asesoramos sin compromiso.</p>
+    <a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20quiero%20cotizar" class="btn-wa-big"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>Contactar por WhatsApp</a>
+    <div class="addr-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.8"/></svg>Bogotá, Colombia · Envíos nacionales</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="logo-mark">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="14" r="13" fill="url(#ps-grad2)" stroke="rgba(255,255,255,.2)" stroke-width=".8"/>
+          <text x="14" y="11.5" font-family="'Plus Jakarta Sans',sans-serif" font-weight="800" font-size="7.5" fill="white" text-anchor="middle" letter-spacing=".5">PARRA</text>
+          <text x="14" y="20" font-family="Georgia,serif" font-style="italic" font-weight="700" font-size="6.5" fill="#7eb8ff" text-anchor="middle" letter-spacing=".2">Shop</text>
+          <defs>
+            <linearGradient id="ps-grad2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#2560b8"/>
+              <stop offset="100%" stop-color="#0d2f6b"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <span style="font-size:14px;font-weight:700;color:#fff">PARRA SHOP</span>
+    </div>
+    <ul class="foot-links">
+      <li><a href="#catalog">Catálogo</a></li>
+      <li><a href="#calculator">Cambio</a></li>
+      <li><a href="#bundles">Combos</a></li>
+      <li><a href="#accessories">Accesorios</a></li>
+      <li><a href="#trust">Garantías</a></li>
+    </ul>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Parra Shop · Bogotá, Colombia</span>
+    <a href="https://wa.me/573022522545">WhatsApp →</a>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/573022522545?text=Hola%20Parra%20Shop%2C%20quiero%20cotizar" class="wa-float" aria-label="WhatsApp">
+  <svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>
+</a>
+
+<script>
+// Catalog filter
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.filter;
+    document.querySelectorAll('.pc').forEach(c=>{
+      const show=f==='all'||c.dataset.cat===f;
+      c.style.display=show?'':'none';
+    });
+  });
+});
+// Calculator
+let condMult=1;
+function selectCond(el){
+  document.querySelectorAll('.cond-radio').forEach(r=>r.classList.remove('selected'));
+  el.classList.add('selected');
+  condMult=parseFloat(el.dataset.mult);
+}
+function calcular(){
+  const modelo=document.getElementById('cModelo');
+  const batMult=parseFloat(document.getElementById('cBateria').value);
+  if(!modelo.value)return alert('Selecciona un modelo');
+  const base=parseInt(modelo.value);
+  const total=Math.round(base*condMult*batMult/10000)*10000;
+  document.getElementById('calcAmt').textContent='$'+total.toLocaleString('es-CO');
+  document.getElementById('rModelo').textContent=modelo.options[modelo.selectedIndex].text;
+  const condEl=document.querySelector('.cond-radio.selected');
+  document.getElementById('rEstado').textContent=condEl?condEl.querySelector('.cr-label').textContent:'—';
+  document.getElementById('rBateria').textContent=document.getElementById('cBateria').options[document.getElementById('cBateria').selectedIndex].text;
+  document.getElementById('calcResult').classList.add('show');
+}
+// Reveal on scroll (with safety fallback so content is never stuck hidden)
+(function(){
+  const els=document.querySelectorAll('.rev');
+  if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return;}
+  const obs=new IntersectionObserver((entries)=>{let i=0;entries.forEach(x=>{if(x.isIntersecting){setTimeout(()=>x.target.classList.add('in'),i*70);obs.unobserve(x.target);i++;}});},{threshold:.08});
+  els.forEach(el=>obs.observe(el));
+  // Fallback: if the observer hasn't revealed an element shortly after load, show it anyway
+  setTimeout(()=>document.querySelectorAll('.rev:not(.in)').forEach(e=>e.classList.add('in')),1400);
+})();
+</script>
+
+<!-- TWEAKS PANEL (live customization — great for demos) -->
+<div id="tweaks-root"></div>
+<script type="text/babel">
+(function(){
+  if(typeof window.TweaksPanel!=='function'){return;} // tweaks-panel.jsx not loaded (e.g. opened via file://)
+  const { TweaksPanel, TweakSection, TweakColor, TweakToggle, useTweaks } = window;
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{"blueColor":"#1a4fa0","showCalculator":true,"showBundles":true,"showAccessories":true}/*EDITMODE-END*/;
+  function ParraShopTweaks(){
+    const [t,setTweak]=useTweaks(TWEAK_DEFAULTS);
+    React.useEffect(()=>{document.documentElement.style.setProperty('--blue',t.blueColor);document.documentElement.style.setProperty('--blue-h',t.blueColor);},[t.blueColor]);
+    React.useEffect(()=>{const s=document.getElementById('calculator');if(s)s.style.display=t.showCalculator?'':'none';},[t.showCalculator]);
+    React.useEffect(()=>{const s=document.getElementById('bundles');if(s)s.style.display=t.showBundles?'':'none';},[t.showBundles]);
+    React.useEffect(()=>{const s=document.getElementById('accessories');if(s)s.style.display=t.showAccessories?'':'none';},[t.showAccessories]);
+    return React.createElement(TweaksPanel,{title:"Personalizar — Parra Shop"},
+      React.createElement(TweakSection,{title:"Color de marca"},React.createElement(TweakColor,{label:"Acento",id:"blueColor",value:t.blueColor,onChange:v=>setTweak('blueColor',v),options:["#1a4fa0","#0071e3","#1428a0","#7c3aed","#0ea5e9","#10b981"]})),
+      React.createElement(TweakSection,{title:"Secciones"},
+        React.createElement(TweakToggle,{label:"Calculadora de cambio",id:"showCalculator",value:t.showCalculator,onChange:v=>setTweak('showCalculator',v)}),
+        React.createElement(TweakToggle,{label:"Combos",id:"showBundles",value:t.showBundles,onChange:v=>setTweak('showBundles',v)}),
+        React.createElement(TweakToggle,{label:"Accesorios",id:"showAccessories",value:t.showAccessories,onChange:v=>setTweak('showAccessories',v)})
+      )
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('tweaks-root')).render(React.createElement(ParraShopTweaks));
+})();
+</script>
+
+<!-- WATERMARK -->
+<div class="wm-badge">Parra Shop · Mockup por Daniel Acosta</div>
+</body>
+</html>

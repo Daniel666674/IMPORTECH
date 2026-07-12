@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Producto — Importech</title>
+<meta name="description" content="iPhones y AirPods originales — Importech Col, Bogotá.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#9898a0;--blue-h:#6e6e76;--nuevo:#34c759;--airpods:#0071e3;--bg:#06060a;--card:#111115;--dark:#1d1d1f;--dborder:rgba(255,255,255,.08);--white:#fff}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden}
+img{display:block}a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(6,6,10,.92);backdrop-filter:blur(20px) saturate(1.8);border-bottom:1px solid var(--dborder)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{width:36px;height:36px;border-radius:50%;overflow:hidden;flex-shrink:0}
+.logo-mark img{width:36px;height:36px;border-radius:50%;object-fit:cover;display:block}
+.nav-name{font-size:15px;font-weight:700;color:#fff;letter-spacing:.04em}
+.nav-name span{color:rgba(255,255,255,.4);font-weight:400;font-size:13px;margin-left:6px;letter-spacing:0}
+.nav-links{display:flex;align-items:center;gap:24px;list-style:none}
+.nav-links a{color:rgba(255,255,255,.62);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:20px;background:var(--blue);color:#fff!important;font-size:13px!important;font-weight:600!important;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--blue-h)}
+.cart-nav-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.14);color:#fff;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s}
+.cart-nav-btn:hover{background:rgba(152,152,160,.2);border-color:var(--blue)}
+.cart-badge{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--blue);color:#fff;font-size:10px;font-weight:700;line-height:1}
+.cart-badge.empty{background:rgba(255,255,255,.22)}
+
+/* HAMBURGER */
+.nav-ham{display:none;flex-direction:column;gap:5px;align-items:center;justify-content:center;width:36px;height:36px;border:none;background:transparent;cursor:pointer;padding:6px;border-radius:8px;transition:background .2s}
+.nav-ham:hover{background:rgba(255,255,255,.07)}
+.nav-ham span{display:block;width:20px;height:2px;background:#fff;border-radius:2px;transition:all .25s}
+.nav-ham.open span:first-child{transform:translateY(7px) rotate(45deg)}
+.nav-ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-ham.open span:last-child{transform:translateY(-7px) rotate(-45deg)}
+
+/* MOBILE MENU */
+.mob-menu{position:fixed;inset:0;z-index:190;background:rgba(6,6,10,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;opacity:0;pointer-events:none;transition:opacity .28s;padding:20px}
+.mob-menu.show{opacity:1;pointer-events:auto}
+.mob-menu a,.mob-menu button.mob-link{font-size:26px;font-weight:700;color:rgba(255,255,255,.8);text-decoration:none;letter-spacing:.02em;background:none;border:none;cursor:pointer;font-family:inherit;transition:color .2s}
+.mob-menu a:hover,.mob-menu button.mob-link:hover{color:#fff}
+.mob-wa{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;border-radius:50px;background:#25d366;color:#fff;font-size:16px;font-weight:700;margin-top:8px}
+
+/* BREADCRUMB */
+.bc-bar{padding:72px 52px 0;background:var(--bg)}
+.bc-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.38);padding-top:20px}
+.bc-inner a{color:rgba(255,255,255,.5);transition:color .2s}
+.bc-inner a:hover{color:#fff}
+.bc-sep{color:rgba(255,255,255,.2)}
+
+/* PRODUCT HERO */
+.prod-sec{padding:32px 52px 80px;background:var(--bg)}
+.prod-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.prod-image-wrap{background:#f4f4f6;border-radius:24px;overflow:hidden;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:32px;position:relative}
+.prod-image-wrap img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 16px 40px rgba(0,0,0,.15))}
+.prod-badge-wrap{position:absolute;top:18px;left:18px}
+.cond-badge{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:20px;color:#fff;display:inline-block;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.b-nuevo{background:var(--nuevo)}.b-semi{background:var(--blue)}.b-airpods{background:var(--airpods)}
+
+/* PRODUCT INFO */
+.prod-detail{padding-top:8px}
+.prod-brand{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.prod-name{font-size:clamp(28px,4vw,48px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.1;margin-bottom:6px}
+.prod-spec-line{font-size:14px;color:rgba(255,255,255,.42);margin-bottom:28px}
+.prod-price-block{margin-bottom:32px}
+.prod-price-block small{font-size:12px;color:rgba(255,255,255,.4);font-weight:400;display:block;margin-bottom:4px}
+.prod-price{font-size:40px;font-weight:800;color:#fff;letter-spacing:-.02em}
+.prod-features{list-style:none;margin-bottom:36px;display:flex;flex-direction:column;gap:10px}
+.prod-features li{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(255,255,255,.65)}
+.prod-features li::before{content:'';width:18px;height:18px;border-radius:50%;background:rgba(152,152,160,.15);border:1.5px solid var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.prod-feature-check{width:18px;height:18px;border-radius:50%;background:rgba(152,152,160,.15);border:1.5px solid var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--blue);font-weight:700}
+.prod-btns{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.prod-cart-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:16px;border-radius:14px;background:var(--blue);color:#fff;font-size:15px;font-weight:700;border:none;font-family:inherit;cursor:pointer;transition:all .25s}
+.prod-cart-btn:hover{background:var(--blue-h);transform:translateY(-1px);box-shadow:0 8px 24px rgba(152,152,160,.25)}
+.prod-cart-btn.added{background:#34c759}
+.prod-wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:16px;border-radius:14px;background:#25d366;color:#fff;font-size:15px;font-weight:700;transition:all .25s;text-decoration:none}
+.prod-wa-btn:hover{background:#1db857;transform:translateY(-1px);box-shadow:0 8px 24px rgba(37,211,102,.3)}
+.prod-trust{display:flex;gap:20px;flex-wrap:wrap}
+.prod-trust span{font-size:12px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:5px}
+
+/* RELATED */
+.related-sec{background:#0a0a0e;padding:72px 52px}
+.related-inner{max-width:1200px;margin:0 auto}
+.related-eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;display:block}
+.related-h2{font-size:clamp(22px,3vw,34px);font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:32px}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rc{background:var(--card);border-radius:16px;border:1px solid rgba(255,255,255,.07);overflow:hidden;transition:all .3s;display:flex;flex-direction:column;text-decoration:none}
+.rc:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(152,152,160,.12);border-color:rgba(152,152,160,.22)}
+.rc-top{height:180px;display:flex;align-items:center;justify-content:center;background:#f4f4f6;padding:16px}
+.rc-top img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 6px 16px rgba(0,0,0,.12));transition:transform .4s}
+.rc:hover .rc-top img{transform:scale(1.05)}
+.rc-body{padding:16px 18px 18px}
+.rc-brand{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:4px}
+.rc-name{font-size:15px;font-weight:700;color:#fff;margin-bottom:10px}
+.rc-price{font-size:18px;font-weight:800;color:#fff;margin-bottom:12px}
+.rc-price small{font-size:11px;font-weight:400;color:rgba(255,255,255,.38);display:block;margin-bottom:2px}
+.rc-btn{display:flex;align-items:center;justify-content:center;padding:9px;border-radius:10px;background:var(--blue);color:#fff;font-size:12px;font-weight:600;text-decoration:none;transition:background .2s;border:none;font-family:inherit;cursor:pointer;width:100%}
+.rc-btn:hover{background:var(--blue-h)}
+
+/* CART DRAWER */
+#cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:800;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(4px)}
+#cart-overlay.show{opacity:1;pointer-events:auto}
+#cart-drawer{position:fixed;top:0;right:0;bottom:0;width:400px;max-width:96vw;background:#111115;border-left:1px solid rgba(255,255,255,.1);z-index:801;transform:translateX(105%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-24px 0 60px rgba(0,0,0,.55)}
+#cart-drawer.open{transform:translateX(0)}
+.cart-head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.07)}
+.cart-head h3{font-size:17px;font-weight:700;color:#fff}
+.cart-close-btn{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:rgba(255,255,255,.6);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.cart-close-btn:hover{background:rgba(255,255,255,.12);color:#fff}
+.cart-items{flex:1;overflow-y:auto;padding:8px 24px 16px}
+.cart-empty{text-align:center;padding:56px 0;color:rgba(255,255,255,.28)}
+.cart-empty .ce-ico{font-size:44px;margin-bottom:14px}
+.cart-empty p{font-size:14px}
+.cart-item{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.cart-item:last-child{border:none}
+.ci-info{flex:1;min-width:0}
+.ci-info .ci-name{font-size:14px;font-weight:600;color:#fff;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci-info .ci-price{font-size:12px;color:rgba(255,255,255,.4)}
+.ci-qty{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.ci-qty button{width:26px;height:26px;border-radius:7px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;line-height:1;padding:0}
+.ci-qty button:hover{background:rgba(152,152,160,.25);border-color:var(--blue)}
+.ci-qty .cq-n{min-width:20px;text-align:center;font-size:14px;font-weight:700;color:#fff}
+.ci-del{width:28px;height:28px;border-radius:7px;border:none;background:rgba(255,60,60,.1);color:rgba(255,100,100,.7);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.ci-del:hover{background:rgba(255,60,60,.22);color:#ff6060}
+.cart-foot{padding:18px 24px 24px;border-top:1px solid rgba(255,255,255,.07)}
+.cart-total-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cart-total-row .ct-label{font-size:13px;color:rgba(255,255,255,.44)}
+.cart-total-row .ct-amt{font-size:24px;font-weight:800;color:#fff;letter-spacing:-.02em}
+.cart-wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;border-radius:12px;border:none;background:#25d366;color:#fff;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;transition:all .25s;margin-bottom:9px}
+.cart-wa-btn:hover{background:#1db857;box-shadow:0 8px 24px rgba(37,211,102,.35);transform:translateY(-1px)}
+.cart-wa-btn:disabled{background:rgba(255,255,255,.1);color:rgba(255,255,255,.3);cursor:not-allowed;transform:none;box-shadow:none}
+.cart-clear-btn{display:block;width:100%;padding:9px;border-radius:9px;border:1px solid rgba(255,255,255,.09);background:transparent;color:rgba(255,255,255,.32);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s}
+.cart-clear-btn:hover{border-color:rgba(255,90,90,.35);color:rgba(255,90,90,.75)}
+
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,.4);transition:transform .2s}
+.wa-float:hover{transform:scale(1.1)}
+.wa-float::before{content:'';position:absolute;inset:-6px;border-radius:50%;background:rgba(37,211,102,.18);animation:wap 2.2s ease-out infinite}
+@keyframes wap{0%{transform:scale(.95);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+
+/* NOT FOUND */
+.notfound{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px}
+.notfound h1{font-size:48px;font-weight:800;color:#fff;margin-bottom:12px}
+.notfound p{font-size:16px;color:rgba(255,255,255,.42);margin-bottom:28px}
+.notfound a{display:inline-flex;align-items:center;gap:7px;padding:13px 28px;border-radius:50px;background:var(--blue);color:#fff;font-size:14px;font-weight:600}
+
+/* RESPONSIVE */
+@media(max-width:900px){.prod-inner{grid-template-columns:1fr;gap:40px}.related-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){nav{padding:0 20px}.nav-links{display:none}.nav-ham{display:flex}.bc-bar{padding:72px 22px 0}.prod-sec{padding:24px 22px 60px}.related-sec{padding:52px 22px}.related-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark"><img src="assets/importech-logo.jpg" alt="Importech"></div>
+    <span class="nav-name">IMPORTECH <span>iPhones &amp; Accesorios</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#catalog">Catálogo</a></li>
+    <li><a href="index.html#calculator">Cambio</a></li>
+    <li><a href="index.html#bundles">Combos</a></li>
+    <li><a href="index.html#accessories">Accesorios</a></li>
+    <li><button class="cart-nav-btn" onclick="openCart()">🛒 Carrito <span id="cart-count" class="cart-badge empty">0</span></button></li>
+    <li><a href="https://wa.me/573022522545" class="nav-cta"><svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>Contáctanos</a></li>
+  </ul>
+  <button class="nav-ham" id="nav-ham" onclick="toggleMob()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mob-menu">
+  <a href="index.html#catalog" onclick="closeMob()">Catálogo</a>
+  <a href="index.html#calculator" onclick="closeMob()">Cambio</a>
+  <a href="index.html#bundles" onclick="closeMob()">Combos</a>
+  <a href="index.html#accessories" onclick="closeMob()">Accesorios</a>
+  <button class="mob-link" onclick="closeMob();openCart()">🛒 Carrito</button>
+  <a href="https://wa.me/573022522545" class="mob-wa"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>WhatsApp</a>
+</div>
+
+<!-- CONTENT (rendered by JS) -->
+<div id="page-content"></div>
+
+<!-- CART DRAWER -->
+<div id="cart-overlay" onclick="closeCart()"></div>
+<div id="cart-drawer">
+  <div class="cart-head">
+    <h3>🛒 Tu carrito</h3>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty"><div class="ce-ico">🛒</div><p>Tu carrito está vacío</p></div>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-total-row">
+      <span class="ct-label">Total estimado</span>
+      <span class="ct-amt" id="cart-total-amt">$0</span>
+    </div>
+    <button class="cart-wa-btn" id="cart-checkout-btn" onclick="checkoutWA()" disabled>
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>
+      Pedir por WhatsApp
+    </button>
+    <button class="cart-clear-btn" onclick="cartClear()">Vaciar carrito</button>
+  </div>
+</div>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/573022522545?text=Hola%20Importech%2C%20quiero%20cotizar" class="wa-float" aria-label="WhatsApp">
+  <svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>
+</a>
+
+<script>
+/* ── PRODUCT CATALOG ── */
+const PRODUCTS = [
+  {id:'iphone-17-pro-orange',brand:'iPhone 17 Pro',name:'Cosmic Orange',price:6200000,badge:'Nuevo',badgeClass:'b-nuevo',cat:'iphone',image:'assets/products/iphone-17-pro-cosmic-orange.jpg',spec:'256 GB · Garantía oficial · Nuevo sellado',features:['Chip A19 Pro Bionic','Cámara Pro 48 MP con zoom óptico 5×','Pantalla Super Retina XDR 6.3" — ProMotion 120Hz','Diseño en titanio de grado aeronáutico','Dynamic Island · Action Button','Camera Control · Face ID · MagSafe · USB-C','Garantía oficial Apple incluida'],waText:'me%20interesa%20el%20iPhone%2017%20Pro%20Cosmic%20Orange'},
+  {id:'iphone-17-pro-white',brand:'iPhone 17 Pro',name:'White Titanium',price:6200000,badge:'Nuevo',badgeClass:'b-nuevo',cat:'iphone',image:'assets/products/iphone-17-pro-white-titanium.jpg',spec:'256 GB · Cámara Pro 48MP · Nuevo sellado',features:['Chip A19 Pro Bionic','Sistema de cámara Pro — 48MP principal','Pantalla Super Retina XDR 6.3" — 120Hz','Titanio blanco de grado aeronáutico','Camera Control · Action Button · Face ID','MagSafe · USB-C · 5G','Garantía oficial Apple incluida'],waText:'me%20interesa%20el%20iPhone%2017%20Pro%20White%20Titanium'},
+  {id:'iphone-16-pro-max',brand:'iPhone 16 Pro Max',name:'Natural Titanium',price:5200000,badge:'Nuevo',badgeClass:'b-nuevo',cat:'iphone',image:'assets/products/iphone-16-pro-max-natural-titanium.jpg',spec:'256 GB · Camera Control · Nuevo sellado',features:['Chip A18 Pro Bionic','Camera Control — control de cámara físico','Pantalla 6.9" Super Retina XDR — 120Hz','Titanio natural — el iPhone más grande','Grabación en 4K a 120 fps (Dolby Vision)','Face ID · MagSafe · USB-C · 5G','Garantía oficial Apple incluida'],waText:'me%20interesa%20el%20iPhone%2016%20Pro%20Max'},
+  {id:'iphone-15-pro-blue',brand:'iPhone 15 Pro',name:'Blue Titanium',price:3500000,badge:'Seminuevo',badgeClass:'b-semi',cat:'iphone',image:'assets/products/iphone-15-pro-blue-titanium.jpg',spec:'256 GB · Estado 9/10 · Batería 92%',features:['Chip A17 Pro Bionic','Action Button personalizable','Cámara Pro 48MP con zoom óptico 3×','Titanio azul — diseño ultraligero','USB-C · MagSafe · Face ID · 5G','Estado estético 9/10 — sin rayones','Batería al 92% — duración todo el día'],waText:'me%20interesa%20el%20iPhone%2015%20Pro%20Blue%20Titanium'},
+  {id:'iphone-14-pro-max',brand:'iPhone 14 Pro Max',name:'Deep Purple',price:2900000,badge:'Seminuevo',badgeClass:'b-semi',cat:'iphone',image:'assets/products/iphone-14-pro-max-deep-purple.jpg',spec:'256 GB · Estado 9/10 · Batería 89%',features:['Chip A16 Bionic','Dynamic Island — primera generación','Always-On Display — pantalla siempre activa','Cámara 48MP — el salto más grande de la historia','Acero inoxidable · Deep Purple exclusivo','Estado estético 9/10','Batería al 89%'],waText:'me%20interesa%20el%20iPhone%2014%20Pro%20Max%20Deep%20Purple'},
+  {id:'iphone-13-pro',brand:'iPhone 13 Pro',name:'Gold',price:2200000,badge:'Seminuevo',badgeClass:'b-semi',cat:'iphone',image:'assets/products/iphone-13-pro-gold.jpg',spec:'128 GB · Estado 9/10 · Batería 87%',features:['Chip A15 Bionic','Pantalla ProMotion 120Hz — primer iPhone Pro','Triple cámara — ultra gran angular, principal y telefoto','Macro Photography','Acero inoxidable dorado — clásico atemporal','Estado estético 9/10','Batería al 87%'],waText:'me%20interesa%20el%20iPhone%2013%20Pro%20Gold'},
+  {id:'airpods-pro-3',brand:'Apple',name:'AirPods Pro 3',price:1150000,badge:'Nuevo',badgeClass:'b-airpods',cat:'airpods',image:'assets/products/airpods-pro-3.jpg',spec:'Cancelación de ruido · USB-C · Originales',features:['Chip H2 de Apple — la mejor cancelación de ruido','Audio Adaptativo — ajuste automático al entorno','Modo Ambiente completamente renovado','Carga inalámbrica · USB-C · MagSafe','Hasta 30 horas de batería total (con estuche)','Audio espacial personalizado','100% originales con garantía'],waText:'me%20interesan%20los%20AirPods%20Pro%203'},
+  {id:'airpods-pro-2',brand:'Apple',name:'AirPods Pro 2',price:950000,badge:'Nuevo',badgeClass:'b-airpods',cat:'airpods',image:'assets/products/airpods-pro-2.jpg',spec:'USB-C · Audio adaptativo · Originales',features:['Chip H2 — cancelación de ruido líder en la industria','Audio Adaptativo — Transparencia y ANC combinados','USB-C · MagSafe · carga inalámbrica','Hasta 30 horas de batería total','Resistencia al agua y sudor IPX4','Detección de conversación automática','100% originales con garantía'],waText:'me%20interesan%20los%20AirPods%20Pro%202'},
+  {id:'airpods-pro',brand:'Apple',name:'AirPods Pro',price:750000,badge:'Disponible',badgeClass:'b-airpods',cat:'airpods',image:'assets/products/airpods-pro.jpg',spec:'Cancelación activa · MagSafe · Originales',features:['Chip H1 — cancelación activa de ruido','Modo Transparencia — escucha el entorno','Ecualizador Adaptativo en tiempo real','Carga MagSafe · Lightning','Hasta 24 horas de batería total','Diseño in-ear — ajuste personalizado','100% originales con garantía'],waText:'me%20interesan%20los%20AirPods%20Pro'},
+];
+
+/* ── CART (localStorage) ── */
+const CART_KEY='importech-cart';
+function getCart(){try{return JSON.parse(localStorage.getItem(CART_KEY)||'[]');}catch(e){return[];}}
+function saveCart(c){try{localStorage.setItem(CART_KEY,JSON.stringify(c));}catch(e){}}
+function fmtCOP(n){return'$'+Math.round(n).toLocaleString('es-CO');}
+function cartSum(){return getCart().reduce((s,i)=>s+i.price*i.qty,0);}
+
+function cartAdd(name,price){
+  const c=getCart();
+  const ex=c.find(i=>i.name===name);
+  if(ex){ex.qty++;}else{c.push({name,price,qty:1});}
+  saveCart(c);updateCartUI();openCart();
+  const btn=document.getElementById('prod-cart-btn');
+  if(btn){btn.textContent='✓ Agregado';btn.classList.add('added');setTimeout(()=>{btn.textContent='🛒 Agregar al carrito';btn.classList.remove('added');},2000);}
+}
+function cartDel(name){const c=getCart();const i=c.findIndex(x=>x.name===name);if(i>-1)c.splice(i,1);saveCart(c);updateCartUI();}
+function cartQty(name,d){const c=getCart();const it=c.find(x=>x.name===name);if(!it)return;it.qty=Math.max(1,it.qty+d);saveCart(c);updateCartUI();}
+function cartClear(){saveCart([]);updateCartUI();}
+
+function updateCartUI(){
+  const c=getCart();
+  const count=c.reduce((s,i)=>s+i.qty,0);
+  const badge=document.getElementById('cart-count');
+  if(badge){badge.textContent=count;badge.className='cart-badge'+(count===0?' empty':'');}
+  const box=document.getElementById('cart-items');
+  if(!box)return;
+  if(!c.length){
+    box.innerHTML='<div class="cart-empty"><div class="ce-ico">🛒</div><p>Tu carrito está vacío</p></div>';
+  }else{
+    box.innerHTML=c.map(i=>`<div class="cart-item">
+      <div class="ci-info"><div class="ci-name">${i.name}</div><div class="ci-price">${fmtCOP(i.price)} c/u</div></div>
+      <div class="ci-qty">
+        <button onclick="cartQty(${JSON.stringify(i.name)},-1)">−</button>
+        <span class="cq-n">${i.qty}</span>
+        <button onclick="cartQty(${JSON.stringify(i.name)},1)">+</button>
+      </div>
+      <button class="ci-del" onclick="cartDel(${JSON.stringify(i.name)})">✕</button>
+    </div>`).join('');
+  }
+  document.getElementById('cart-total-amt').textContent=fmtCOP(cartSum());
+  const btn=document.getElementById('cart-checkout-btn');
+  if(btn)btn.disabled=!c.length;
+}
+function openCart(){document.getElementById('cart-overlay').classList.add('show');document.getElementById('cart-drawer').classList.add('open');}
+function closeCart(){document.getElementById('cart-overlay').classList.remove('show');document.getElementById('cart-drawer').classList.remove('open');}
+function checkoutWA(){
+  const c=getCart();if(!c.length)return;
+  const lines=c.map(i=>`• ${i.name} x${i.qty} — ${fmtCOP(i.price*i.qty)}`).join('\n');
+  const msg=`Hola Importech, quiero pedir:\n${lines}\n\nTotal: ${fmtCOP(cartSum())}`;
+  window.open('https://wa.me/573022522545?text='+encodeURIComponent(msg),'_blank');
+}
+
+/* ── MOBILE NAV ── */
+function toggleMob(){
+  const h=document.getElementById('nav-ham');
+  const m=document.getElementById('mob-menu');
+  const open=m.classList.toggle('show');
+  h.classList.toggle('open',open);
+  document.body.style.overflow=open?'hidden':'';
+}
+function closeMob(){
+  document.getElementById('mob-menu').classList.remove('show');
+  document.getElementById('nav-ham').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+/* ── RENDER PAGE ── */
+const WA_SVG=`<svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>`;
+
+const params=new URLSearchParams(location.search);
+const pid=params.get('id');
+const product=PRODUCTS.find(p=>p.id===pid);
+const content=document.getElementById('page-content');
+
+if(!product){
+  content.innerHTML=`<div class="notfound"><h1>Producto no encontrado</h1><p>El equipo que buscas no está disponible o fue retirado del catálogo.</p><a href="index.html">← Volver al catálogo</a></div>`;
+}else{
+  document.title=`${product.brand} ${product.name} — Importech`;
+
+  const related=PRODUCTS.filter(p=>p.id!==product.id&&(p.cat===product.cat||p.cat==='iphone')).slice(0,3);
+
+  content.innerHTML=`
+    <div class="bc-bar"><div class="bc-inner">
+      <a href="index.html">Catálogo</a>
+      <span class="bc-sep">›</span>
+      <span>${product.brand}</span>
+      <span class="bc-sep">›</span>
+      <span style="color:rgba(255,255,255,.7)">${product.name}</span>
+    </div></div>
+
+    <section class="prod-sec">
+      <div class="prod-inner">
+        <div class="prod-image-wrap">
+          <img src="${product.image}" alt="${product.brand} ${product.name}">
+          <div class="prod-badge-wrap"><span class="cond-badge ${product.badgeClass}">${product.badge}</span></div>
+        </div>
+        <div class="prod-detail">
+          <div class="prod-brand">${product.brand}</div>
+          <h1 class="prod-name">${product.name}</h1>
+          <p class="prod-spec-line">${product.spec}</p>
+          <div class="prod-price-block">
+            <small>Desde</small>
+            <div class="prod-price">${fmtCOP(product.price)}</div>
+          </div>
+          <ul class="prod-features">
+            ${product.features.map(f=>`<li><span class="prod-feature-check">✓</span>${f}</li>`).join('')}
+          </ul>
+          <div class="prod-btns">
+            <button class="prod-cart-btn" id="prod-cart-btn" onclick="cartAdd(${JSON.stringify(product.brand+' '+product.name)},${product.price})">🛒 Agregar al carrito</button>
+            <a href="https://wa.me/573022522545?text=Hola%20Importech%2C%20${product.waText}" class="prod-wa-btn">${WA_SVG} Cotizar por WhatsApp</a>
+          </div>
+          <div class="prod-trust">
+            <span>🔒 100% Original</span>
+            <span>🚀 Envíos Colombia</span>
+            <span>💳 Pago seguro</span>
+            <span>🏪 CC Caribe · Bogotá</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="related-sec">
+      <div class="related-inner">
+        <span class="related-eyebrow">También te puede interesar</span>
+        <h2 class="related-h2">Más productos</h2>
+        <div class="related-grid">
+          ${related.map(r=>`
+            <a href="product.html?id=${r.id}" class="rc">
+              <div class="rc-top"><img src="${r.image}" alt="${r.brand} ${r.name}" loading="lazy"></div>
+              <div class="rc-body">
+                <div class="rc-brand">${r.brand}</div>
+                <div class="rc-name">${r.name}</div>
+                <div class="rc-price"><small>Desde</small>${fmtCOP(r.price)}</div>
+                <span class="rc-btn">Ver producto →</span>
+              </div>
+            </a>`).join('')}
+        </div>
+      </div>
+    </section>`;
+}
+
+updateCartUI();
+</script>
+</body>
+</html>

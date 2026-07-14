@@ -615,7 +615,6 @@ footer{background:#060608;border-top:1px solid rgba(255,255,255,.06);padding:32p
             <div class="ca-item">📲<span>iPad</span></div>
             <div class="ca-item">💻<span>MacBook</span></div>
             <div class="ca-item">⌚<span>Watch</span></div>
-            <div class="ca-item">🎧<span>AirPods</span></div>
           </div>
         </div>
       </div>
@@ -629,7 +628,6 @@ footer{background:#060608;border-top:1px solid rgba(255,255,255,.06);padding:32p
             <button class="ccat" data-cat="ipad" onclick="selectCat(this)">📲<span>iPad</span></button>
             <button class="ccat" data-cat="mac" onclick="selectCat(this)">💻<span>MacBook</span></button>
             <button class="ccat" data-cat="watch" onclick="selectCat(this)">⌚<span>Watch</span></button>
-            <button class="ccat" data-cat="airpods" onclick="selectCat(this)">🎧<span>AirPods</span></button>
           </div>
         </div>
 
@@ -645,16 +643,6 @@ footer{background:#060608;border-top:1px solid rgba(255,255,255,.06);padding:32p
         <div class="calc-step" id="c-storage-step" style="display:none">
           <div class="step-label"><span class="step-num">3</span>Almacenamiento</div>
           <div class="cond-radios" id="c-storage-radios"></div>
-        </div>
-
-        <!-- iCloud (iPhone / iPad) -->
-        <div class="calc-step" id="c-icloud-step">
-          <div class="step-label"><span class="step-num" id="sn-icloud">3</span>¿El equipo tiene iCloud vinculado?</div>
-          <div class="cond-radios">
-            <div class="cond-radio selected" data-icloud="0" onclick="selectIcloud(this)"><div class="cr-label">🔓 Sin iCloud</div><div class="cr-sub">Listo para activar</div></div>
-            <div class="cond-radio" data-icloud="1" onclick="selectIcloud(this)"><div class="cr-label">🔒 Con iCloud activo</div><div class="cr-sub">Cuenta del dueño activa</div></div>
-          </div>
-          <div class="icloud-warn" id="icloud-warn" style="display:none">⚠️ Un equipo con iCloud vinculado reduce significativamente su valor de trade-in. El dueño debe desvincularlo antes de vender.</div>
         </div>
 
         <!-- Estado -->
@@ -960,16 +948,8 @@ const TRADE={
       {n:'Apple Watch Series 8',v:800000},{n:'Apple Watch Series 7',v:600000},
       {n:'Apple Watch Series 6',v:420000},
     ]},
-  airpods:{hasBattery:false,hasStorage:false,hasIcloud:false,label:'AirPods',
-    models:[
-      {n:'AirPods Max (USB-C)',v:1400000},{n:'AirPods Max (Lightning)',v:1100000},
-      {n:'AirPods Pro 3',v:900000},{n:'AirPods Pro 2 (USB-C)',v:700000},
-      {n:'AirPods Pro 2 (Lightning)',v:550000},{n:'AirPods Pro 1',v:380000},
-      {n:'AirPods 4 (con ANC)',v:500000},{n:'AirPods 4',v:380000},
-      {n:'AirPods 3',v:280000},{n:'AirPods 2',v:180000},
-    ]},
 };
-let currentCat='iphone';let condMult=1;let storageBon=0;let icloudLocked=false;
+let currentCat='iphone';let condMult=1;let storageBon=0;
 
 function selectCat(btn){
   document.querySelectorAll('.ccat').forEach(b=>b.classList.remove('active'));
@@ -987,12 +967,7 @@ function updateCalcUI(){
     document.getElementById('c-storage-radios').innerHTML=cat.storages.map((s,i)=>`<div class="cond-radio${i===0?' selected':''}" data-bonus="${s.b}" onclick="selectStorage(this)"><div class="cr-label">${s.n}</div><div class="cr-sub">${s.b?'+'+fmtCOP(s.b):'Base'}</div></div>`).join('');
     storageBon=0;
   }else{storageStep.style.display='none';storageBon=0;}
-  const icloudStep=document.getElementById('c-icloud-step');
-  icloudStep.style.display=cat.hasIcloud?'':'none';
   document.getElementById('c-battery-step').style.display=cat.hasBattery?'':'none';
-  icloudLocked=false;
-  document.getElementById('icloud-warn').style.display='none';
-  document.querySelectorAll('[data-icloud]').forEach((b,i)=>{b.classList.toggle('selected',i===0);});
   document.getElementById('calcResult').classList.remove('show');
   document.getElementById('calcResult').style.display='none';
   updateStepNums();
@@ -1001,7 +976,6 @@ function updateStepNums(){
   const cat=TRADE[currentCat];
   let n=3;
   if(cat.hasStorage)n++;
-  if(cat.hasIcloud){document.getElementById('sn-icloud').textContent=n++;}
   document.getElementById('sn-cond').textContent=n++;
   if(cat.hasBattery)document.getElementById('sn-bat').textContent=n;
 }
@@ -1009,12 +983,6 @@ function selectStorage(btn){
   document.querySelectorAll('#c-storage-radios .cond-radio').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
   storageBon=parseInt(btn.dataset.bonus)||0;
-}
-function selectIcloud(btn){
-  document.querySelectorAll('[data-icloud]').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');
-  icloudLocked=btn.dataset.icloud==='1';
-  document.getElementById('icloud-warn').style.display=icloudLocked?'':'none';
 }
 function selectCond(el){
   document.querySelectorAll('.cond-radio[data-mult]').forEach(r=>r.classList.remove('selected'));
@@ -1041,7 +1009,6 @@ function calcular(){
     const bm=pct>=90?1:pct>=80?.94:pct>=70?.85:.72;
     base*=bm;
   }
-  if(icloudLocked)base*=0.4;
   const total=Math.round(base/10000)*10000;
   const mn=Math.round(total*.88/10000)*10000;
   const mx=Math.round(total*1.1/10000)*10000;
@@ -1069,7 +1036,6 @@ function calcular(){
   msg+=`• Modelo: ${modelName}\n• Estado: ${condName}\n`;
   if(cat.hasStorage){const ss=document.querySelector('#c-storage-radios .selected');msg+=`• Almacenamiento: ${ss?ss.querySelector('.cr-label').textContent:''}\n`;}
   if(cat.hasBattery)msg+=`• Batería: ${document.getElementById('c-battery').value}%\n`;
-  if(icloudLocked)msg+=`• iCloud: Vinculado (lo desvinculo antes de entregar)\n`;
   msg+=`• Valor estimado: ${fmtCOP(total)}\n\n¿Qué equipo Apple puedo conseguir con mi ${cat.label} como parte de pago?`;
   document.getElementById('calc-wa-link').href='https://wa.me/573023232833?text='+encodeURIComponent(msg);
   const res=document.getElementById('calcResult');

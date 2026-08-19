@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Producto — Novatek · Apple Premium Bogotá</title>
-<meta name="description" content="Productos Apple originales — iPhones, iPads, MacBooks, AirPods y Apple Watch. Novatek Col, CC Caribe Bogotá. Envíos a toda Colombia.">
+<title>Producto — Importech · Apple Premium Bogotá</title>
+<meta name="description" content="Productos Apple originales — iPhones, iPads, MacBooks, AirPods y Apple Watch. Importech Col, CC Caribe Bogotá. Envíos a toda Colombia.">
 <meta name="geo.region" content="CO-DC">
 <meta name="geo.placename" content="Bogotá, Colombia">
 <meta property="og:type" content="product">
 <meta property="og:locale" content="es_CO">
-<meta property="og:site_name" content="Novatek Col">
+<meta property="og:site_name" content="Importech Col">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--blue:#a78bfa;--blue-h:#8b6fe0;--nuevo:#34c759;--airpods:#0071e3;--bg:#070710;--card:#111118;--dark:#1a1a24;--dborder:rgba(255,255,255,.08);--white:#fff}
+:root{--blue:#9898a0;--blue-h:#6e6e76;--nuevo:#34c759;--airpods:#0071e3;--bg:#06060a;--card:#111115;--dark:#1d1d1f;--dborder:rgba(255,255,255,.08);--white:#fff}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:#fff;overflow-x:hidden}
 img{display:block}a{color:inherit;text-decoration:none}
@@ -22,8 +22,8 @@ img{display:block}a{color:inherit;text-decoration:none}
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(6,6,10,.92);backdrop-filter:blur(20px) saturate(1.8);border-bottom:1px solid var(--dborder)}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-mark{width:36px;height:36px;border-radius:10px;overflow:hidden;flex-shrink:0}
-.logo-mark svg{width:36px;height:36px;display:block}
+.logo-mark{width:36px;height:36px;border-radius:50%;overflow:hidden;flex-shrink:0}
+.logo-mark img{width:36px;height:36px;border-radius:50%;object-fit:cover;display:block}
 .nav-name{display:flex;align-items:baseline}
 .nav-links{display:flex;align-items:center;gap:24px;list-style:none}
 .nav-links a{color:rgba(255,255,255,.62);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
@@ -31,7 +31,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;ali
 .nav-cta{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:20px;background:var(--blue);color:#fff!important;font-size:13px!important;font-weight:600!important;text-decoration:none;transition:background .2s}
 .nav-cta:hover{background:var(--blue-h)}
 .cart-nav-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.14);color:#fff;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;transition:all .2s}
-.cart-nav-btn:hover{background:rgba(167,139,250,.2);border-color:var(--blue)}
+.cart-nav-btn:hover{background:rgba(152,152,160,.2);border-color:var(--blue)}
 .cart-badge{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--blue);color:#fff;font-size:10px;font-weight:700;line-height:1}
 .cart-badge.empty{background:rgba(255,255,255,.22)}
 
@@ -77,11 +77,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;ali
 .prod-price{font-size:40px;font-weight:800;color:#fff;letter-spacing:-.02em}
 .prod-features{list-style:none;margin-bottom:36px;display:flex;flex-direction:column;gap:10px}
 .prod-features li{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(255,255,255,.65)}
-.prod-features li::before{content:'';width:18px;height:18px;border-radius:50%;background:rgba(167,139,250,.15);border:1.5px solid var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.prod-feature-check{width:18px;height:18px;border-radius:50%;background:rgba(167,139,250,.15);border:1.5px solid var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--blue);font-weight:700}
+.prod-features li::before{content:'';width:18px;height:18px;border-radius:50%;background:rgba(152,152,160,.15);border:1.5px solid var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.prod-feature-check{width:18px;height:18px;border-radius:50%;background:rgba(152,152,160,.15);border:1.5px solid var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--blue);font-weight:700}
 .prod-btns{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
 .prod-cart-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:16px;border-radius:14px;background:var(--blue);color:#fff;font-size:15px;font-weight:700;border:none;font-family:inherit;cursor:pointer;transition:all .25s}
-.prod-cart-btn:hover{background:var(--blue-h);transform:translateY(-1px);box-shadow:0 8px 24px rgba(167,139,250,.25)}
+.prod-cart-btn:hover{background:var(--blue-h);transform:translateY(-1px);box-shadow:0 8px 24px rgba(152,152,160,.25)}
 .prod-cart-btn.added{background:#34c759}
 .prod-wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:16px;border-radius:14px;background:#25d366;color:#fff;font-size:15px;font-weight:700;transition:all .25s;text-decoration:none}
 .prod-wa-btn:hover{background:#1db857;transform:translateY(-1px);box-shadow:0 8px 24px rgba(37,211,102,.3)}
@@ -95,7 +95,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;ali
 .related-h2{font-size:clamp(22px,3vw,34px);font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:32px}
 .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .rc{background:var(--card);border-radius:16px;border:1px solid rgba(255,255,255,.07);overflow:hidden;transition:all .3s;display:flex;flex-direction:column;text-decoration:none}
-.rc:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(167,139,250,.12);border-color:rgba(167,139,250,.22)}
+.rc:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(152,152,160,.12);border-color:rgba(152,152,160,.22)}
 .rc-top{height:180px;display:flex;align-items:center;justify-content:center;background:#f4f4f6;padding:16px}
 .rc-top img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 6px 16px rgba(0,0,0,.12));transition:transform .4s}
 .rc:hover .rc-top img{transform:scale(1.05)}
@@ -127,7 +127,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;ali
 .ci-info .ci-price{font-size:12px;color:rgba(255,255,255,.4)}
 .ci-qty{display:flex;align-items:center;gap:6px;flex-shrink:0}
 .ci-qty button{width:26px;height:26px;border-radius:7px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;line-height:1;padding:0}
-.ci-qty button:hover{background:rgba(167,139,250,.25);border-color:var(--blue)}
+.ci-qty button:hover{background:rgba(152,152,160,.25);border-color:var(--blue)}
 .ci-qty .cq-n{min-width:20px;text-align:center;font-size:14px;font-weight:700;color:#fff}
 .ci-del{width:28px;height:28px;border-radius:7px;border:none;background:rgba(255,60,60,.1);color:rgba(255,100,100,.7);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
 .ci-del:hover{background:rgba(255,60,60,.22);color:#ff6060}
@@ -160,17 +160,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;ali
 /* ── BRAND ANIMATIONS ── */
 /* Chrome metallic wordmark */
 @keyframes chrome-sweep{0%{background-position:200% center}100%{background-position:-200% center}}
-.nav-wordmark{font-size:15px;font-weight:800;letter-spacing:.06em;background:linear-gradient(90deg,rgba(190,180,220,.75) 0%,#fff 22%,rgba(220,210,255,1) 38%,#fff 50%,rgba(190,180,220,.85) 62%,#fff 78%,rgba(190,180,220,.75) 100%);background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:chrome-sweep 5s linear infinite}
+.nav-wordmark{font-size:15px;font-weight:800;letter-spacing:.06em;background:linear-gradient(90deg,rgba(200,200,210,.75) 0%,#fff 22%,rgba(200,200,210,.9) 38%,#fff 50%,rgba(180,180,190,.75) 62%,#fff 78%,rgba(200,200,210,.75) 100%);background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:chrome-sweep 5s linear infinite}
 .nav-sub{color:rgba(255,255,255,.4);font-weight:400;font-size:13px;margin-left:6px;letter-spacing:0}
 /* Titanium shimmer — sweeps across product image on hover */
 .prod-image-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.2) 50%,transparent 75%);transform:translateX(-110%);transition:transform .6s ease;pointer-events:none;z-index:1}
 .prod-image-wrap:hover::after{transform:translateX(110%)}
 /* Camera lens glow — pulsing radial on iPhone images */
 @keyframes cam-glow{0%,100%{opacity:0;transform:scale(.7)}50%{opacity:.85;transform:scale(1)}}
-.cam-glow-prod{position:absolute;top:18px;right:18px;width:80px;height:80px;border-radius:50%;background:radial-gradient(ellipse,rgba(167,139,250,.55) 0%,transparent 70%);animation:cam-glow 4.5s ease-in-out infinite;pointer-events:none;z-index:2}
+.cam-glow-prod{position:absolute;top:18px;right:18px;width:80px;height:80px;border-radius:50%;background:radial-gradient(ellipse,rgba(152,152,160,.55) 0%,transparent 70%);animation:cam-glow 4.5s ease-in-out infinite;pointer-events:none;z-index:2}
 /* Urgency / scarcity strip */
 @keyframes pu-blink{0%,100%{opacity:1}50%{opacity:.45}}
-.prod-urgency{margin:0 0 24px;padding:12px 16px;border-radius:12px;background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.15);display:flex;flex-direction:column;gap:6px}
+.prod-urgency{margin:0 0 24px;padding:12px 16px;border-radius:12px;background:rgba(152,152,160,.07);border:1px solid rgba(152,152,160,.15);display:flex;flex-direction:column;gap:6px}
 .pu-row{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.65)}
 .pu-dot{width:7px;height:7px;border-radius:50%;background:#34c759;flex-shrink:0;animation:pu-blink 1.6s ease-in-out infinite}
 .pu-stock{font-size:12px;font-weight:700;color:#ff9f0a;letter-spacing:.01em}
@@ -197,8 +197,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;ali
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">
-    <div class="logo-mark"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs><rect width="36" height="36" rx="8" fill="url(#lg)"/><rect x="14" y="7" width="8" height="3" rx="1.5" fill="#fff" opacity=".95"/><rect x="15.5" y="12" width="5" height="14" rx="2.5" fill="#fff" opacity=".95"/><rect x="14" y="26" width="8" height="3" rx="1.5" fill="#fff" opacity=".95"/><circle cx="8" cy="18" r="1.5" fill="#fff" opacity=".4"/><line x1="9.5" y1="18" x2="14" y2="18" stroke="#fff" stroke-width="1" opacity=".3"/><circle cx="28" cy="13" r="1.5" fill="#fff" opacity=".4"/><line x1="22" y1="13" x2="26.5" y2="13" stroke="#fff" stroke-width="1" opacity=".3"/><circle cx="28" cy="23" r="1.5" fill="#fff" opacity=".4"/><line x1="22" y1="23" x2="26.5" y2="23" stroke="#fff" stroke-width="1" opacity=".3"/></svg></div>
-    <span class="nav-name"><span class="nav-wordmark">NOVATEK</span><span class="nav-sub"> Apple Premium · Bogotá</span></span>
+    <div class="logo-mark"><img src="assets/importech-logo.jpg" alt="Importech"></div>
+    <span class="nav-name"><span class="nav-wordmark">IMPORTECH</span><span class="nav-sub"> Apple Premium · Bogotá</span></span>
   </a>
   <ul class="nav-links">
     <li><a href="index.html#catalog">Catálogo</a></li>
@@ -250,7 +250,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;ali
 </div>
 
 <!-- WA FLOAT -->
-<a href="https://wa.me/573023232833?text=Hola%20Novatek%2C%20quiero%20cotizar" class="wa-float" aria-label="WhatsApp">
+<a href="https://wa.me/573023232833?text=Hola%20Importech%2C%20quiero%20cotizar" class="wa-float" aria-label="WhatsApp">
   <svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>
 </a>
 
@@ -275,7 +275,7 @@ const PRODUCTS = [
 ];
 
 /* ── CART (localStorage) ── */
-const CART_KEY='novatek-cart';
+const CART_KEY='importech-cart';
 function getCart(){try{return JSON.parse(localStorage.getItem(CART_KEY)||'[]');}catch(e){return[];}}
 function saveCart(c){try{localStorage.setItem(CART_KEY,JSON.stringify(c));}catch(e){}}
 function fmtCOP(n){return'$'+Math.round(n).toLocaleString('es-CO');}
@@ -322,7 +322,7 @@ function closeCart(){document.getElementById('cart-overlay').classList.remove('s
 function checkoutWA(){
   const c=getCart();if(!c.length)return;
   const lines=c.map(i=>`• ${i.name} x${i.qty} — ${fmtCOP(i.price*i.qty)}`).join('\n');
-  const msg=`Hola Novatek, quiero pedir:\n${lines}\n\nTotal: ${fmtCOP(cartSum())}`;
+  const msg=`Hola Importech, quiero pedir:\n${lines}\n\nTotal: ${fmtCOP(cartSum())}`;
   window.open('https://wa.me/573023232833?text='+encodeURIComponent(msg),'_blank');
 }
 
@@ -351,7 +351,7 @@ const content=document.getElementById('page-content');
 if(!product){
   content.innerHTML=`<div class="notfound"><h1>Producto no encontrado</h1><p>El equipo que buscas no está disponible o fue retirado del catálogo.</p><a href="index.html">← Volver al catálogo</a></div>`;
 }else{
-  document.title=`${product.brand} ${product.name} — Novatek`;
+  document.title=`${product.brand} ${product.name} — Importech`;
 
   const related=PRODUCTS.filter(p=>p.id!==product.id&&(p.cat===product.cat||p.cat==='iphone')).slice(0,3);
 
@@ -388,7 +388,7 @@ if(!product){
           </ul>
           <div class="prod-btns">
             <button class="prod-cart-btn" id="prod-cart-btn" onclick="cartAdd(${JSON.stringify(product.brand+' '+product.name)},${product.price})">🛒 Agregar al carrito</button>
-            <a href="https://wa.me/573023232833?text=Hola%20Novatek%2C%20${product.waText}" class="prod-wa-btn">${WA_SVG} Cotizar por WhatsApp</a>
+            <a href="https://wa.me/573023232833?text=Hola%20Importech%2C%20${product.waText}" class="prod-wa-btn">${WA_SVG} Cotizar por WhatsApp</a>
           </div>
           <div class="prod-trust">
             <span>🔒 100% Original</span>

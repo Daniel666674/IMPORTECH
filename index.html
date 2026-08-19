@@ -236,8 +236,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:54px;display:flex;ali
 .result-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
 .result-row:last-of-type{border:none}
 .rl{color:rgba(255,255,255,.5)}.rv{font-weight:700;color:#fff}
-.result-upgrade{padding:12px 14px;margin:10px 0 14px;border-radius:10px;background:rgba(52,199,89,.08);border:1px solid rgba(52,199,89,.2);font-size:13px;color:rgba(255,255,255,.7);line-height:1.55}
+.calc-hold{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11.5px;font-weight:700;color:rgba(255,165,40,.9);background:rgba(255,165,40,.08);border:1px solid rgba(255,165,40,.22);border-radius:20px;padding:7px 14px;margin:0 0 14px;text-align:center;animation:hold-pulse 2.4s ease-in-out infinite}
+@keyframes hold-pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.result-upgrade{padding:14px 16px;margin:10px 0 14px;border-radius:10px;background:rgba(52,199,89,.08);border:1px solid rgba(52,199,89,.2);font-size:13px;color:rgba(255,255,255,.7);line-height:1.55}
 .result-upgrade strong{color:#34c759}
+.ru-title{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#34c759;margin-bottom:6px}
+.ru-line{font-size:13.5px}
 .result-cta{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;border-radius:10px;background:#25d366;color:#fff;font-size:13px;font-weight:700;text-decoration:none;transition:all .2s}
 .result-cta:hover{background:#1db857;box-shadow:0 6px 20px rgba(37,211,102,.3);transform:translateY(-1px)}
 
@@ -696,6 +700,7 @@ footer{background:#060608;border-top:1px solid rgba(255,255,255,.06);padding:32p
             <div class="rm-range" id="calcRange">—</div>
             <div class="rm-sub">Precio referencia mercado Bogotá · sujeto a revisión física</div>
           </div>
+          <div class="calc-hold" id="calcHold"></div>
           <div class="result-row"><span class="rl">Dispositivo</span><span class="rv" id="rModelo">—</span></div>
           <div class="result-row" id="r-storage-row"><span class="rl">Almacenamiento</span><span class="rv" id="rStorage">—</span></div>
           <div class="result-row"><span class="rl">Estado</span><span class="rv" id="rEstado">—</span></div>
@@ -985,6 +990,49 @@ const TRADE={
       {n:'Apple Watch Series 6',v:420000},
     ]},
 };
+/* Real catalog stock — used to turn the trade-in estimate into a concrete named upgrade offer */
+const CATALOG=[
+  {n:'iPhone 17 Pro Cosmic Orange',p:6200000,cat:'iphone'},
+  {n:'iPhone 17 Pro White Titanium',p:6200000,cat:'iphone'},
+  {n:'iPhone 16 Pro Max Natural Titanium',p:5200000,cat:'iphone'},
+  {n:'iPhone 15 Pro Blue Titanium',p:3500000,cat:'iphone'},
+  {n:'iPhone 14 Pro Max Deep Purple',p:2900000,cat:'iphone'},
+  {n:'iPhone 13 Pro Gold',p:2200000,cat:'iphone'},
+  {n:'AirPods Pro 3',p:1150000,cat:'airpods'},
+  {n:'AirPods Pro 2',p:950000,cat:'airpods'},
+  {n:'AirPods Pro',p:750000,cat:'airpods'},
+  {n:'MacBook Air 13" M3',p:3800000,cat:'mac'},
+  {n:'MacBook Pro 14" M4',p:5800000,cat:'mac'},
+  {n:'MacBook Air 15" M3',p:4200000,cat:'mac'},
+  {n:'iPad Pro 11" M4',p:3200000,cat:'ipad'},
+  {n:'iPad Air M2',p:2100000,cat:'ipad'},
+  {n:'iPad mini 7',p:1800000,cat:'ipad'},
+  {n:'Apple Watch Ultra 2',p:3800000,cat:'watch'},
+  {n:'Apple Watch Series 10',p:1500000,cat:'watch'},
+];
+function suggestUpgrade(tradeValue,cat){
+  const inCat=CATALOG.filter(p=>p.cat===cat).sort((a,b)=>a.p-b.p);
+  const affordable=inCat.filter(p=>p.p>=tradeValue);
+  if(affordable.length)return affordable[0];
+  if(inCat.length)return inCat[inCat.length-1];
+  return CATALOG.slice().sort((a,b)=>a.p-b.p).find(p=>p.p>=tradeValue)||CATALOG[0];
+}
+let quoteTimer=null;
+function startQuoteHold(){
+  const expiry=Date.now()+48*60*60*1000;
+  localStorage.setItem('tradeQuoteExpiry',String(expiry));
+  if(quoteTimer)clearInterval(quoteTimer);
+  const tick=()=>{
+    const remain=expiry-Date.now();
+    const el=document.getElementById('calcHold');
+    if(!el)return;
+    if(remain<=0){el.textContent='Cotización expirada — recalcula para renovarla';clearInterval(quoteTimer);return;}
+    const h=Math.floor(remain/3600000);const m=Math.floor((remain%3600000)/60000);
+    el.textContent=`⏳ Precio reservado por ${h}h ${m}m — escríbenos antes de que expire`;
+  };
+  tick();
+  quoteTimer=setInterval(tick,60000);
+}
 let currentCat='iphone';let condMult=1;let storageBon=0;
 
 function selectCat(btn){
@@ -1065,17 +1113,25 @@ function calcular(){
     document.getElementById('rStorage').textContent=sSel?sSel.querySelector('.cr-label').textContent:'—';
   }else storageRow.style.display='none';
   const up=document.getElementById('r-upgrade');
-  if(total>=3000000){up.innerHTML=`Con tu ${cat.label} como parte de pago, podrías llevarte un <strong>iPhone 17 Pro</strong> o <strong>MacBook Air M3</strong> desde Importech a un precio accesible. ¡Pregúntanos!`;}
-  else if(total>=1500000){up.innerHTML=`Tu ${cat.label} puede cubrir una buena parte de un <strong>iPhone 15 Pro</strong>, <strong>iPad Air</strong> o <strong>AirPods Pro 3</strong>. ¡Consúltanos la diferencia!`;}
-  else{up.innerHTML=`Tu ${cat.label} puede usarse como <strong>cuota inicial</strong> hacia cualquier equipo de nuestro catálogo. ¡Contáctanos y te ayudamos a encontrar la mejor opción!`;}
+  const target=suggestUpgrade(total,currentCat);
+  const diff=target.p-total;
+  let upgradeLine;
+  if(diff<=0){
+    upgradeLine=`Tu ${cat.label} <strong>cubre por completo</strong> un <strong>${target.n}</strong> (${fmtCOP(target.p)}). ¡Te lo llevas hoy mismo!`;
+  }else{
+    upgradeLine=`Con tu ${cat.label} + <strong>${fmtCOP(diff)}</strong> adicionales, te llevas un <strong>${target.n}</strong> (${fmtCOP(target.p)}) hoy.`;
+  }
+  up.innerHTML=`<div class="ru-title">🎯 Tu upgrade sugerido</div><div class="ru-line">${upgradeLine}</div>`;
   let msg=`Hola Importech, quiero cotizar mi ${cat.label} para trade-in:\n`;
   msg+=`• Modelo: ${modelName}\n• Estado: ${condName}\n`;
   if(cat.hasStorage){const ss=document.querySelector('#c-storage-radios .selected');msg+=`• Almacenamiento: ${ss?ss.querySelector('.cr-label').textContent:''}\n`;}
   if(cat.hasBattery)msg+=`• Batería: ${document.getElementById('c-battery').value}%\n`;
-  msg+=`• Valor estimado: ${fmtCOP(total)}\n\n¿Qué equipo Apple puedo conseguir con mi ${cat.label} como parte de pago?`;
+  msg+=`• Valor estimado: ${fmtCOP(total)}\n\n`;
+  msg+=diff<=0?`Vi que mi equipo cubriría un ${target.n} por completo — ¿lo reservamos?`:`Me interesa el ${target.n} — ¿confirmamos la diferencia de ${fmtCOP(diff)}?`;
   document.getElementById('calc-wa-link').href='https://wa.me/573023232833?text='+encodeURIComponent(msg);
   const res=document.getElementById('calcResult');
   res.style.display='block';res.classList.add('show');
+  startQuoteHold();
   res.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 updateCalcUI();

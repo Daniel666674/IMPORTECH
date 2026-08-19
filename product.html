@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Producto — Novatek · Apple Premium Bogotá</title>
-<meta name="description" content="Productos Apple originales — iPhones, iPads, MacBooks, AirPods y Apple Watch. Novatek Col, CC Caribe Bogotá. Envíos a toda Colombia.">
+<title>Producto — Importech · Apple Premium Bogotá</title>
+<meta name="description" content="Productos Apple originales — iPhones, iPads, MacBooks, AirPods y Apple Watch. Importech Col, CC Caribe Bogotá. Envíos a toda Colombia.">
 <meta name="geo.region" content="CO-DC">
 <meta name="geo.placename" content="Bogotá, Colombia">
 <meta property="og:type" content="product">
 <meta property="og:locale" content="es_CO">
-<meta property="og:site_name" content="Novatek Col">
+<meta property="og:site_name" content="Importech Col">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -198,7 +198,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;ali
 <nav>
   <a href="index.html" class="nav-logo">
     <div class="logo-mark"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs><rect width="36" height="36" rx="8" fill="url(#lg)"/><rect x="14" y="7" width="8" height="3" rx="1.5" fill="#fff" opacity=".95"/><rect x="15.5" y="12" width="5" height="14" rx="2.5" fill="#fff" opacity=".95"/><rect x="14" y="26" width="8" height="3" rx="1.5" fill="#fff" opacity=".95"/><circle cx="8" cy="18" r="1.5" fill="#fff" opacity=".4"/><line x1="9.5" y1="18" x2="14" y2="18" stroke="#fff" stroke-width="1" opacity=".3"/><circle cx="28" cy="13" r="1.5" fill="#fff" opacity=".4"/><line x1="22" y1="13" x2="26.5" y2="13" stroke="#fff" stroke-width="1" opacity=".3"/><circle cx="28" cy="23" r="1.5" fill="#fff" opacity=".4"/><line x1="22" y1="23" x2="26.5" y2="23" stroke="#fff" stroke-width="1" opacity=".3"/></svg></div>
-    <span class="nav-name"><span class="nav-wordmark">NOVATEK</span><span class="nav-sub"> Apple Premium · Bogotá</span></span>
+    <span class="nav-name"><span class="nav-wordmark">IMPORTECH</span><span class="nav-sub"> Apple Premium · Bogotá</span></span>
   </a>
   <ul class="nav-links">
     <li><a href="index.html#catalog">Catálogo</a></li>
@@ -250,7 +250,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;ali
 </div>
 
 <!-- WA FLOAT -->
-<a href="https://wa.me/573023232833?text=Hola%20Novatek%2C%20quiero%20cotizar" class="wa-float" aria-label="WhatsApp">
+<a href="https://wa.me/573023232833?text=Hola%20Importech%2C%20quiero%20cotizar" class="wa-float" aria-label="WhatsApp">
   <svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>
 </a>
 
@@ -275,7 +275,7 @@ const PRODUCTS = [
 ];
 
 /* ── CART (localStorage) ── */
-const CART_KEY='novatek-cart';
+const CART_KEY='importech-cart';
 function getCart(){try{return JSON.parse(localStorage.getItem(CART_KEY)||'[]');}catch(e){return[];}}
 function saveCart(c){try{localStorage.setItem(CART_KEY,JSON.stringify(c));}catch(e){}}
 function fmtCOP(n){return'$'+Math.round(n).toLocaleString('es-CO');}
@@ -322,7 +322,7 @@ function closeCart(){document.getElementById('cart-overlay').classList.remove('s
 function checkoutWA(){
   const c=getCart();if(!c.length)return;
   const lines=c.map(i=>`• ${i.name} x${i.qty} — ${fmtCOP(i.price*i.qty)}`).join('\n');
-  const msg=`Hola Novatek, quiero pedir:\n${lines}\n\nTotal: ${fmtCOP(cartSum())}`;
+  const msg=`Hola Importech, quiero pedir:\n${lines}\n\nTotal: ${fmtCOP(cartSum())}`;
   window.open('https://wa.me/573023232833?text='+encodeURIComponent(msg),'_blank');
 }
 
@@ -351,7 +351,7 @@ const content=document.getElementById('page-content');
 if(!product){
   content.innerHTML=`<div class="notfound"><h1>Producto no encontrado</h1><p>El equipo que buscas no está disponible o fue retirado del catálogo.</p><a href="index.html">← Volver al catálogo</a></div>`;
 }else{
-  document.title=`${product.brand} ${product.name} — Novatek`;
+  document.title=`${product.brand} ${product.name} — Importech`;
 
   const related=PRODUCTS.filter(p=>p.id!==product.id&&(p.cat===product.cat||p.cat==='iphone')).slice(0,3);
 
@@ -388,7 +388,7 @@ if(!product){
           </ul>
           <div class="prod-btns">
             <button class="prod-cart-btn" id="prod-cart-btn" onclick="cartAdd(${JSON.stringify(product.brand+' '+product.name)},${product.price})">🛒 Agregar al carrito</button>
-            <a href="https://wa.me/573023232833?text=Hola%20Novatek%2C%20${product.waText}" class="prod-wa-btn">${WA_SVG} Cotizar por WhatsApp</a>
+            <a href="https://wa.me/573023232833?text=Hola%20Importech%2C%20${product.waText}" class="prod-wa-btn">${WA_SVG} Cotizar por WhatsApp</a>
           </div>
           <div class="prod-trust">
             <span>🔒 100% Original</span>

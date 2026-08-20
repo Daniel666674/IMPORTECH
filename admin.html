@@ -222,6 +222,9 @@ main{max-width:1360px;margin:0 auto;padding:30px}
   </div>
   <label>Personal Access Token</label>
   <input id="inPat" type="password" placeholder="github_pat_..." spellcheck="false" autocomplete="off">
+  <label style="display:flex;align-items:center;gap:9px;text-transform:none;letter-spacing:0;font-weight:500;color:var(--ink);margin-top:14px;cursor:pointer">
+    <input type="checkbox" id="inRemember" style="width:auto"> Recordar en este dispositivo <span style="color:var(--faint);font-size:12px">(solo en este navegador)</span>
+  </label>
   <button id="loginBtn">Verificar y entrar →</button>
   <div id="loginMsg"></div>
 </div>
@@ -859,13 +862,18 @@ async function doLogin(){
   if(!PAT){ msg.textContent='Ingresa un token.'; msg.style.color='var(--bad)'; return; }
   try{ const res=await fetch('https://api.github.com/repos/'+CFG.owner+'/'+CFG.repo,{headers:ghHeaders()});
     if(!res.ok) throw new Error('Sin acceso al repo ('+res.status+'). Verifica token/permisos.');
-    sessionStorage.setItem('it_pat',PAT); sessionStorage.setItem('it_owner',CFG.owner); sessionStorage.setItem('it_repo',CFG.repo);
+    // "Remember on this device" → localStorage (persists across restarts, still only on this browser,
+    // never committed to the repo). Otherwise sessionStorage (cleared when the tab closes).
+    const store = $('#inRemember').checked ? localStorage : sessionStorage;
+    const other = $('#inRemember').checked ? sessionStorage : localStorage;
+    ['it_pat','it_owner','it_repo'].forEach(k=>other.removeItem(k));
+    store.setItem('it_pat',PAT); store.setItem('it_owner',CFG.owner); store.setItem('it_repo',CFG.repo);
     enterApp();
   }catch(e){ msg.textContent=e.message; msg.style.color='var(--bad)'; }
 }
 function enterApp(){ $('#login').classList.add('hidden'); $('#app').classList.remove('hidden');
   $('#repoLabel').textContent=CFG.owner+'/'+CFG.repo; loadData().catch(e=>logLine('✗ '+e.message,'err')); }
-function logout(){ sessionStorage.removeItem('it_pat'); location.reload(); }
+function logout(){ ['it_pat','it_owner','it_repo'].forEach(k=>{ sessionStorage.removeItem(k); localStorage.removeItem(k); }); location.reload(); }
 
 /* events */
 $('#loginBtn').onclick=doLogin;
@@ -889,8 +897,9 @@ $('#plist').addEventListener('click',e=>{ const b=e.target.closest('[data-act]')
   else if(a==='sale') openSale(slug); else if(a==='up') reorder(slug,-1); else if(a==='down') reorder(slug,1);
   else if(a==='price') quickPrice(b,slug); });
 
-(function(){ const saved=sessionStorage.getItem('it_pat');
-  if(saved){ PAT=saved; CFG.owner=sessionStorage.getItem('it_owner')||CFG.owner; CFG.repo=sessionStorage.getItem('it_repo')||CFG.repo;
+(function(){ const store = localStorage.getItem('it_pat') ? localStorage : sessionStorage;
+  const saved=store.getItem('it_pat');
+  if(saved){ PAT=saved; CFG.owner=store.getItem('it_owner')||CFG.owner; CFG.repo=store.getItem('it_repo')||CFG.repo;
     $('#inOwner').value=CFG.owner; $('#inRepo').value=CFG.repo; enterApp(); } })();
 </script>
 </body>

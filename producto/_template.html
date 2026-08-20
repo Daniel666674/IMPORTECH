@@ -96,7 +96,7 @@ h1{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.02em;line-hei
   var sel = { storage: null, color: null };
 
   document.getElementById('yr').textContent = new Date().getFullYear();
-  document.getElementById('cat').textContent = P.category;
+  document.getElementById('cat').textContent = (P.brand ? P.brand + ' · ' : '') + P.category;
   document.getElementById('name').textContent = P.name;
   document.getElementById('spec').textContent = P.spec || '';
   document.getElementById('cond').textContent = P.condition || 'Nuevo';
@@ -106,7 +106,9 @@ h1{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.02em;line-hei
   var gal = document.getElementById('gallery');
   if (P.imgs && P.imgs.length) {
     var img = document.createElement('img');
-    img.src = '../' + P.imgs[0]; img.alt = P.name; gal.appendChild(img);
+    img.src = '../' + P.imgs[0]; img.alt = P.name;
+    if (P.imgFit === 'cover') { img.style.objectFit = 'cover'; img.style.width = '100%'; img.style.height = '100%'; }
+    gal.appendChild(img);
   } else {
     var emoji = { 'iPhone':'📱','iPad':'📲','Mac':'💻','Apple Watch':'⌚','AirPods':'🎧','Accesorios':'📦' };
     var d = document.createElement('div'); d.className = 'noimg';

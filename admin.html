@@ -9,11 +9,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f4f4f8;--card:#fff;--ink:#18181f;--muted:#6c6c78;--faint:#9a9aa6;
-  --line:#e9e9f0;--line2:#f0f0f5;
-  --accent:#7c3aed;--accent-h:#6d28d9;--accent-soft:#f2ecfe;
-  --black:#131318;--ok:#1a7f37;--ok-soft:#e7f6ec;--warn:#b26b00;--warn-soft:#fff3e0;
-  --bad:#c0392b;--bad-soft:#fdeceb;--dirty:#b26b00;--dirty-soft:#fff3e0;
+  /* Same dark-violet system as the storefront (index.html / producto pages) */
+  --bg:#070710;--card:#111118;--card2:#15151f;--ink:#f5f5f7;--muted:rgba(255,255,255,.52);--faint:rgba(255,255,255,.34);
+  --line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.06);
+  --accent:#a78bfa;--accent-h:#8b6fe0;--accent-soft:rgba(167,139,250,.14);
+  --solid:#f5f5f7;--solid-ink:#131318;
+  --ok:#34c759;--ok-soft:rgba(52,199,89,.12);--warn:#ff9f0a;--warn-soft:rgba(255,159,10,.12);
+  --bad:#ff5a5a;--bad-soft:rgba(255,90,90,.12);--dirty:#e5a816;--dirty-soft:rgba(229,168,22,.14);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.45}
@@ -23,12 +25,25 @@ input,select,textarea{font-family:inherit;font-size:14px}
 .hidden{display:none!important}
 .mono{font-variant-numeric:tabular-nums}
 
+/* ---------- HELP TOOLTIPS (hover on desktop, tap-to-focus on mobile — no JS needed) ---------- */
+.qhelp{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;
+  background:rgba(167,139,250,.16);color:var(--accent);font-size:10px;font-weight:800;font-family:ui-monospace,monospace;
+  cursor:help;position:relative;flex-shrink:0;vertical-align:middle;margin-left:5px;outline:none}
+.qhelp:hover,.qhelp:focus{background:var(--accent);color:#fff}
+.qhelp-pop{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);
+  width:230px;background:#1c1c28;border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+  font-size:12px;font-weight:500;line-height:1.5;color:var(--ink);text-transform:none;letter-spacing:0;
+  box-shadow:0 12px 30px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .15s,transform .15s;z-index:50}
+.qhelp-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1c1c28}
+.qhelp:hover .qhelp-pop,.qhelp:focus .qhelp-pop{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+label .qhelp,.flabel .qhelp{margin-left:5px}
+
 /* ---------- LOGIN ---------- */
-#login{max-width:430px;margin:9vh auto;padding:34px;background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 40px rgba(20,20,40,.06)}
+#login{max-width:430px;margin:9vh auto;padding:34px;background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,.35)}
 #login h1{font-size:23px;font-weight:800;margin-bottom:6px}
 #login p{color:var(--muted);font-size:13px;margin-bottom:22px;line-height:1.6}
 #login label{display:block;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);margin:14px 0 6px}
-#login input{width:100%;padding:12px 14px;border-radius:11px;border:1px solid var(--line);background:#fafafd;color:var(--ink)}
+#login input{width:100%;padding:12px 14px;border-radius:11px;border:1px solid var(--line);background:#0d0d16;color:var(--ink)}
 #login input:focus{outline:none;border-color:var(--accent)}
 #login .row{display:flex;gap:10px}
 #login .row>div{flex:1}
@@ -43,7 +58,7 @@ header{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-
 .hbrand .bt{font-size:15px;font-weight:800;letter-spacing:.06em}
 .hbrand .bs{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--faint);text-transform:uppercase}
 .hactions{display:flex;gap:10px}
-.hbtn{padding:9px 16px;border-radius:9px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700;font-size:12px;letter-spacing:.02em;text-transform:uppercase}
+.hbtn{padding:9px 16px;border-radius:9px;border:1px solid var(--line);background:var(--card2);color:var(--ink);font-weight:700;font-size:12px;letter-spacing:.02em;text-transform:uppercase}
 .hbtn:hover{border-color:var(--accent);color:var(--accent)}
 nav.tabs{position:sticky;top:66px;z-index:39;display:flex;gap:26px;padding:0 30px;background:var(--card);border-bottom:1px solid var(--line)}
 nav.tabs button{background:none;border:none;padding:15px 2px;font-size:14px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px}
@@ -65,42 +80,42 @@ main{max-width:1360px;margin:0 auto;padding:30px}
 .kpi .kl{font-size:12px;color:var(--muted);font-weight:600}
 .kpi .kv{font-size:26px;font-weight:800;letter-spacing:-.02em}
 .kpi .ksub{font-size:11px;color:var(--faint)}
-.ico.i1{background:#efeafd;color:#7c3aed}.ico.i2{background:#e7f6ec;color:#1a7f37}
-.ico.i3{background:#e8effe;color:#2563eb}.ico.i4{background:#fff3e0;color:#b26b00}
-.ico.i5{background:#fdeceb;color:#c0392b}
+.ico.i1{background:rgba(167,139,250,.16);color:#c4b0fb}.ico.i2{background:rgba(52,199,89,.14);color:#5fe08a}
+.ico.i3{background:rgba(59,130,246,.16);color:#7fb2fc}.ico.i4{background:rgba(255,159,10,.16);color:#ffbb52}
+.ico.i5{background:rgba(255,90,90,.16);color:#ff8b8b}
 
 /* ---------- TOOLBAR ---------- */
 .toolbar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
-.tbtn{padding:11px 16px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700;font-size:12px;letter-spacing:.02em;text-transform:uppercase}
+.tbtn{padding:11px 16px;border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--ink);font-weight:700;font-size:12px;letter-spacing:.02em;text-transform:uppercase}
 .tbtn:hover{border-color:var(--accent);color:var(--accent)}
 .tbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 .tbtn.primary:hover{background:var(--accent-h)}
-.tbtn.black{background:var(--black);border-color:var(--black);color:#fff}
+.tbtn.black{background:var(--solid);border-color:var(--solid);color:var(--solid-ink)}
 .tbtn.black:hover{opacity:.9}
 .tbtn:disabled{opacity:.45;cursor:not-allowed}
 .pubwrap{position:relative;margin-left:auto}
 .dirtybadge{position:absolute;top:-7px;right:-7px;min-width:19px;height:19px;padding:0 5px;border-radius:10px;background:var(--dirty);color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center}
 .filters{display:flex;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap}
 .searchwrap{position:relative;flex:1;min-width:240px}
-.searchwrap input{width:100%;padding:11px 14px 11px 38px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.searchwrap input{width:100%;padding:11px 14px 11px 38px;border-radius:10px;border:1px solid var(--line);background:#0d0d16;color:var(--ink)}
 .searchwrap input:focus{outline:none;border-color:var(--accent)}
 .searchwrap .si{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--faint)}
-.fsel{padding:11px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:600}
+.fsel{padding:11px 14px;border-radius:10px;border:1px solid var(--line);background:#0d0d16;color:var(--ink);font-weight:600}
 .viewtog{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.viewtog button{padding:9px 12px;background:#fff;border:none;color:var(--faint)}
+.viewtog button{padding:9px 12px;background:var(--card2);border:none;color:var(--faint)}
 .viewtog button.on{background:var(--accent-soft);color:var(--accent)}
 
 /* ---------- PRODUCT GRID ---------- */
 #plist.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
 #plist.list{display:flex;flex-direction:column;gap:10px}
 .pcard{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s}
-.pcard:hover{box-shadow:0 10px 30px rgba(20,20,40,.08)}
+.pcard:hover{box-shadow:0 10px 30px rgba(0,0,0,.4),0 0 0 1px rgba(167,139,250,.15)}
 .pcard.dirty{border-color:var(--dirty)}
 .pc-top{position:relative;height:44px}
 .stockbadge{position:absolute;top:12px;left:12px;font-size:10px;font-weight:800;letter-spacing:.02em;padding:4px 9px;border-radius:7px}
 .sb-in{background:var(--ok-soft);color:var(--ok)}.sb-low{background:var(--warn-soft);color:var(--warn)}.sb-out{background:var(--bad-soft);color:var(--bad)}
 .arrows{position:absolute;top:10px;right:10px;display:flex;flex-direction:column;gap:4px}
-.arrows button{width:26px;height:22px;border:1px solid var(--line);background:#fff;border-radius:6px;color:var(--muted);font-size:10px;line-height:1;display:flex;align-items:center;justify-content:center}
+.arrows button{width:26px;height:22px;border:1px solid var(--line);background:var(--card2);border-radius:6px;color:var(--muted);font-size:10px;line-height:1;display:flex;align-items:center;justify-content:center}
 .arrows button:hover{border-color:var(--accent);color:var(--accent)}
 .pc-img{height:150px;margin:0 14px;background:#f4f4f6;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;font-size:56px}
 .pc-img img{width:100%;height:100%;object-fit:contain;padding:10px}
@@ -121,15 +136,15 @@ main{max-width:1360px;margin:0 auto;padding:30px}
 .vb.oferta{background:var(--bad-soft);color:var(--bad)}
 .vb.oculto{background:#f2f2f6;color:var(--muted)}
 .pc-actions{display:flex;gap:6px;margin-top:auto}
-.pc-actions button{flex:1;padding:8px;border-radius:8px;border:1px solid var(--line);background:#fff;font-size:12px;font-weight:700}
-.pc-actions .sell{color:var(--ok);border-color:#cdeed6}.pc-actions .sell:hover{background:var(--ok-soft)}
+.pc-actions button{flex:1;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--ink);font-size:12px;font-weight:700}
+.pc-actions .sell{color:var(--ok);border-color:rgba(52,199,89,.35)}.pc-actions .sell:hover{background:var(--ok-soft)}
 .pc-actions .edit:hover{border-color:var(--accent);color:var(--accent)}
 .pc-actions .del{color:var(--bad)}.pc-actions .del:hover{background:var(--bad-soft)}
 
 /* ---------- MODAL ---------- */
-.overlay{position:fixed;inset:0;z-index:100;background:rgba(20,20,35,.42);backdrop-filter:blur(2px);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:28px 16px}
-.modal{width:100%;max-width:960px;background:var(--card);border-radius:20px;margin:auto;position:relative;box-shadow:0 20px 60px rgba(20,20,40,.2)}
-.modal-x{position:absolute;top:16px;right:18px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--muted);font-size:15px;z-index:2}
+.overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.6);backdrop-filter:blur(3px);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:28px 16px}
+.modal{width:100%;max-width:960px;background:var(--card);border-radius:20px;margin:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.modal-x{position:absolute;top:16px;right:18px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--card2);color:var(--muted);font-size:15px;z-index:2}
 .modal-h{padding:24px 30px 6px}
 .modal-h h3{font-size:20px;font-weight:800}
 .modal-h p{color:var(--muted);font-size:13px;margin-top:3px}
@@ -139,8 +154,8 @@ main{max-width:1360px;margin:0 auto;padding:30px}
 .esec:first-child{margin-top:6px}
 .field label,.flabel{display:block;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .field label .n{color:var(--faint);text-transform:none;letter-spacing:0;font-weight:500}
-.field input,.field select,.field textarea{width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:#fafafd;color:var(--ink)}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);background:#fff}
+.field input,.field select,.field textarea{width:100%;padding:11px 13px;border-radius:10px;border:1px solid var(--line);background:#0d0d16;color:var(--ink)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);background:#11111c}
 .field textarea{min-height:70px;resize:vertical}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .frow.one{grid-template-columns:1fr}
@@ -149,26 +164,26 @@ main{max-width:1360px;margin:0 auto;padding:30px}
 .imglist{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
 .imgchip{position:relative;width:74px;height:74px;border-radius:11px;border:1px solid var(--line);background:#f4f4f6;overflow:hidden}
 .imgchip img{width:100%;height:100%;object-fit:cover}
-.imgchip .cov{position:absolute;top:4px;left:4px;font-size:8px;font-weight:800;letter-spacing:.04em;background:var(--black);color:#fff;padding:2px 5px;border-radius:5px}
+.imgchip .cov{position:absolute;top:4px;left:4px;font-size:8px;font-weight:800;letter-spacing:.04em;background:var(--solid);color:var(--solid-ink);padding:2px 5px;border-radius:5px}
 .imgchip .x{position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:50%;border:none;background:rgba(20,20,25,.7);color:#fff;font-size:10px;line-height:1}
-.imgadd{width:74px;height:74px;border-radius:11px;border:1.5px dashed var(--line);background:#fff;color:var(--faint);font-size:24px;display:flex;align-items:center;justify-content:center}
+.imgadd{width:74px;height:74px;border-radius:11px;border:1.5px dashed var(--line);background:var(--card2);color:var(--faint);font-size:24px;display:flex;align-items:center;justify-content:center}
 .imgadd:hover{border-color:var(--accent);color:var(--accent)}
 /* variants */
 .vhead{display:grid;grid-template-columns:1.4fr .8fr 1fr 1fr 34px;gap:9px;font-size:10px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--faint);margin-bottom:6px;padding:0 2px}
 .vrow{display:grid;grid-template-columns:1.4fr .8fr 1fr 1fr 34px;gap:9px;align-items:center;margin-bottom:8px}
-.vrow input{padding:9px 11px;border-radius:9px;border:1px solid var(--line);background:#fafafd;width:100%}
-.vrow input:focus{outline:none;border-color:var(--accent);background:#fff}
-.vrow .rm{width:34px;height:38px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--bad)}
+.vrow input{padding:9px 11px;border-radius:9px;border:1px solid var(--line);background:#0d0d16;width:100%}
+.vrow input:focus{outline:none;border-color:var(--accent);background:#11111c}
+.vrow .rm{width:34px;height:38px;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--bad)}
 .vbox{border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
-.addrow{width:100%;padding:10px;border-radius:9px;border:1px dashed var(--line);background:#fff;color:var(--accent);font-weight:700;font-size:12px}
+.addrow{width:100%;padding:10px;border-radius:9px;border:1px dashed var(--line);background:var(--card2);color:var(--accent);font-weight:700;font-size:12px}
 .addrow:hover{background:var(--accent-soft)}
 .vtotal{font-size:11px;color:var(--muted);margin-top:8px}
 .chip-toggle{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
-.chip-toggle button{padding:9px 16px;border:none;background:#fff;font-weight:700;font-size:13px;color:var(--muted)}
+.chip-toggle button{padding:9px 16px;border:none;background:var(--card2);font-weight:700;font-size:13px;color:var(--muted)}
 .chip-toggle button.on{background:var(--accent);color:#fff}
 /* preview column */
 .eside{display:flex;flex-direction:column;gap:16px}
-.pvbox{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fafafd}
+.pvbox{border:1px solid var(--line);border-radius:14px;padding:16px;background:#0d0d16}
 .pvbox .pvt{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
 .pv-img{width:100%;aspect-ratio:1;background:#fff;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:60px;margin-bottom:12px}
 .pv-img img{width:100%;height:100%;object-fit:contain;padding:14px}
@@ -185,10 +200,10 @@ main{max-width:1360px;margin:0 auto;padding:30px}
 /* footer */
 .modal-foot{display:flex;align-items:center;gap:10px;padding:18px 30px 24px;border-top:1px solid var(--line);flex-wrap:wrap}
 .mf-err{color:var(--bad);font-size:13px;font-weight:600;flex:1;min-width:120px}
-.mbtn{padding:12px 20px;border-radius:10px;border:1px solid var(--line);background:#fff;font-weight:700;font-size:13px}
+.mbtn{padding:12px 20px;border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--ink);font-weight:700;font-size:13px}
 .mbtn:hover{border-color:var(--accent)}
 .mbtn.danger{color:var(--bad);border-color:#f3d3cf}
-.mbtn.black{background:var(--black);border-color:var(--black);color:#fff}
+.mbtn.black{background:var(--solid);border-color:var(--solid);color:var(--solid-ink)}
 .mbtn.black:hover{opacity:.9}
 /* sale box */
 .salebox{border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 30px}
@@ -203,6 +218,26 @@ main{max-width:1360px;margin:0 auto;padding:30px}
 
 .tabpane{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:40px;color:var(--muted);text-align:center}
 .tabpane h3{color:var(--ink);font-size:18px;margin-bottom:8px}
+
+/* ---------- ANALYTICS ---------- */
+.demo-flag{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;color:var(--warn);background:var(--warn-soft);border:1px solid rgba(255,159,10,.3);padding:6px 12px;border-radius:20px;margin-bottom:22px}
+.an-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;margin-bottom:18px}
+.an-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.an-card h4{font-size:13px;font-weight:800;color:var(--ink);margin-bottom:2px;display:flex;align-items:center}
+.an-card .an-sub{font-size:11.5px;color:var(--faint);margin-bottom:16px}
+.an-line-wrap{width:100%;overflow-x:auto}
+.an-bar-row{display:flex;align-items:center;gap:12px;padding:9px 0}
+.an-bar-name{width:150px;flex-shrink:0;font-size:12.5px;color:var(--ink);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.an-bar-track{flex:1;height:10px;border-radius:6px;background:var(--line2);overflow:hidden}
+.an-bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#8b6fe0,var(--accent))}
+.an-bar-val{width:44px;text-align:right;flex-shrink:0;font-size:12px;font-weight:700;color:var(--muted)}
+.an-donut-wrap{display:flex;align-items:center;gap:20px}
+.an-legend{list-style:none;flex:1}
+.an-legend li{display:flex;align-items:center;gap:9px;font-size:12.5px;padding:6px 0;color:var(--ink)}
+.an-legend .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.an-legend b{margin-left:auto;color:var(--muted);font-weight:700}
+.an-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:980px){.an-grid,.an-grid3{grid-template-columns:1fr}}
 
 .wa{position:fixed;bottom:24px;right:24px;z-index:70;display:flex;align-items:center;gap:9px;padding:11px 18px;border-radius:30px;background:#25d366;color:#fff;font-weight:700;font-size:13px;box-shadow:0 8px 24px rgba(37,211,102,.35)}
 
@@ -238,6 +273,7 @@ main{max-width:1360px;margin:0 auto;padding:30px}
     </div>
     <div class="hactions">
       <a class="hbtn" href="index.html" target="_blank">Ver tienda</a>
+      <button class="hbtn" id="logToggleBtn" title="Ver el detalle técnico de la última publicación">Registro</button>
       <button class="hbtn" id="logoutBtn">Cerrar sesión</button>
     </div>
   </header>
@@ -297,7 +333,7 @@ main{max-width:1360px;margin:0 auto;padding:30px}
     </section>
 
     <section id="pane-resumen" class="hidden"></section>
-    <section id="pane-analiticas" class="hidden"><div class="tabpane"><h3>Analíticas</h3>Vista de métricas — disponible en la versión completa.</div></section>
+    <section id="pane-analiticas" class="hidden"></section>
     <section id="pane-pagina" class="hidden"><div class="tabpane"><h3>Página principal</h3>La portada de la tienda se edita en <b>index.html</b>. <a href="index.html" target="_blank" style="color:var(--accent);font-weight:700">Ver tienda →</a></div></section>
     <section id="pane-actividad" class="hidden"><div class="tabpane"><h3>Actividad</h3>El registro de publicaciones aparece en la consola inferior al publicar.</div></section>
   </main>
@@ -333,7 +369,10 @@ const $ = s => document.querySelector(s);
 const sleep = ms => new Promise(r=>setTimeout(r,ms));
 
 /* ============================================================================ LOG */
-function logLine(msg,cls){ const box=$('#log'); box.classList.remove('hidden');
+// The publish log is a technical detail — it must never pop up on its own mid-task
+// (e.g. while adding a product). It only appears if the operator explicitly opens it
+// via the "Registro" button, and stays exactly as they left it (open or closed).
+function logLine(msg,cls){ const box=$('#log');
   const d=document.createElement('div'); d.className='l'+(cls?' '+cls:''); d.textContent=msg;
   $('#logBody').appendChild(d); box.scrollTop=box.scrollHeight; }
 
@@ -386,6 +425,8 @@ window.PRODUCTS = ${JSON.stringify(list,null,2)};
 function slugify(s){ return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
   .replace(/["']/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60); }
 function escAttr(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+// "?" help icon — hover on desktop, tap (focuses the element) on mobile. No JS listeners needed.
+function qh(text){ return `<span class="qhelp" tabindex="0">?<span class="qhelp-pop">${escAttr(text)}</span></span>`; }
 function bySlug(slug){ return products.find(p=>p.slug===slug); }
 function markDirty(slug){ dirty.add(slug); refreshPublishState(); }
 function toPublic(p){ const c=JSON.parse(JSON.stringify(p)); delete c.cost;
@@ -417,13 +458,18 @@ function renderKPIs(target){
     if(p.cost>0){ withCost++; profit+=u*((p.price||0)-p.cost); }
     const st=stockState(p); if(st==='low') low++; if(st==='out') out++;
   });
-  const card=(ico,cls,label,val,sub)=>`<div class="kpi"><div class="kh"><div class="ico ${cls}">${ico}</div><div class="kl">${label}</div></div><div class="kv">${val}</div>${sub?`<div class="ksub">${sub}</div>`:''}</div>`;
+  const card=(ico,cls,label,val,sub,tip)=>`<div class="kpi"><div class="kh"><div class="ico ${cls}">${ico}</div><div class="kl">${label}${qh(tip)}</div></div><div class="kv">${val}</div>${sub?`<div class="ksub">${sub}</div>`:''}</div>`;
   target.innerHTML =
-    card('🧾','i1','Valor del inventario',SC.fmtCOP(value),'') +
-    card('📈','i2','Ganancia potencial',SC.fmtCOP(profit),`de ${withCost} con costo (${products.length-withCost} sin costo)`) +
-    card('📦','i3','Unidades totales',units,'') +
-    card('⚠️','i4','Bajo stock (1-3)',low,'') +
-    card('⛔','i5','Agotados',out,'');
+    card('🧾','i1','Valor del inventario',SC.fmtCOP(value),'',
+      'Suma de (precio × unidades en stock) de todos los productos. Es lo que valdría vender todo el inventario actual al precio de lista.') +
+    card('📈','i2','Ganancia potencial',SC.fmtCOP(profit),`de ${withCost} con costo (${products.length-withCost} sin costo)`,
+      'Suma de (precio − costo) × unidades, solo para los productos donde cargaste el costo interno. Si un producto no tiene costo, no se cuenta aquí — por eso puede parecer más bajo de lo real.') +
+    card('📦','i3','Unidades totales',units,'',
+      'Cuenta física de unidades en stock, sumando todas las variantes de todos los productos publicados y ocultos.') +
+    card('⚠️','i4','Bajo stock (1-3)',low,'',
+      'Productos con 1 a 3 unidades disponibles — el umbral de alerta antes de agotarse. Revísalos para reabastecer a tiempo.') +
+    card('⛔','i5','Agotados',out,'',
+      'Productos con 0 unidades disponibles. Siguen visibles en el panel pero conviene ocultarlos o reabastecerlos.');
 }
 
 /* ============================================================================ RENDER LIST/GRID */
@@ -545,26 +591,26 @@ function openEditor(slug){
         <div class="esec">Imágenes del producto</div>
         <div class="imglist" id="imgList"></div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
-          <input id="imgPath" placeholder="assets/products/archivo.jpg" style="flex:1;min-width:200px;padding:9px 12px;border-radius:9px;border:1px solid var(--line);background:#fafafd">
+          <input id="imgPath" placeholder="assets/products/archivo.jpg" style="flex:1;min-width:200px;padding:9px 12px;border-radius:9px;border:1px solid var(--line);background:#0d0d16">
           <button type="button" class="mbtn" onclick="addImgByPath()">Añadir ruta</button>
         </div>
         <div class="hint">La primera foto (“Portada”) es la que se muestra en la tienda.</div>
         <div class="field" style="margin-top:12px">
-          <label>Ajuste de la foto en la página <span class="n">(cómo se ve en la tienda)</span></label>
+          <label>Ajuste de la foto en la página${qh('Controla cómo se recorta la imagen dentro del cuadro cuadrado de la ficha de producto. "Mostrar completa" nunca corta el equipo pero puede dejar franjas vacías; "Rellenar" llena todo el cuadro pero puede recortar bordes.')}</label>
           <select id="f_imgfit"><option value="contain" ${p.imgFit!=='cover'?'selected':''}>Mostrar completa — sin recortar</option><option value="cover" ${p.imgFit==='cover'?'selected':''}>Rellenar el cuadro — puede recortar bordes</option></select>
         </div>
 
         <div class="esec">Información básica</div>
-        <div class="frow one"><div class="field"><label>Nombre del producto *</label><input id="f_name" value="${escAttr(p.name)}"></div></div>
-        <div class="frow"><div class="field"><label>Marca</label><input id="f_brand" value="${escAttr(p.brand||'')}" placeholder="Apple"></div>
-          <div class="field"><label>Categoría *</label><select id="f_category">${opt(CATEGORIES,p.category)}</select></div></div>
-        <div class="frow one"><div class="field"><label>Especificación</label><input id="f_spec" value="${escAttr(p.spec)}"></div></div>
-        <div class="frow"><div class="field"><label>SKU <span class="n">(editable)</span></label><input id="f_sku" value="${escAttr(p.sku)}"></div>
-          <div class="field"><label>Condición</label><select id="f_condition">${opt(CONDITIONS,p.condition)}</select></div></div>
-        <div class="frow one"><div class="field"><label>Modelo</label><input id="f_model" value="${escAttr(p.model)}"></div></div>
-        <div class="frow one"><div class="field"><label>Stock base <span class="n">(si NO usas variantes)</span></label><input id="f_stock" type="number" step="1" min="0" value="${p.stock!=null?p.stock:''}" placeholder="—"></div></div>
+        <div class="frow one"><div class="field"><label>Nombre del producto *${qh('El nombre completo que ve el cliente en la tienda y en la ficha de producto. Ej: "iPhone 15 Pro". Se usa también para generar la dirección web del producto.')}</label><input id="f_name" value="${escAttr(p.name)}"></div></div>
+        <div class="frow"><div class="field"><label>Marca${qh('Ej: Apple. Aparece como una pequeña etiqueta encima del nombre del producto, tanto en la tarjeta como en la ficha.')}</label><input id="f_brand" value="${escAttr(p.brand||'')}" placeholder="Apple"></div>
+          <div class="field"><label>Categoría *${qh('Determina en qué pestaña del catálogo público aparece el producto (iPhone, iPad, Mac, AirPods, Apple Watch o Accesorios) y qué ícono usa si no tiene foto.')}</label><select id="f_category">${opt(CATEGORIES,p.category)}</select></div></div>
+        <div class="frow one"><div class="field"><label>Especificación${qh('Una línea corta con las specs clave — chip, cámara, pantalla. Se muestra debajo del nombre en la tarjeta y la ficha del producto.')}</label><input id="f_spec" value="${escAttr(p.spec)}"></div></div>
+        <div class="frow"><div class="field"><label>SKU${qh('Tu código interno de referencia del producto. No se publica en ningún texto visible al cliente, pero ayuda a identificarlo rápido en el panel y en reportes.')}</label><input id="f_sku" value="${escAttr(p.sku)}"></div>
+          <div class="field"><label>Condición${qh('Nuevo o Seminuevo — se muestra como una etiqueta en la tarjeta y ficha del producto. Si vendes el mismo modelo en dos condiciones, créalos como dos productos separados (SKUs distintos), no como variantes de uno solo.')}</label><select id="f_condition">${opt(CONDITIONS,p.condition)}</select></div></div>
+        <div class="frow one"><div class="field"><label>Modelo${qh('Número de modelo del fabricante (opcional) — solo referencia interna, no se publica.')}</label><input id="f_model" value="${escAttr(p.model)}"></div></div>
+        <div class="frow one"><div class="field"><label>Stock base <span class="n">(si NO usas variantes)</span>${qh('Úsalo solo si el producto NO tiene almacenamiento ni color distintos (ej. un accesorio único). Si defines variantes abajo, este campo se ignora — el stock se calcula desde las filas de variantes.')}</label><input id="f_stock" type="number" step="1" min="0" value="${p.stock!=null?p.stock:''}" placeholder="—"></div></div>
 
-        <div class="esec">Variantes del producto</div>
+        <div class="esec">Variantes del producto${qh('Almacenamiento y Color son dos dimensiones independientes. Si un producto tiene AMBAS (ej. un iPhone en 256GB/512GB y en 3 colores), el cliente debe elegir las dos en la tienda, y las unidades disponibles = el menor stock entre la fila de almacenamiento elegida y la fila de color elegida.')}</div>
         <div class="vbox">
           <div class="vhead"><span>Almacenamiento</span><span>Stock</span><span>Precio (opc.)</span><span>Costo (opc.)</span><span></span></div>
           <div id="storageRows"></div>
@@ -577,23 +623,25 @@ function openEditor(slug){
           <button type="button" class="addrow" onclick="addVariantRow('color')">+ Añadir color</button>
           <div class="hint" style="margin-top:8px">Si defines <b>ambas</b> dimensiones el cliente elige las dos y el stock disponible = el mínimo entre ellas.</div>
         </div>
+        <div class="hint" style="margin:-6px 0 18px">💡 El precio/costo de cada fila es opcional: si lo dejas vacío, usa el precio/costo base de abajo (verás "Base: $X" como referencia en el campo).</div>
 
+        <div class="esec">Precio y publicación${qh('Todo lo que define cuánto cuesta el producto, cómo se destaca en la tienda, y si el cliente puede verlo. Nada de esto sale al sitio hasta que publiques desde el panel de Inventario.')}</div>
         <div class="frow">
-          <div class="field"><label>Tag <span class="n">(opcional)</span></label><input id="f_tag" value="${escAttr(p.tag||'')}" placeholder="Ej: Nuevo, Top"></div>
-          <div class="field"><label>Promoción</label><div class="chip-toggle" id="promoTog">
+          <div class="field"><label>Tag <span class="n">(opcional)</span>${qh('Una etiqueta corta y llamativa sobre la tarjeta del producto, ej. "Nuevo" o "Top ventas". Puramente decorativo — no afecta precio ni stock.')}</label><input id="f_tag" value="${escAttr(p.tag||'')}" placeholder="Ej: Nuevo, Top"></div>
+          <div class="field"><label>Promoción${qh('"En oferta" resalta visualmente el producto en el catálogo para llamar la atención del cliente. No cambia el precio automáticamente — ajusta el precio tú mismo si vas a rebajarlo.')}</label><div class="chip-toggle" id="promoTog">
             <button type="button" data-v="normal" class="${p.promo!=='oferta'?'on':''}">Normal</button>
             <button type="button" data-v="oferta" class="${p.promo==='oferta'?'on':''}">En oferta</button></div></div>
         </div>
         <div class="frow">
-          <div class="field"><label>Precio (COP) *</label><input id="f_price" type="number" step="1" min="0" value="${p.price}"></div>
-          <div class="field"><label>Costo (COP, interno)</label><input id="f_cost" type="number" step="1" min="0" value="${p.cost}"></div>
+          <div class="field"><label>Precio (COP) *${qh('El precio de venta que ve el cliente. Es el valor de referencia — cualquier fila de variante sin su propio precio usa este como base.')}</label><input id="f_price" type="number" step="1" min="0" value="${p.price}"></div>
+          <div class="field"><label>Costo (COP, interno)${qh('Lo que te cuesta a ti conseguir el producto. NUNCA se publica ni se muestra al cliente — solo se usa para calcular tu margen en este panel y en "Registrar venta".')}</label><input id="f_cost" type="number" step="1" min="0" value="${p.cost}"></div>
         </div>
-        <div class="frow one"><div class="field"><label>Notas internas <span class="n">(no se publican)</span></label><textarea id="f_notes" placeholder="Proveedor, recordatorio de reabastecimiento, etc.">${escAttr(p.notes)}</textarea></div></div>
-        <label class="flabel" style="display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0"><input type="checkbox" id="f_published" ${p.published?'checked':''} style="width:auto"> Publicado (visible en la tienda)</label>
+        <div class="frow one"><div class="field"><label>Notas internas <span class="n">(no se publican)</span>${qh('Espacio libre para ti — proveedor, fecha de reposición, acuerdos especiales. Nunca aparece en la tienda ni en la ficha pública del producto.')}</label><textarea id="f_notes" placeholder="Proveedor, recordatorio de reabastecimiento, etc.">${escAttr(p.notes)}</textarea></div></div>
+        <label class="flabel" style="display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0"><input type="checkbox" id="f_published" ${p.published?'checked':''} style="width:auto"> Publicado (visible en la tienda)${qh('Si está desmarcado, el producto se guarda en el panel pero NO aparece en la tienda pública ni tiene página propia — útil para preparar un producto antes de lanzarlo.')}</label>
       </div>
 
       <div class="eside">
-        <div class="pvbox"><div class="pvt">Vista previa</div>
+        <div class="pvbox"><div class="pvt">Vista previa${qh('Así se ve el producto en la tienda mientras escribes — se actualiza en vivo con cada campo que cambies.')}</div>
           <div class="pv-img" id="pvImg"></div>
           <div class="pv-name" id="pvName">—</div>
           <div class="pv-bc" id="pvBc">—</div>
@@ -603,14 +651,14 @@ function openEditor(slug){
             <div><span class="k">Categoría</span><span class="v" id="pvCat">—</span></div>
             <div><span class="k">Estado</span><span class="v" id="pvState">—</span></div></div>
         </div>
-        <div class="pvbox fin"><div class="pvt">Resumen financiero</div>
+        <div class="pvbox fin"><div class="pvt">Resumen financiero${qh('El margen = (Precio − Costo) / Precio. Solo se calcula si cargaste un costo interno. Este dato es privado, nunca se publica.')}</div>
           <div class="pv-meta" style="border:none;padding:0;margin:0">
             <div><span class="k">Precio</span><span class="v" id="finPrice">—</span></div>
             <div><span class="k">Costo</span><span class="v" id="finCost">—</span></div>
             <div><span class="k">Margen</span><span class="v" id="finMargin">—</span></div>
           </div>
         </div>
-        <div class="pvbox"><div class="pvt">Inventario</div>
+        <div class="pvbox"><div class="pvt">Inventario${qh('Unidades disponibles con la combinación de variantes actual. Si el producto tiene almacenamiento y color, es el mínimo entre ambas filas.')}</div>
           <div class="pv-meta" style="border:none;padding:0;margin:0"><div><span class="k">Disponible</span><span class="v" id="finUnits" style="color:var(--ok)">—</span></div></div>
         </div>
       </div>
@@ -833,6 +881,102 @@ function showTab(name){
   document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===name));
   ['inventario','resumen','analiticas','pagina','actividad'].forEach(t=>$('#pane-'+t).classList.toggle('hidden',t!==name));
   if(name==='resumen') renderResumen();
+  if(name==='analiticas') renderAnaliticas();
+}
+
+/* ============================================================================ ANALYTICS (simulated)
+   No real traffic is connected here — the panel has no analytics backend. This renders
+   plausible, clearly-labeled DEMO numbers derived from your actual product list, so the
+   dashboard layout can be shown in a sales demo. Swap for real GA4 data once connected. */
+let analyticsCache=null;
+function mulberry32(seed){ return function(){ seed|=0; seed=seed+0x6D2B79F5|0;
+  let t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function buildAnalyticsData(){
+  const rnd=mulberry32(2026); // fixed seed -> stable numbers within the session, not "real"
+  const days=30, visits=[]; let base=38;
+  for(let i=0;i<days;i++){ const dow=i%7; const weekend=(dow===5||dow===6)?1.35:1;
+    base += (rnd()-0.46)*6; base=Math.max(14,base);
+    visits.push(Math.round(base*weekend + rnd()*8)); }
+  const totalVisits=visits.reduce((a,b)=>a+b,0);
+  const pool=products.length?products:[{name:'(sin productos)',price:0}];
+  const topProducts=pool.map(p=>({name:p.name,views:Math.round(20+rnd()*160+(p.price||0)/60000)}))
+    .sort((a,b)=>b.views-a.views).slice(0,5);
+  const maxViews=Math.max.apply(null,topProducts.map(p=>p.views));
+  const sourcesRaw=[['WhatsApp',0.34+rnd()*0.08],['Instagram',0.22+rnd()*0.06],['Google',0.2+rnd()*0.06],['Directo',0.1+rnd()*0.05]];
+  const sSum=sourcesRaw.reduce((a,s)=>a+s[1],0);
+  const sources=sourcesRaw.map(s=>({name:s[0],pct:Math.round(s[1]/sSum*100)}));
+  const avgPrice=pool.reduce((a,p)=>a+(p.price||0),0)/pool.length;
+  const conv=(2.1+rnd()*1.4).toFixed(1);
+  return {visits,totalVisits,topProducts,maxViews,sources,avgPrice,conv};
+}
+function svgLineChart(visits){
+  const w=640,h=180,pad=28; const max=Math.max.apply(null,visits)*1.15;
+  const n=visits.length;
+  const x=i=>pad+i*((w-pad*2)/(n-1));
+  const y=v=>h-pad - (v/max)*(h-pad*2-10);
+  const pts=visits.map((v,i)=>`${x(i)},${y(v)}`).join(' ');
+  const area=`M${x(0)},${h-pad} L${pts.split(' ').join(' L')} L${x(n-1)},${h-pad} Z`;
+  const grid=[0.25,0.5,0.75,1].map(f=>`<line x1="${pad}" x2="${w-pad}" y1="${h-pad-(h-pad*2-10)*f}" y2="${h-pad-(h-pad*2-10)*f}" stroke="rgba(255,255,255,.06)"/>`).join('');
+  const labels=[0,Math.floor(n/2),n-1].map(i=>`<text x="${x(i)}" y="${h-6}" font-size="10" fill="rgba(255,255,255,.35)" text-anchor="middle">hace ${n-1-i===0?'hoy':(n-1-i)+'d'}</text>`).join('');
+  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto;display:block">
+    <defs><linearGradient id="anGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a78bfa" stop-opacity=".35"/><stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+    </linearGradient></defs>
+    ${grid}
+    <path d="${area}" fill="url(#anGrad)"/>
+    <polyline points="${pts}" fill="none" stroke="#a78bfa" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    ${labels}
+  </svg>`;
+}
+function svgDonut(sources){
+  const size=120,r=42,cx=60,cy=60,circ=2*Math.PI*r;
+  const colors=['#a78bfa','#60a5fa','#34d399','#fbbf24'];
+  let offset=0;
+  const segs=sources.map((s,i)=>{
+    const len=circ*(s.pct/100);
+    const seg=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${colors[i%colors.length]}" stroke-width="16"
+      stroke-dasharray="${len} ${circ-len}" stroke-dashoffset="${-offset}" transform="rotate(-90 ${cx} ${cy})"/>`;
+    offset+=len; return seg;
+  }).join('');
+  return {svg:`<svg viewBox="0 0 ${size} ${size}" width="120" height="120">${segs}</svg>`,colors};
+}
+function renderAnaliticas(){
+  if(!analyticsCache) analyticsCache=buildAnalyticsData();
+  const d=analyticsCache;
+  const pane=$('#pane-analiticas');
+  const donut=svgDonut(d.sources);
+  pane.innerHTML=`
+    <div class="page-h"><h2>Analíticas</h2></div>
+    <div class="page-sub">Comportamiento de visitantes y productos más vistos en la tienda.</div>
+    <div class="demo-flag">🧪 Datos de ejemplo — este panel no tiene analítica real conectada todavía. Se activa con Google Analytics 4 + Search Console (plan Básico en adelante).</div>
+
+    <div class="an-grid3" style="margin-bottom:18px">
+      <div class="kpi"><div class="kh"><div class="ico i1">👀</div><div class="kl">Visitas (30 días)${qh('Visitantes simulados de los últimos 30 días. Con GA4 conectado, este número sería real.')}</div></div><div class="kv">${d.totalVisits.toLocaleString('es-CO')}</div></div>
+      <div class="kpi"><div class="kh"><div class="ico i2">🎯</div><div class="kl">Conversión estimada${qh('Porcentaje de visitantes que terminan escribiendo por WhatsApp o comprando. Valor simulado, referencia de la industria retail.')}</div></div><div class="kv">${d.conv}%</div></div>
+      <div class="kpi"><div class="kh"><div class="ico i4">🎟️</div><div class="kl">Ticket promedio${qh('Precio promedio del catálogo actual — un proxy simple del valor promedio de pedido.')}</div></div><div class="kv">${SC.fmtCOP(d.avgPrice)}</div></div>
+    </div>
+
+    <div class="an-grid">
+      <div class="an-card">
+        <h4>Visitas de los últimos 30 días${qh('Tendencia diaria de visitantes a la tienda. Los fines de semana muestran un repunte típico de retail.')}</h4>
+        <div class="an-sub">Simulado · se conecta con datos reales al activar Google Analytics 4</div>
+        <div class="an-line-wrap">${svgLineChart(d.visits)}</div>
+      </div>
+      <div class="an-card">
+        <h4>Fuentes de tráfico${qh('De dónde llegan los visitantes a la tienda: WhatsApp, redes sociales, búsqueda en Google o directo escribiendo la URL.')}</h4>
+        <div class="an-sub">Simulado</div>
+        <div class="an-donut-wrap">
+          ${donut.svg}
+          <ul class="an-legend">${d.sources.map((s,i)=>`<li><span class="dot" style="background:${donut.colors[i%donut.colors.length]}"></span>${s.name}<b>${s.pct}%</b></li>`).join('')}</ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="an-card">
+      <h4>Productos más vistos${qh('Ranking simulado basado en tu catálogo actual — con analítica real esto reflejaría vistas reales de cada ficha de producto.')}</h4>
+      <div class="an-sub">Top 5 de ${products.length} productos en el panel</div>
+      ${d.topProducts.map(p=>`<div class="an-bar-row"><span class="an-bar-name">${escAttr(p.name)}</span><div class="an-bar-track"><div class="an-bar-fill" style="width:${Math.round(p.views/d.maxViews*100)}%"></div></div><span class="an-bar-val">${p.views}</span></div>`).join('')}
+    </div>`;
 }
 function renderResumen(){
   const pane=$('#pane-resumen');
@@ -883,6 +1027,7 @@ $('#newBtn').onclick=()=>openEditor(null);
 $('#reloadBtn').onclick=()=>{ if(!dirty.size||confirm('Hay cambios sin publicar. ¿Recargar y descartarlos?')) loadData(); };
 $('#publishBtn').onclick=publish;
 $('#logoutBtn').onclick=logout;
+$('#logToggleBtn').onclick=()=>{ $('#log').classList.toggle('hidden'); };
 $('#exportBtn').onclick=exportData;
 $('#importBtn').onclick=importData;
 $('#search').addEventListener('input',renderList);

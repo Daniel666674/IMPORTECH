@@ -124,13 +124,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:54px;display:flex;ali
 .pc{background:linear-gradient(165deg,#131318,var(--card) 60%);border-radius:20px;border:1px solid rgba(255,255,255,.07);overflow:hidden;transition:all .35s;display:flex;flex-direction:column;position:relative}
 .pc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(152,152,160,.6),transparent);opacity:0;transition:opacity .35s;z-index:3}
 .pc:hover::before{opacity:1}
-.pc-more{display:none}
-.prod-grid.expanded .pc-more{display:flex}
-.catalog-more-wrap{display:flex;justify-content:center;margin-top:32px}
-.catalog-more-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:30px;background:rgba(152,152,160,.1);border:1.5px solid rgba(152,152,160,.3);color:#fff;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .25s}
-.catalog-more-btn:hover{background:rgba(152,152,160,.18);border-color:var(--blue);transform:translateY(-2px)}
-.catalog-more-btn .cmb-arrow{transition:transform .3s}
-.catalog-more-btn.open .cmb-arrow{transform:rotate(180deg)}
+.hidden{display:none!important}
+.cat-empty{text-align:center;color:rgba(255,255,255,.4);padding:60px 20px;grid-column:1/-1}
+.pagination{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:36px;flex-wrap:wrap}
+.pg-btn{min-width:38px;height:38px;padding:0 12px;border-radius:10px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:rgba(255,255,255,.65);font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .2s}
+.pg-btn:hover:not(:disabled){border-color:var(--blue);color:#fff}
+.pg-btn.on{background:#fff;border-color:#fff;color:#111}
+.pg-btn:disabled{opacity:.35;cursor:not-allowed}
+.pg-dots{color:rgba(255,255,255,.3);padding:0 4px;font-size:13px}
 .pc:hover{transform:translateY(-9px) scale(1.012);box-shadow:0 28px 70px rgba(152,152,160,.2),0 0 0 1px rgba(152,152,160,.28);border-color:rgba(152,152,160,.32)}
 .pc-top{height:250px;display:flex;align-items:center;justify-content:center;position:relative;background:#f4f4f6;overflow:hidden;padding:18px}
 .pc-top img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 10px 22px rgba(0,0,0,.14));transition:transform .48s ease}
@@ -489,109 +490,19 @@ footer{background:#060608;border-top:1px solid rgba(255,255,255,.06);padding:32p
         <h2 class="sec-h2">Catálogo Importech</h2>
         <p class="sec-p">Equipos reales en stock. Consulta disponibilidad y precios por WhatsApp — el inventario rota constantemente.</p>
       </div>
-      <div class="tabs">
+      <div class="tabs" id="catTabs">
         <button class="tab active" data-filter="all">Todos</button>
-        <button class="tab" data-filter="iphone">📱 iPhone</button>
-        <button class="tab" data-filter="mac">💻 Mac</button>
-        <button class="tab" data-filter="ipad">📲 iPad</button>
-        <button class="tab" data-filter="airpods">🎧 AirPods</button>
-        <button class="tab" data-filter="watch">⌚ Watch</button>
+        <button class="tab" data-filter="iPhone">📱 iPhone</button>
+        <button class="tab" data-filter="Mac">💻 Mac</button>
+        <button class="tab" data-filter="iPad">📲 iPad</button>
+        <button class="tab" data-filter="AirPods">🎧 AirPods</button>
+        <button class="tab" data-filter="Apple Watch">⌚ Watch</button>
+        <button class="tab" data-filter="Accesorios">📦 Accesorios</button>
       </div>
     </div>
-    <div class="prod-grid">
-
-      <div class="pc rev" data-cat="iphone">
-        <div class="pc-top"><span class="cond-badge b-nuevo">Nuevo</span><div class="cam-glow"></div><img src="assets/products/iphone-17-pro-cosmic-orange.jpg" alt="iPhone 17 Pro Cosmic Orange" loading="lazy"></div>
-        <div class="pc-body"><div class="pc-model">iPhone 17 Pro</div><div class="pc-name">Cosmic Orange</div><div class="pc-spec">256 GB · Garantía oficial · Nuevo sellado</div><div class="pc-price"><small>Desde</small>$6.200.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">11</span> viendo</span><span class="pu-stock">⚡ Solo 3 disponibles</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('iPhone 17 Pro Cosmic Orange',6200000)">🛒 Agregar</button><a href="product.html?id=iphone-17-pro-orange" class="pc-cot-btn">Ver más</a></div></div>
-      </div>
-
-      <div class="pc rev" data-cat="iphone">
-        <div class="pc-top"><span class="cond-badge b-nuevo">Nuevo</span><div class="cam-glow"></div><img src="assets/products/iphone-17-pro-white-titanium.jpg" alt="iPhone 17 Pro White Titanium" loading="lazy"></div>
-        <div class="pc-body"><div class="pc-model">iPhone 17 Pro</div><div class="pc-name">White Titanium</div><div class="pc-spec">256 GB · Cámara Pro 48MP · Nuevo sellado</div><div class="pc-price"><small>Desde</small>$6.200.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">8</span> viendo</span><span class="pu-stock">⚡ Solo 2 disponibles</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('iPhone 17 Pro White Titanium',6200000)">🛒 Agregar</button><a href="product.html?id=iphone-17-pro-white" class="pc-cot-btn">Ver más</a></div></div>
-      </div>
-
-      <div class="pc rev pc-more" data-cat="iphone">
-        <div class="pc-top"><span class="cond-badge b-nuevo">Nuevo</span><div class="cam-glow"></div><img src="assets/products/iphone-16-pro-max-natural-titanium.jpg" alt="iPhone 16 Pro Max Natural Titanium" loading="lazy"></div>
-        <div class="pc-body"><div class="pc-model">iPhone 16 Pro Max</div><div class="pc-name">Natural Titanium</div><div class="pc-spec">256 GB · Camera Control · Nuevo sellado</div><div class="pc-price"><small>Desde</small>$5.200.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">14</span> viendo</span><span class="pu-stock">⚡ Últimas unidades</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('iPhone 16 Pro Max Natural Titanium',5200000)">🛒 Agregar</button><a href="product.html?id=iphone-16-pro-max" class="pc-cot-btn">Ver más</a></div></div>
-      </div>
-
-      <div class="pc rev pc-more" data-cat="iphone">
-        <div class="pc-top"><span class="cond-badge b-semi">Seminuevo</span><div class="cam-glow"></div><img src="assets/products/iphone-15-pro-blue-titanium.jpg" alt="iPhone 15 Pro Blue Titanium" loading="lazy"></div>
-        <div class="pc-body"><div class="pc-model">iPhone 15 Pro</div><div class="pc-name">Blue Titanium</div><div class="pc-spec">256 GB · Estado 9/10 · Batería 92%</div><div class="pc-price"><small>Desde</small>$3.500.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">6</span> viendo</span><span class="pu-stock">⚡ Solo 4 disponibles</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('iPhone 15 Pro Blue Titanium',3500000)">🛒 Agregar</button><a href="product.html?id=iphone-15-pro-blue" class="pc-cot-btn">Ver más</a></div></div>
-      </div>
-
-      <div class="pc rev pc-more" data-cat="iphone">
-        <div class="pc-top"><span class="cond-badge b-semi">Seminuevo</span><div class="cam-glow"></div><img src="assets/products/iphone-14-pro-max-deep-purple.jpg" alt="iPhone 14 Pro Max Deep Purple" loading="lazy"></div>
-        <div class="pc-body"><div class="pc-model">iPhone 14 Pro Max</div><div class="pc-name">Deep Purple</div><div class="pc-spec">256 GB · Estado 9/10 · Batería 89%</div><div class="pc-price"><small>Desde</small>$2.900.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">5</span> viendo</span><span class="pu-stock">⚡ Solo 2 disponibles</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('iPhone 14 Pro Max Deep Purple',2900000)">🛒 Agregar</button><a href="product.html?id=iphone-14-pro-max" class="pc-cot-btn">Ver más</a></div></div>
-      </div>
-
-      <div class="pc rev pc-more" data-cat="iphone">
-        <div class="pc-top"><span class="cond-badge b-semi">Seminuevo</span><div class="cam-glow"></div><img src="assets/products/iphone-13-pro-gold.jpg" alt="iPhone 13 Pro Gold" loading="lazy"></div>
-        <div class="pc-body"><div class="pc-model">iPhone 13 Pro</div><div class="pc-name">Gold</div><div class="pc-spec">128 GB · Estado 9/10 · Batería 87%</div><div class="pc-price"><small>Desde</small>$2.200.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">9</span> viendo</span><span class="pu-stock">⚡ Solo 3 disponibles</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('iPhone 13 Pro Gold',2200000)">🛒 Agregar</button><a href="product.html?id=iphone-13-pro" class="pc-cot-btn">Ver más</a></div></div>
-      </div>
-
-      <div class="pc rev" data-cat="airpods">
-        <div class="pc-top"><span class="cond-badge b-airpods">Nuevo</span><img src="assets/products/airpods-pro-3.jpg" alt="AirPods Pro 3" loading="lazy"></div>
-        <div class="pc-body"><div class="pc-model">Apple</div><div class="pc-name">AirPods Pro 3</div><div class="pc-spec">Cancelación de ruido · USB-C · Originales</div><div class="pc-price"><small>Desde</small>$1.150.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">7</span> viendo</span><span class="pu-stock">⚡ Stock limitado</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('AirPods Pro 3',1150000)">🛒 Agregar</button><a href="product.html?id=airpods-pro-3" class="pc-cot-btn">Ver más</a></div></div>
-      </div>
-
-      <div class="pc rev pc-more" data-cat="airpods">
-        <div class="pc-top"><span class="cond-badge b-airpods">Nuevo</span><img src="assets/products/airpods-pro-2.jpg" alt="AirPods Pro 2" loading="lazy"></div>
-        <div class="pc-body"><div class="pc-model">Apple</div><div class="pc-name">AirPods Pro 2</div><div class="pc-spec">USB-C · Audio adaptativo · Originales</div><div class="pc-price"><small>Desde</small>$950.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">4</span> viendo</span><span class="pu-stock">⚡ Disponible</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('AirPods Pro 2',950000)">🛒 Agregar</button><a href="product.html?id=airpods-pro-2" class="pc-cot-btn">Ver más</a></div></div>
-      </div>
-
-      <div class="pc rev pc-more" data-cat="airpods">
-        <div class="pc-top"><span class="cond-badge b-airpods">Disponible</span><img src="assets/products/airpods-pro.jpg" alt="AirPods Pro" loading="lazy"></div>
-        <div class="pc-body"><div class="pc-model">Apple</div><div class="pc-name">AirPods Pro 1</div><div class="pc-spec">Cancelación activa · MagSafe · Originales</div><div class="pc-price"><small>Desde</small>$750.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">3</span> viendo</span><span class="pu-stock">⚡ Buen precio</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('AirPods Pro',750000)">🛒 Agregar</button><a href="product.html?id=airpods-pro" class="pc-cot-btn">Ver más</a></div></div>
-      </div>
-
-      <!-- MacBooks -->
-      <div class="pc rev pc-more" data-cat="mac">
-        <div class="pc-top" style="background:linear-gradient(160deg,#2c2c2e,#1a1a1c)"><span class="cond-badge b-mac">Nuevo</span><div class="cam-glow"></div><div class="pc-emoji-prod">💻</div></div>
-        <div class="pc-body"><div class="pc-model">MacBook Air</div><div class="pc-name">13" · Chip M3</div><div class="pc-spec">8 GB RAM · 256 GB SSD · Starlight / Midnight</div><div class="pc-price"><small>Desde</small>$3.800.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">9</span> viendo</span><span class="pu-stock">⚡ Stock disponible</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('MacBook Air 13 M3',3800000)">🛒 Agregar</button><a href="https://wa.me/573023232833?text=me%20interesa%20el%20MacBook%20Air%2013%20M3" class="pc-cot-btn">Cotizar</a></div></div>
-      </div>
-
-      <div class="pc rev" data-cat="mac">
-        <div class="pc-top" style="background:linear-gradient(160deg,#1a1a1c,#0a0a0c)"><span class="cond-badge b-mac">Nuevo</span><div class="cam-glow"></div><div class="pc-emoji-prod">💻</div></div>
-        <div class="pc-body"><div class="pc-model">MacBook Pro</div><div class="pc-name">14" · Chip M4</div><div class="pc-spec">16 GB RAM · 512 GB SSD · Space Black</div><div class="pc-price"><small>Desde</small>$5.800.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">13</span> viendo</span><span class="pu-stock">⚡ Muy solicitado</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('MacBook Pro 14 M4',5800000)">🛒 Agregar</button><a href="https://wa.me/573023232833?text=me%20interesa%20el%20MacBook%20Pro%2014%20M4" class="pc-cot-btn">Cotizar</a></div></div>
-      </div>
-
-      <div class="pc rev pc-more" data-cat="mac">
-        <div class="pc-top" style="background:linear-gradient(160deg,#3a3a3c,#2c2c2e)"><span class="cond-badge b-mac">Nuevo</span><div class="cam-glow"></div><div class="pc-emoji-prod">💻</div></div>
-        <div class="pc-body"><div class="pc-model">MacBook Air</div><div class="pc-name">15" · Chip M3</div><div class="pc-spec">8 GB RAM · 256 GB SSD · Silver / Space Gray</div><div class="pc-price"><small>Desde</small>$4.200.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">6</span> viendo</span><span class="pu-stock">⚡ Disponible</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('MacBook Air 15 M3',4200000)">🛒 Agregar</button><a href="https://wa.me/573023232833?text=me%20interesa%20el%20MacBook%20Air%2015%20M3" class="pc-cot-btn">Cotizar</a></div></div>
-      </div>
-
-      <!-- iPads -->
-      <div class="pc rev pc-more" data-cat="ipad">
-        <div class="pc-top" style="background:linear-gradient(160deg,#1a1a2e,#2a2a4e)"><span class="cond-badge b-ipad">Nuevo</span><div class="cam-glow"></div><div class="pc-emoji-prod">📱</div></div>
-        <div class="pc-body"><div class="pc-model">iPad Pro</div><div class="pc-name">11" · Chip M4</div><div class="pc-spec">256 GB · Ultra Retina XDR · Titanio Natural</div><div class="pc-price"><small>Desde</small>$3.200.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">11</span> viendo</span><span class="pu-stock">⚡ Pocas unidades</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('iPad Pro 11 M4',3200000)">🛒 Agregar</button><a href="https://wa.me/573023232833?text=me%20interesa%20el%20iPad%20Pro%2011%20M4" class="pc-cot-btn">Cotizar</a></div></div>
-      </div>
-
-      <div class="pc rev" data-cat="ipad">
-        <div class="pc-top" style="background:linear-gradient(160deg,#1e2a4a,#0a1428)"><span class="cond-badge b-ipad">Nuevo</span><div class="cam-glow"></div><div class="pc-emoji-prod">📱</div></div>
-        <div class="pc-body"><div class="pc-model">iPad Air</div><div class="pc-name">11" · Chip M2</div><div class="pc-spec">128 GB · Liquid Retina · Blue / Starlight</div><div class="pc-price"><small>Desde</small>$2.100.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">8</span> viendo</span><span class="pu-stock">⚡ Stock disponible</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('iPad Air M2',2100000)">🛒 Agregar</button><a href="https://wa.me/573023232833?text=me%20interesa%20el%20iPad%20Air%20M2" class="pc-cot-btn">Cotizar</a></div></div>
-      </div>
-
-      <div class="pc rev pc-more" data-cat="ipad">
-        <div class="pc-top" style="background:linear-gradient(160deg,#0d1a2e,#1a2d4a)"><span class="cond-badge b-ipad">Nuevo</span><div class="cam-glow"></div><div class="pc-emoji-prod">📱</div></div>
-        <div class="pc-body"><div class="pc-model">iPad mini</div><div class="pc-name">7ª Gen · Chip A17 Pro</div><div class="pc-spec">128 GB · Liquid Retina · Purple / Blue</div><div class="pc-price"><small>Desde</small>$1.800.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">5</span> viendo</span><span class="pu-stock">⚡ Disponible</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('iPad mini 7',1800000)">🛒 Agregar</button><a href="https://wa.me/573023232833?text=me%20interesa%20el%20iPad%20mini%207" class="pc-cot-btn">Cotizar</a></div></div>
-      </div>
-
-      <!-- Apple Watch -->
-      <div class="pc rev" data-cat="watch">
-        <div class="pc-top" style="background:linear-gradient(160deg,#2a2012,#1a1408)"><span class="cond-badge b-watch">Nuevo</span><div class="cam-glow"></div><div class="pc-emoji-prod">⌚</div></div>
-        <div class="pc-body"><div class="pc-model">Apple Watch</div><div class="pc-name">Ultra 2 · Titanio</div><div class="pc-spec">49mm · GPS+Cellular · Action Button</div><div class="pc-price"><small>Desde</small>$3.800.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">7</span> viendo</span><span class="pu-stock">⚡ Muy solicitado</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('Apple Watch Ultra 2',3800000)">🛒 Agregar</button><a href="https://wa.me/573023232833?text=me%20interesa%20el%20Apple%20Watch%20Ultra%202" class="pc-cot-btn">Cotizar</a></div></div>
-      </div>
-
-      <div class="pc rev pc-more" data-cat="watch">
-        <div class="pc-top" style="background:linear-gradient(160deg,#0c1a20,#18282e)"><span class="cond-badge b-watch">Nuevo</span><div class="cam-glow"></div><div class="pc-emoji-prod">⌚</div></div>
-        <div class="pc-body"><div class="pc-model">Apple Watch</div><div class="pc-name">Series 10 · 46mm</div><div class="pc-spec">GPS+Cellular · Aluminio · Always-On</div><div class="pc-price"><small>Desde</small>$1.500.000</div><div class="pc-urgency"><span class="pu-viewers">👀 <span class="pu-count">12</span> viendo</span><span class="pu-stock">⚡ Stock disponible</span></div><div class="pc-actions"><button class="pc-add-btn" onclick="cartAdd('Apple Watch Series 10',1500000)">🛒 Agregar</button><a href="https://wa.me/573023232833?text=me%20interesa%20el%20Apple%20Watch%20Series%2010" class="pc-cot-btn">Cotizar</a></div></div>
-      </div>
-
-    </div>
-    <div class="catalog-more-wrap">
-      <button class="catalog-more-btn" id="catalogMoreBtn" onclick="toggleCatalog()"><span id="catalogMoreLabel">Ver catálogo completo (17)</span><span class="cmb-arrow">▾</span></button>
-    </div>
+    <div class="prod-grid" id="prodGrid"></div>
+    <div class="cat-empty hidden" id="catEmpty">Todavía no hay productos publicados en esta categoría. Vuelve pronto — el inventario se actualiza seguido.</div>
+    <div class="pagination" id="pagination"></div>
   </div>
 </section>
 
@@ -908,39 +819,97 @@ footer{background:#060608;border-top:1px solid rgba(255,255,255,.06);padding:32p
   <svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>
 </a>
 
+<script src="assets/js/store-core.js?v=1"></script>
+<script>document.write('<script src="assets/js/products-data.js?v=' + Date.now() + '"><\/script>');</script>
 <script>
-/* ── CATALOG SHOW MORE ── */
-function toggleCatalog(){
-  const grid=document.querySelector('.prod-grid');
-  const btn=document.getElementById('catalogMoreBtn');
-  const label=document.getElementById('catalogMoreLabel');
-  const open=grid.classList.toggle('expanded');
-  btn.classList.toggle('open',open);
-  label.textContent=open?'Ver menos':'Ver catálogo completo (17)';
-}
+/* ── CATALOG — reads window.PRODUCTS (same data the admin panel publishes), real pagination ── */
+(function(){
+  const PAGE_SIZE = 6;
+  const EMOJI = {'iPhone':'📱','iPad':'📲','Mac':'💻','Apple Watch':'⌚','AirPods':'🎧','Accesorios':'📦'};
+  const BADGE = {'iPhone':'','iPad':'b-ipad','Mac':'b-mac','Apple Watch':'b-watch','AirPods':'b-airpods','Accesorios':''};
+  let state = { cat:'all', page:1 };
 
-/* ── CATALOG FILTER ── */
-document.querySelectorAll('.tab').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const f=btn.dataset.filter;
-    document.querySelectorAll('.pc').forEach(c=>{
-      const show=f==='all'||c.dataset.cat===f;
-      c.style.display=show?'flex':'none';
-      if(show&&!c.classList.contains('in'))c.classList.add('in');
-    });
-    const moreWrap=document.querySelector('.catalog-more-wrap');
-    if(moreWrap)moreWrap.style.display=f==='all'?'':'none';
-    if(f==='all'){
-      document.querySelectorAll('.pc-more').forEach(c=>{c.style.display='';});
-      const grid=document.querySelector('.prod-grid');
-      const openBtn=document.getElementById('catalogMoreBtn');
-      const label=document.getElementById('catalogMoreLabel');
-      if(grid&&grid.classList.contains('expanded')){grid.classList.remove('expanded');openBtn.classList.remove('open');label.textContent='Ver catálogo completo (17)';}
+  function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function allPublished(){ return (window.PRODUCTS||[]).filter(p=>p.published); }
+  function filtered(){ const all=allPublished(); return state.cat==='all'?all:all.filter(p=>p.category===state.cat); }
+
+  function fromPrice(p){
+    const SC=window.StoreCore; const prices=[p.price];
+    ['storage','color'].forEach(d=>(p[d]||[]).forEach(r=>{ if(r.price>0) prices.push(r.price); }));
+    return Math.min.apply(null,prices);
+  }
+  function totalUnits(p){
+    const SC=window.StoreCore; const dims=SC.dimsOf(p);
+    if(!dims.length) return p.stock==null?null:Number(p.stock);
+    const d=dims[0]; return (p[d]||[]).reduce((a,r)=>a+(Number(r.units)||0),0);
+  }
+  function stockLine(u){
+    if(u==null) return '<span class="pu-stock">Consultar disponibilidad</span>';
+    if(u<=0) return '<span class="pu-stock" style="color:#ff5a5a">Agotado</span>';
+    if(u<=3) return '<span class="pu-stock">⚡ Solo '+u+' disponibles</span>';
+    return '<span class="pu-stock" style="color:#34c759">✓ Disponible</span>';
+  }
+  function card(p){
+    const SC=window.StoreCore; const dims=SC.dimsOf(p);
+    const price=fromPrice(p), units=totalUnits(p);
+    const condBadge = p.condition==='Nuevo' ? 'b-nuevo' : 'b-semi';
+    const badgeCls = BADGE[p.category] || condBadge;
+    const media = (p.imgs&&p.imgs.length)
+      ? `<img src="${esc(p.imgs[0])}" alt="${esc(p.name)}" loading="lazy">`
+      : `<div class="pc-emoji-prod">${EMOJI[p.category]||'📦'}</div>`;
+    const waMsg = encodeURIComponent('Hola Importech, me interesa el '+p.name+'. ¿Está disponible?');
+    const leftBtn = dims.length
+      ? `<a href="producto/${esc(p.slug)}.html" class="pc-add-btn" style="text-decoration:none;color:#fff">🛒 Elegir opciones</a>`
+      : `<button class="pc-add-btn" onclick="cartAdd('${esc(p.name).replace(/'/g,"\\'")}',${price})">🛒 Agregar</button>`;
+    return `<div class="pc rev" data-cat="${esc(p.category)}">
+      <div class="pc-top"><span class="cond-badge ${badgeCls}">${esc(p.condition||'Nuevo')}</span><div class="cam-glow"></div>${media}</div>
+      <div class="pc-body">
+        <div class="pc-model">${esc(p.brand||p.category)}</div>
+        <div class="pc-name">${esc(p.name)}</div>
+        <div class="pc-spec">${esc(p.spec||'')}</div>
+        <div class="pc-price"><small>Desde</small>${SC.fmtCOP(price)}</div>
+        <div class="pc-urgency">${stockLine(units)}</div>
+        <div class="pc-actions">${leftBtn}<a href="producto/${esc(p.slug)}.html" class="pc-cot-btn">Ver más</a></div>
+      </div>
+    </div>`;
+  }
+  function renderPagination(total){
+    const box=document.getElementById('pagination'); box.innerHTML='';
+    const pages=Math.max(1,Math.ceil(total/PAGE_SIZE));
+    if(pages<=1) return;
+    const mk=(label,page,opts)=>{ opts=opts||{}; const b=document.createElement('button');
+      b.className='pg-btn'+(opts.on?' on':''); b.textContent=label; b.disabled=!!opts.disabled;
+      if(!opts.disabled) b.onclick=()=>{ state.page=page; render(); document.getElementById('catalog').scrollIntoView({behavior:'smooth',block:'start'}); };
+      return b; };
+    box.appendChild(mk('‹ Anterior', state.page-1, {disabled: state.page<=1}));
+    const win=2; let shown=false;
+    for(let i=1;i<=pages;i++){
+      if(i===1||i===pages||(i>=state.page-win&&i<=state.page+win)){
+        box.appendChild(mk(String(i), i, {on:i===state.page})); shown=true;
+      } else if(shown){
+        const d=document.createElement('span'); d.className='pg-dots'; d.textContent='…'; box.appendChild(d); shown=false;
+      }
     }
+    box.appendChild(mk('Siguiente ›', state.page+1, {disabled: state.page>=pages}));
+  }
+  function render(){
+    const grid=document.getElementById('prodGrid'); const empty=document.getElementById('catEmpty');
+    const list=filtered();
+    const pages=Math.max(1,Math.ceil(list.length/PAGE_SIZE));
+    if(state.page>pages) state.page=pages;
+    if(!list.length){ grid.innerHTML=''; empty.classList.remove('hidden'); renderPagination(0); return; }
+    empty.classList.add('hidden');
+    const start=(state.page-1)*PAGE_SIZE;
+    grid.innerHTML = list.slice(start,start+PAGE_SIZE).map(card).join('');
+    renderPagination(list.length);
+  }
+  document.getElementById('catTabs').addEventListener('click',e=>{
+    const b=e.target.closest('.tab'); if(!b) return;
+    document.querySelectorAll('#catTabs .tab').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active'); state.cat=b.dataset.filter; state.page=1; render();
   });
-});
+  render();
+})();
 
 /* ── TRADE-IN CALCULATOR ── */
 const TRADE={

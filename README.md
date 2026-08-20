@@ -41,6 +41,51 @@ También funciona abriendo `index.html` directamente; en ese caso el panel
 "Personalizar" puede no cargar (los navegadores bloquean módulos vía `file://`),
 pero el sitio se ve completo.
 
+## Panel de administración (serverless)
+
+`admin.html` es un panel de gestión de productos **sin backend**: usa la GitHub
+Contents API de este mismo repositorio como base de datos. Cada publicación es un
+commit directo a `main`, y GitHub Pages reconstruye el sitio (~20–90s después).
+
+### Cómo usarlo
+
+1. Abre `admin.html` (idealmente vía servidor local o ya publicado en Pages).
+2. Ingresa un **GitHub Personal Access Token** con permiso `Contents: Read and
+   write` sobre `Daniel666674/IMPORTECH`. El token vive **solo en `sessionStorage`**
+   del navegador — nunca se guarda en un archivo ni se sube al repo.
+3. Agrega/edita productos. Los cambios se marcan como "sin publicar" (badge ámbar)
+   y **no tocan el repo** hasta pulsar **Publicar**.
+4. Al publicar, en este orden: (1) fotos nuevas → (2) página HTML de cada producto
+   → (3) `products-data.js` (registro de verdad) → (4) `sitemap.xml`. Cada escritura
+   relee el `sha` fresco y reintenta ante conflicto 409.
+
+### Modelo de datos
+
+- `assets/js/products-data.js` (`window.PRODUCTS`) es el registro de verdad; lo lee
+  `catalogo.html` con cache-busting para reflejar publicaciones al instante.
+- Cada producto genera una página real en `producto/{slug}.html` (título/meta/OG
+  propios + selector de variantes que funciona).
+- **Variantes en dos dimensiones independientes** — almacenamiento y color — ambas
+  pueden estar pobladas a la vez. Si es así, el cliente elige las dos y el stock
+  disponible = el **mínimo** entre ellas.
+- Cada fila de variante tiene su propio **precio/costo opcional** (override); si se
+  deja en blanco, cae al valor base del producto. La misma función de precio se usa
+  en tienda, panel y venta interna (`assets/js/store-core.js`).
+- `cost` es **interno**: se elimina de cada página pública generada. ⚠️ Como el repo
+  es público, `products-data.js` es técnicamente visible por URL — si el costo debe
+  ser realmente privado, mover el repo a privado (Pages sigue funcionando en planes
+  pagos).
+
+### Archivos del panel
+
+```
+admin.html                 · Panel CRUD + auth PAT + publicación en dos fases
+assets/js/store-core.js    · Lógica compartida: precio, disponibilidad, formato COP
+assets/js/products-data.js · Registro de verdad (window.PRODUCTS) — autogenerado
+producto/_template.html    · Plantilla que genPage() rellena por producto
+catalogo.html              · Tienda pública que lee products-data.js
+```
+
 ## Notas para revisión
 
 - **Precios**: son valores de referencia/placeholder en COP — ajustar a los

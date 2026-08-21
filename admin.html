@@ -863,6 +863,18 @@ async function publish(){
       if(p&&p.published){ await commitFile(page,genPage(p,tpl.text),'admin: página '+slug); logLine('   ✓ '+page,'ok'); }
       else{ await deleteFile(page,'admin: ocultar '+slug); logLine('   ✓ (oculto) '+page,'ok'); } }
     for(const slug of deleted){ await deleteFile(CFG.productDir+'/'+slug+'.html','admin: eliminar '+slug); logLine('   ✓ (eliminado) '+slug,'ok'); }
+    // Self-healing pass: a product can end up published with NO page on disk — e.g. seeded
+    // directly into products-data.js outside the admin, or a page deleted by hand. Never let
+    // that drift silently: on every publish, check every published, non-dirty product for a
+    // missing page and generate it too. Small catalog, one cheap GET each — closes this bug
+    // class permanently instead of only fixing today's instance of it.
+    const nonDirtyPublished=merged.filter(p=>p.published&&!dirty.has(p.slug));
+    if(nonDirtyPublished.length) logLine('   Verificando páginas existentes de '+nonDirtyPublished.length+' producto(s)…','step');
+    for(const p of nonDirtyPublished){
+      const page=CFG.productDir+'/'+p.slug+'.html';
+      const exists=await ghGetFile(page);
+      if(!exists){ await commitFile(page,genPage(p,tpl.text),'admin: página faltante '+p.slug); logLine('   ✓ (reparada) '+page,'ok'); }
+    }
     logLine('4) Confirmando products-data.js (registro de verdad)…','step');
     await commitFile(CFG.dataPath,serializeDataFile(merged,version),'admin: publicar datos (v'+version+')'); logLine('   ✓ '+CFG.dataPath+' (v'+version+')','ok');
     try{ const urls=merged.filter(p=>p.published).map(p=>`  <url><loc>${CFG.siteBase}/${CFG.productDir}/${p.slug}.html</loc></url>`).join('\n');

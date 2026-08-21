@@ -1,6 +1,6 @@
 /* products-data.js — RECORD OF TRUTH. AUTO-GENERATED por admin.html. No editar a mano.
    'cost' es interno y se elimina de cada página pública generada (toPublic()). */
-window.PRODUCTS_VERSION = 2;
+window.PRODUCTS_VERSION = 3;
 window.PRODUCTS = [
   {
     "slug": "iphone-17-pro",

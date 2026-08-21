@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catálogo completo · Importech Apple Premium Bogotá</title>
-<meta name="description" content="Catálogo completo de Importech: iPhone, iPad, Mac, AirPods, Apple Watch y accesorios 100% originales. Filtra por categoría y consulta disponibilidad al instante.">
+<title>Reseñas de clientes · Importech Apple Premium Bogotá</title>
+<meta name="description" content="Más de 500 clientes confían en Importech para comprar iPhone, iPad, Mac y Apple Watch originales en Bogotá. Lee sus experiencias reales.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://daniel666674.github.io/IMPORTECH/catalogo.html">
-<meta property="og:title" content="Catálogo completo · Importech Apple Premium Bogotá">
-<meta property="og:description" content="Catálogo completo de Importech: iPhone, iPad, Mac, AirPods, Apple Watch y accesorios 100% originales. Filtra por categoría y consulta disponibilidad al instante.">
+<link rel="canonical" href="https://daniel666674.github.io/IMPORTECH/resenas.html">
+<meta property="og:title" content="Reseñas de clientes · Importech Apple Premium Bogotá">
+<meta property="og:description" content="Más de 500 clientes confían en Importech para comprar iPhone, iPad, Mac y Apple Watch originales en Bogotá. Lee sus experiencias reales.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CO">
 <meta property="og:site_name" content="Importech Col">
@@ -17,6 +17,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
+<style>
+#testimonials{background:#07070c;padding:32px 52px 64px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:42px}
+.testi{background:linear-gradient(165deg,#131318,var(--card) 60%);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:26px 24px 26px 28px;transition:all .35s;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.testi::before{content:'"';position:absolute;top:-14px;right:14px;font-size:90px;font-weight:800;color:rgba(152,152,160,.08);line-height:1;font-family:Georgia,serif}
+.testi:hover{transform:translateY(-6px);border-color:rgba(152,152,160,.26);box-shadow:0 24px 54px rgba(0,0,0,.45)}
+.testi-stars{font-size:14px;letter-spacing:3px;margin-bottom:14px;color:#f5a623;text-shadow:0 0 12px rgba(245,166,35,.35)}
+.testi-text{font-size:14px;color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:20px;font-style:italic;flex:1;position:relative}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#b0b0b8,var(--blue));display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;flex-shrink:0;letter-spacing:0;box-shadow:0 4px 14px rgba(152,152,160,.3)}
+.testi-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:1px}
+.testi-city{font-size:11px;color:rgba(255,255,255,.38)}
+.testi-product{display:inline-block;margin-top:5px;padding:2px 9px;border-radius:8px;background:rgba(152,152,160,.12);font-size:10px;font-weight:600;color:var(--blue);letter-spacing:.04em}
+@media(max-width:1100px){.testi-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.testi-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <!-- NAV -->
@@ -26,10 +42,10 @@
     <span class="nav-wordmark">IMPORTECH</span><span class="nav-sub">Apple Premium · Bogotá</span>
   </a>
   <ul class="nav-links">
-    <li><a href="catalogo.html" class="active">Catálogo</a></li>
+    <li><a href="catalogo.html">Catálogo</a></li>
     <li><a href="cambio.html">Cambio</a></li>
     <li><a href="combos.html">Combos</a></li>
-    <li><a href="resenas.html">Reseñas</a></li>
+    <li><a href="resenas.html" class="active">Reseñas</a></li>
     <li><button class="cart-nav-btn" onclick="openCart()">🛒 Carrito <span id="cart-count" class="cart-badge empty">0</span></button></li>
     <li><a href="https://wa.me/573023232833" class="nav-cta"><svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>Contáctanos</a></li>
   </ul>
@@ -40,35 +56,78 @@
 
 <!-- MOBILE MENU -->
 <div class="mob-menu" id="mob-menu">
-  <a href="catalogo.html" class="active" onclick="closeMob()">Catálogo</a>
+  <a href="catalogo.html" onclick="closeMob()">Catálogo</a>
   <a href="cambio.html" onclick="closeMob()">Cambio</a>
   <a href="combos.html" onclick="closeMob()">Combos</a>
-  <a href="resenas.html" onclick="closeMob()">Reseñas</a>
+  <a href="resenas.html" class="active" onclick="closeMob()">Reseñas</a>
   <button class="mob-link" onclick="closeMob();openCart()">🛒 Carrito</button>
   <a href="https://wa.me/573023232833" class="mob-wa"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>WhatsApp</a>
 </div>
 
 <div class="page-head">
-  <div class="page-eyebrow">Disponibles Ahora</div>
-  <h1 class="page-h1">Catálogo completo</h1>
-  <p class="page-p">Equipos reales en stock. Consulta disponibilidad y precios por WhatsApp — el inventario rota constantemente.</p>
+  <div class="page-eyebrow">Lo que dicen nuestros clientes</div>
+  <h1 class="page-h1">Más de 500 personas<br>ya confían en Importech</h1>
 </div>
 
-<section class="sec" id="catalog" style="padding-top:0">
+<section class="sec" id="testimonials">
   <div class="inner">
-    <div class="catalog-top" style="justify-content:center;margin-bottom:40px">
-      <div class="tabs" id="catTabs">
-        <button class="tab active" data-filter="all">Todos</button>
-        <button class="tab" data-filter="iPhone">📱 iPhone</button>
-        <button class="tab" data-filter="Mac">💻 Mac</button>
-        <button class="tab" data-filter="iPad">📲 iPad</button>
-        <button class="tab" data-filter="AirPods">🎧 AirPods</button>
-        <button class="tab" data-filter="Apple Watch">⌚ Watch</button>
-        <button class="tab" data-filter="Accesorios">📦 Accesorios</button>
+    <div class="testi-grid">
+      <div class="testi rev">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Compré mi iPhone 17 Pro y llegó en perfectas condiciones, sellado, con todo el kit original. El asesoramiento por WhatsApp fue rapidísimo. Sin duda el mejor lugar en Bogotá para comprar iPhones."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <div class="testi-name">Alejandro M.</div>
+            <div class="testi-city">Bogotá · Chapinero</div>
+            <div class="testi-product">iPhone 17 Pro · Cosmic Orange</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi rev">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Hice el cambio de mi Xiaomi a un iPhone 15 Pro y quedé sorprendida — me dieron buen precio por mi usado. El equipo está como nuevo y la garantía es real. ¡Gracias Importech!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">V</div>
+          <div>
+            <div class="testi-name">Valentina R.</div>
+            <div class="testi-city">Bogotá · Usaquén</div>
+            <div class="testi-product">iPhone 15 Pro · Blue Titanium</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi rev">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Compré los AirPods Pro 3 y el combo con case MagSafe. Precio justo, producto 100% original, lo pude verificar con Apple directamente. El envío llegó al día siguiente. Recomendado total."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">C</div>
+          <div>
+            <div class="testi-name">Carlos D.</div>
+            <div class="testi-city">Medellín · El Poblado</div>
+            <div class="testi-product">AirPods Pro 3 + Combo</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="prod-grid" id="prodGrid"></div>
-    <div class="cat-empty hidden" id="catEmpty">Todavía no hay productos publicados en esta categoría. Vuelve pronto — el inventario se actualiza seguido.</div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section id="trust">
+  <div class="trust-row">
+    <div class="tc rev"><div class="tc-ico">🔒</div><h3>100% Originales</h3><p>Equipos y accesorios Apple genuinos. Sin réplicas ni copias.</p></div>
+    <div class="tc rev"><div class="tc-ico">🚀</div><h3>Envíos Colombia</h3><p>Despachos rápidos a todo el país con seguimiento en tiempo real.</p></div>
+    <div class="tc rev"><div class="tc-ico">💳</div><h3>Pago Seguro</h3><p>Tarjetas, Nequi, Daviplata, PSE y efectivo. Compra tranquilo.</p></div>
+    <div class="tc rev"><div class="tc-ico">🏪</div><h3>Punto físico</h3><p>Visítanos en CC Caribe, Cra 38 No. 09-32 local 2102, Bogotá.</p></div>
+  </div>
+</section>
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <h2>¿Listo para tu próximo Apple?</h2>
+    <p>iPhone, iPad, MacBook o Watch — escríbenos y te asesoramos sin compromiso. Nuevos, seminuevos, con trade-in o sin él.</p>
+    <a href="https://wa.me/573023232833?text=Hola%20Importech%2C%20quiero%20cotizar" class="btn-wa-big"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>Contactar por WhatsApp</a>
+    <div class="addr-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.8"/></svg>CC Caribe · Cra 38 No. 09-32 Local 2102 · Bogotá</div>
   </div>
 </section>
 
@@ -122,60 +181,6 @@
 
 <div class="wm-badge">Importech Col · Mockup por Daniel Acosta</div>
 <script src="assets/js/store-core.js?v=1"></script>
-<script>document.write('<script src="assets/js/products-data.js?v=' + Date.now() + '"><\/script>');</script>
 <script src="assets/js/site.js"></script>
-<script>
-/* ── FULL CATALOG — every published product, no pagination (this IS the dedicated page) ── */
-(function(){
-  const EMOJI={'iPhone':'📱','iPad':'📲','Mac':'💻','Apple Watch':'⌚','AirPods':'🎧','Accesorios':'📦'};
-  const BADGE={'iPhone':'','iPad':'b-ipad','Mac':'b-mac','Apple Watch':'b-watch','AirPods':'b-airpods','Accesorios':''};
-  let cat='all';
-  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-  function allPublished(){return (window.PRODUCTS||[]).filter(p=>p.published);}
-  function filtered(){const all=allPublished();return cat==='all'?all:all.filter(p=>p.category===cat);}
-  function fromPrice(p){const prices=[p.price];['storage','color'].forEach(d=>(p[d]||[]).forEach(r=>{if(r.price>0)prices.push(r.price);}));return Math.min.apply(null,prices);}
-  function totalUnits(p){const SC=window.StoreCore;const dims=SC.dimsOf(p);if(!dims.length)return p.stock==null?null:Number(p.stock);const d=dims[0];return (p[d]||[]).reduce((a,r)=>a+(Number(r.units)||0),0);}
-  function stockLine(u){
-    if(u==null)return '<span class="pu-stock">Consultar disponibilidad</span>';
-    if(u<=0)return '<span class="pu-stock" style="color:#ff5a5a">Agotado</span>';
-    if(u<=3)return '<span class="pu-stock">⚡ Solo '+u+' disponibles</span>';
-    return '<span class="pu-stock" style="color:#34c759">✓ Disponible</span>';
-  }
-  function card(p){
-    const SC=window.StoreCore;const dims=SC.dimsOf(p);
-    const price=fromPrice(p),units=totalUnits(p);
-    const condBadge=p.condition==='Nuevo'?'b-nuevo':'b-semi';
-    const badgeCls=BADGE[p.category]||condBadge;
-    const media=(p.imgs&&p.imgs.length)?`<img src="${esc(p.imgs[0])}" alt="${esc(p.name)}" loading="lazy">`:`<div class="pc-emoji-prod">${EMOJI[p.category]||'📦'}</div>`;
-    const leftBtn=dims.length
-      ? `<a href="producto/${esc(p.slug)}.html" class="pc-add-btn" style="text-decoration:none;color:#fff">🛒 Elegir opciones</a>`
-      : `<button class="pc-add-btn" onclick="cartAdd('${esc(p.name).replace(/'/g,"\\'")}',${price})">🛒 Agregar</button>`;
-    return `<div class="pc rev" data-cat="${esc(p.category)}">
-      <div class="pc-top"><span class="cond-badge ${badgeCls}">${esc(p.condition||'Nuevo')}</span><div class="cam-glow"></div>${media}</div>
-      <div class="pc-body">
-        <div class="pc-model">${esc(p.brand||p.category)}</div>
-        <div class="pc-name">${esc(p.name)}</div>
-        <div class="pc-spec">${esc(p.spec||'')}</div>
-        <div class="pc-price"><small>Desde</small>${SC.fmtCOP(price)}</div>
-        <div class="pc-urgency">${stockLine(units)}</div>
-        <div class="pc-actions">${leftBtn}<a href="producto/${esc(p.slug)}.html" class="pc-cot-btn">Ver más</a></div>
-      </div>
-    </div>`;
-  }
-  function render(){
-    const grid=document.getElementById('prodGrid');const empty=document.getElementById('catEmpty');
-    const list=filtered();
-    if(!list.length){grid.innerHTML='';empty.classList.remove('hidden');return;}
-    empty.classList.add('hidden');
-    grid.innerHTML=list.map(card).join('');
-  }
-  document.getElementById('catTabs').addEventListener('click',e=>{
-    const b=e.target.closest('.tab');if(!b)return;
-    document.querySelectorAll('#catTabs .tab').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');cat=b.dataset.filter;render();
-  });
-  render();
-})();
-</script>
 </body>
 </html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambia tu Apple usado · Calculadora Trade-In · Importech</title>
+<meta name="description" content="Calcula el valor de tu iPhone, iPad, MacBook o Apple Watch usado y descubre cuánto te costaría el upgrade. Trade-in real con asesoría por WhatsApp.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://daniel666674.github.io/IMPORTECH/cambio.html">
+<meta property="og:title" content="Cambia tu Apple usado · Calculadora Trade-In · Importech">
+<meta property="og:description" content="Calcula el valor de tu iPhone, iPad, MacBook o Apple Watch usado y descubre cuánto te costaría el upgrade. Trade-in real con asesoría por WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="Importech Col">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Importech Col","description":"Apple Premium Reseller en Bogotá — iPhones, iPads, MacBooks, AirPods y Apple Watch originales.","url":"https://daniel666674.github.io/IMPORTECH/","telephone":"+573023232833","priceRange":"$$","currenciesAccepted":"COP","paymentAccepted":"Cash, Credit Card, Nequi, Daviplata","address":{"@type":"PostalAddress","streetAddress":"Cra 38 No. 09-32 Local 2102","addressLocality":"Bogotá","addressRegion":"DC","postalCode":"111321","addressCountry":"CO"},"geo":{"@type":"GeoCoordinates","latitude":4.6097,"longitude":-74.0817},"openingHours":"Mo-Sa 10:00-20:00","sameAs":["https://wa.me/573023232833"]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+#calculator{background:var(--dark);position:relative;overflow:hidden;padding-top:32px}
+#calculator::before{content:'';position:absolute;top:-300px;right:-200px;width:700px;height:700px;border-radius:50%;background:radial-gradient(ellipse,rgba(152,152,160,.06) 0%,transparent 65%);pointer-events:none}
+.calc-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;position:relative;z-index:1}
+.calc-info h2{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-.02em;color:#fff;margin-bottom:14px}
+.calc-info h2 span{color:var(--blue)}
+.calc-info p{font-size:16px;color:rgba(255,255,255,.48);line-height:1.68;margin-bottom:28px}
+.calc-bullet{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:14px;color:rgba(255,255,255,.6)}
+.calc-bullet svg{flex-shrink:0;color:var(--blue)}
+.calc-accepts{margin-top:28px;padding:20px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+.ca-title{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:14px}
+.ca-items{display:flex;gap:12px;flex-wrap:wrap}
+.ca-item{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font-size:10px;font-weight:600;color:rgba(255,255,255,.55);min-width:58px;text-align:center}
+.ca-item:first-child{font-size:20px;display:flex;align-items:center}
+.ca-item>span:first-child{font-size:22px;line-height:1}
+.calc-form{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:32px}
+.step-label{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.step-num{width:20px;height:20px;border-radius:50%;background:var(--blue);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-variant-numeric:tabular-nums}
+.calc-step{margin-bottom:22px}
+.calc-cats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.ccat{display:flex;flex-direction:column;align-items:center;gap:5px;padding:12px 6px;border-radius:12px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.55);font-size:20px;font-family:inherit;cursor:pointer;transition:all .2s;line-height:1}
+.ccat span{font-size:10px;font-weight:600;letter-spacing:.04em;line-height:1}
+.ccat:hover{border-color:rgba(255,255,255,.28);color:#fff}
+.ccat.active{border-color:var(--blue);background:rgba(152,152,160,.14);color:#fff}
+.calc-select{width:100%;padding:13px 16px;border-radius:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:14px;font-weight:500;font-family:inherit;appearance:none;cursor:pointer;transition:border-color .2s}
+.calc-select:focus{outline:none;border-color:var(--blue)}
+.calc-select option{background:#2d2d2f;color:#fff}
+.cond-radios{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.cond-radio{border:1.5px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 10px;text-align:center;cursor:pointer;transition:all .2s}
+.cond-radio:hover{border-color:rgba(255,255,255,.28)}
+.cond-radio.selected{border-color:var(--blue);background:rgba(152,152,160,.12)}
+.cond-radio .cr-label{font-size:12px;font-weight:600;color:#fff}
+.cond-radio .cr-sub{font-size:10px;color:rgba(255,255,255,.38);margin-top:2px}
+.bat-row{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.bat-slider{flex:1;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--blue) 0%,rgba(255,255,255,.15) 0%);cursor:pointer;outline:none}
+.bat-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#fff;border:2px solid var(--blue);cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.bat-badge{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:60px}
+.bat-pct{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1}
+.bat-tag{font-size:10px;font-weight:600;color:var(--blue);letter-spacing:.08em;text-transform:uppercase}
+.bat-scale{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.28);margin-bottom:6px}
+.bat-tip{font-size:11px;color:rgba(255,255,255,.28);font-style:italic}
+.calc-submit{width:100%;padding:17px;border-radius:12px;border:none;background:linear-gradient(135deg,#b0b0b8,var(--blue));color:#fff;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;transition:all .25s;margin-top:8px;box-shadow:0 4px 16px rgba(152,152,160,.2)}
+.calc-submit:hover{box-shadow:0 12px 32px rgba(152,152,160,.4);transform:translateY(-2px)}
+.calc-result{display:none;margin-top:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:22px;animation:resultIn .4s ease}
+.calc-result.show{display:block}
+@keyframes resultIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.result-main{background:linear-gradient(135deg,rgba(152,152,160,.2),rgba(152,152,160,.08));border:1px solid rgba(152,152,160,.28);border-radius:12px;padding:18px 22px;margin:0 0 16px;text-align:center}
+.rm-label{font-size:12px;color:rgba(255,255,255,.55);margin-bottom:4px}
+.rm-amount{font-size:38px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.1}
+.rm-range{font-size:12px;color:rgba(255,255,255,.38);margin-top:4px;margin-bottom:4px}
+.rm-sub{font-size:11px;color:rgba(255,255,255,.35);margin-top:6px}
+.result-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
+.result-row:last-of-type{border:none}
+.rl{color:rgba(255,255,255,.5)}.rv{font-weight:700;color:#fff}
+.calc-hold{display:flex;align-items:center;justify-content:center;gap:6px;font-size:11.5px;font-weight:700;color:rgba(255,165,40,.9);background:rgba(255,165,40,.08);border:1px solid rgba(255,165,40,.22);border-radius:20px;padding:7px 14px;margin:0 0 14px;text-align:center;animation:hold-pulse 2.4s ease-in-out infinite}
+@keyframes hold-pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.result-upgrade{padding:14px 16px;margin:10px 0 14px;border-radius:10px;background:rgba(52,199,89,.08);border:1px solid rgba(52,199,89,.2);font-size:13px;color:rgba(255,255,255,.7);line-height:1.55}
+.result-upgrade strong{color:#34c759}
+.ru-title{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#34c759;margin-bottom:6px}
+.ru-line{font-size:13.5px}
+.result-cta{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;border-radius:10px;background:#25d366;color:#fff;font-size:13px;font-weight:700;text-decoration:none;transition:all .2s}
+.result-cta:hover{background:#1db857;box-shadow:0 6px 20px rgba(37,211,102,.3);transform:translateY(-1px)}
+@media(max-width:1100px){.calc-layout{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="logo-mark"><img src="assets/importech-logo.jpg" alt="Importech"></div>
+    <span class="nav-wordmark">IMPORTECH</span><span class="nav-sub">Apple Premium · Bogotá</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="catalogo.html">Catálogo</a></li>
+    <li><a href="cambio.html" class="active">Cambio</a></li>
+    <li><a href="combos.html">Combos</a></li>
+    <li><a href="resenas.html">Reseñas</a></li>
+    <li><button class="cart-nav-btn" onclick="openCart()">🛒 Carrito <span id="cart-count" class="cart-badge empty">0</span></button></li>
+    <li><a href="https://wa.me/573023232833" class="nav-cta"><svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>Contáctanos</a></li>
+  </ul>
+  <button class="nav-ham" id="nav-ham" onclick="toggleMob()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mob-menu">
+  <a href="catalogo.html" onclick="closeMob()">Catálogo</a>
+  <a href="cambio.html" class="active" onclick="closeMob()">Cambio</a>
+  <a href="combos.html" onclick="closeMob()">Combos</a>
+  <a href="resenas.html" onclick="closeMob()">Reseñas</a>
+  <button class="mob-link" onclick="closeMob();openCart()">🛒 Carrito</button>
+  <a href="https://wa.me/573023232833" class="mob-wa"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>WhatsApp</a>
+</div>
+
+<div class="page-head">
+  <div class="page-eyebrow">Calculadora Trade-In Apple</div>
+  <h1 class="page-h1">¿Cuánto vale tu Apple?</h1>
+  <p class="page-p">Calcula el valor estimado de tu equipo y descubre cuánto te costaría hacer el upgrade. Recibimos tu usado como parte de pago.</p>
+</div>
+
+<section class="sec" id="calculator">
+  <div class="inner">
+    <div class="calc-layout">
+      <div class="calc-info rev">
+        <div class="calc-bullet"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Estimación instantánea — precio mercado Bogotá</div>
+        <div class="calc-bullet"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>iPhone · iPad · MacBook · Watch · AirPods</div>
+        <div class="calc-bullet"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Tu usado como cuota inicial de tu nuevo Apple</div>
+        <div class="calc-bullet"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Asesoría personalizada por WhatsApp</div>
+        <div class="calc-accepts">
+          <div class="ca-title">Aceptamos como parte de pago</div>
+          <div class="ca-items">
+            <div class="ca-item">📱<span>iPhone</span></div>
+            <div class="ca-item">📲<span>iPad</span></div>
+            <div class="ca-item">💻<span>MacBook</span></div>
+            <div class="ca-item">⌚<span>Watch</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="calc-form rev">
+        <div class="calc-step">
+          <div class="step-label"><span class="step-num">1</span>¿Qué equipo tienes?</div>
+          <div class="calc-cats" id="calc-cats">
+            <button class="ccat active" data-cat="iphone" onclick="selectCat(this)">📱<span>iPhone</span></button>
+            <button class="ccat" data-cat="ipad" onclick="selectCat(this)">📲<span>iPad</span></button>
+            <button class="ccat" data-cat="mac" onclick="selectCat(this)">💻<span>MacBook</span></button>
+            <button class="ccat" data-cat="watch" onclick="selectCat(this)">⌚<span>Watch</span></button>
+          </div>
+        </div>
+        <div class="calc-step">
+          <div class="step-label"><span class="step-num">2</span>Modelo</div>
+          <select class="calc-select" id="c-model">
+            <option value="">Selecciona modelo</option>
+          </select>
+        </div>
+        <div class="calc-step" id="c-storage-step" style="display:none">
+          <div class="step-label"><span class="step-num">3</span>Almacenamiento</div>
+          <div class="cond-radios" id="c-storage-radios"></div>
+        </div>
+        <div class="calc-step">
+          <div class="step-label"><span class="step-num" id="sn-cond">4</span>Estado del equipo</div>
+          <div class="cond-radios">
+            <div class="cond-radio selected" data-mult="1" onclick="selectCond(this)"><div class="cr-label">⭐ Excelente</div><div class="cr-sub">Sin rayones, como nuevo</div></div>
+            <div class="cond-radio" data-mult="0.85" onclick="selectCond(this)"><div class="cr-label">✅ Bueno</div><div class="cr-sub">Uso normal, detalles mínimos</div></div>
+            <div class="cond-radio" data-mult="0.65" onclick="selectCond(this)"><div class="cr-label">⚠️ Regular</div><div class="cr-sub">Rayones o marcas visibles</div></div>
+            <div class="cond-radio" data-mult="0.38" onclick="selectCond(this)"><div class="cr-label">🔧 Dañado</div><div class="cr-sub">Pantalla rota o fallas</div></div>
+          </div>
+        </div>
+        <div class="calc-step" id="c-battery-step">
+          <div class="step-label"><span class="step-num" id="sn-bat">5</span>Salud de batería</div>
+          <div class="bat-row">
+            <input type="range" class="bat-slider" id="c-battery" min="60" max="100" value="88" oninput="updateBatDisplay()">
+            <div class="bat-badge">
+              <span class="bat-pct" id="bat-pct">88%</span>
+              <span class="bat-tag" id="bat-tag">Buena</span>
+            </div>
+          </div>
+          <div class="bat-scale"><span>60%</span><span>70%</span><span>80%</span><span>90%</span><span>100%</span></div>
+          <div class="bat-tip">Encuéntrala en Ajustes → Batería → Estado de la batería</div>
+        </div>
+        <button class="calc-submit" onclick="calcular()">Calcular mi trade-in →</button>
+        <div class="calc-result" id="calcResult">
+          <div class="result-main">
+            <div class="rm-label">Valor estimado de tu equipo</div>
+            <div class="rm-amount" id="calcAmt">—</div>
+            <div class="rm-range" id="calcRange">—</div>
+            <div class="rm-sub">Precio referencia mercado Bogotá · sujeto a revisión física</div>
+          </div>
+          <div class="calc-hold" id="calcHold"></div>
+          <div class="result-row"><span class="rl">Dispositivo</span><span class="rv" id="rModelo">—</span></div>
+          <div class="result-row" id="r-storage-row"><span class="rl">Almacenamiento</span><span class="rv" id="rStorage">—</span></div>
+          <div class="result-row"><span class="rl">Estado</span><span class="rv" id="rEstado">—</span></div>
+          <div class="result-row" id="r-bat-row"><span class="rl">Batería</span><span class="rv" id="rBateria">—</span></div>
+          <div class="result-upgrade" id="r-upgrade"></div>
+          <a href="#" id="calc-wa-link" class="result-cta"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>Cotizar mi trade-in por WhatsApp →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="logo-mark"><img src="assets/importech-logo.jpg" alt="Importech"></div>
+      <span style="font-size:14px;font-weight:800;letter-spacing:.06em;background:linear-gradient(90deg,rgba(200,200,210,.75) 0%,#fff 30%,rgba(205,205,215,1) 50%,#fff 70%,rgba(200,200,210,.75) 100%);background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:chrome-sweep 5s linear infinite">IMPORTECH</span>
+    </div>
+    <ul class="foot-links">
+      <li><a href="catalogo.html">Catálogo</a></li>
+      <li><a href="cambio.html">Cambio</a></li>
+      <li><a href="combos.html">Combos</a></li>
+      <li><a href="resenas.html">Reseñas</a></li>
+    </ul>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Importech Col · CC Caribe, Bogotá</span>
+    <a href="https://wa.me/573023232833">WhatsApp →</a>
+  </div>
+</footer>
+
+<!-- CART -->
+<div id="cart-overlay" onclick="closeCart()"></div>
+<div id="cart-drawer">
+  <div class="cart-head">
+    <h3>🛒 Tu carrito</h3>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty"><div class="ce-ico">🛒</div><p>Tu carrito está vacío</p></div>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-total-row">
+      <span class="ct-label">Total estimado</span>
+      <span class="ct-amt" id="cart-total-amt">$0</span>
+    </div>
+    <button class="cart-wa-btn" id="cart-checkout-btn" onclick="checkoutWA()" disabled>
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>
+      Pedir por WhatsApp
+    </button>
+    <button class="cart-clear-btn" onclick="cartClear()">Vaciar carrito</button>
+  </div>
+</div>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/573023232833?text=Hola%20Importech%2C%20quiero%20cotizar" class="wa-float" aria-label="WhatsApp">
+  <svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.1.546 4.073 1.5 5.793L0 24l6.392-1.478A11.931 11.931 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.6 9.6 0 01-4.9-1.344l-.352-.208-3.645.842.878-3.548-.228-.365A9.561 9.561 0 012.4 12C2.4 6.698 6.698 2.4 12 2.4S21.6 6.698 21.6 12 17.302 21.6 12 21.6z"/></svg>
+</a>
+
+<div class="wm-badge">Importech Col · Mockup por Daniel Acosta</div>
+<script src="assets/js/store-core.js?v=1"></script>
+<script src="assets/js/site.js"></script>
+<script>
+/* ── TRADE-IN CALCULATOR ── */
+const TRADE={
+  iphone:{hasBattery:true,hasStorage:false,hasIcloud:true,label:'iPhone',
+    models:[
+      {n:'iPhone 17 Pro Max',v:5800000},{n:'iPhone 17 Pro',v:5200000},
+      {n:'iPhone 17 Plus',v:4200000},{n:'iPhone 17',v:3800000},
+      {n:'iPhone 16 Pro Max',v:4200000},{n:'iPhone 16 Pro',v:3600000},
+      {n:'iPhone 16 Plus',v:2800000},{n:'iPhone 16',v:2400000},
+      {n:'iPhone 15 Pro Max',v:3100000},{n:'iPhone 15 Pro',v:2600000},
+      {n:'iPhone 15 Plus',v:2000000},{n:'iPhone 15',v:1700000},
+      {n:'iPhone 14 Pro Max',v:2200000},{n:'iPhone 14 Pro',v:1800000},
+      {n:'iPhone 14 Plus',v:1400000},{n:'iPhone 14',v:1100000},
+      {n:'iPhone 13 Pro Max',v:1600000},{n:'iPhone 13 Pro',v:1300000},
+      {n:'iPhone 13',v:850000},{n:'iPhone 13 mini',v:650000},
+      {n:'iPhone 12 Pro Max',v:1100000},{n:'iPhone 12 Pro',v:900000},
+      {n:'iPhone 12',v:600000},{n:'iPhone 12 mini',v:450000},
+      {n:'iPhone 11 Pro Max',v:750000},{n:'iPhone 11 Pro',v:600000},
+      {n:'iPhone 11',v:400000},{n:'iPhone X / XS / XS Max',v:320000},
+    ]},
+  ipad:{hasBattery:true,hasStorage:true,hasIcloud:true,label:'iPad',
+    storages:[{n:'64 GB',b:0},{n:'128 GB',b:80000},{n:'256 GB',b:160000},{n:'512 GB',b:280000},{n:'1 TB',b:450000},{n:'2 TB',b:700000}],
+    models:[
+      {n:'iPad Pro 13" M4',v:4200000},{n:'iPad Pro 11" M4',v:3200000},
+      {n:'iPad Pro 12.9" M2',v:2800000},{n:'iPad Air 13" M2',v:2400000},
+      {n:'iPad Air 11" M2',v:2100000},{n:'iPad mini 7',v:1800000},
+      {n:'iPad mini 6',v:1200000},{n:'iPad 10ª Gen',v:1400000},{n:'iPad 9ª Gen',v:700000},
+    ]},
+  mac:{hasBattery:false,hasStorage:true,hasIcloud:false,label:'MacBook',
+    storages:[{n:'256 GB',b:0},{n:'512 GB',b:400000},{n:'1 TB',b:800000},{n:'2 TB',b:1400000},{n:'4 TB',b:2200000}],
+    models:[
+      {n:'MacBook Pro 16" M4 Max',v:11000000},{n:'MacBook Pro 16" M4 Pro',v:9500000},
+      {n:'MacBook Pro 14" M4 Pro',v:7500000},{n:'MacBook Pro 14" M4',v:5800000},
+      {n:'MacBook Air 15" M3',v:4200000},{n:'MacBook Air 13" M3',v:3600000},
+      {n:'MacBook Pro 16" M3 Pro',v:5500000},{n:'MacBook Pro 14" M3 Pro',v:4500000},
+      {n:'MacBook Air 15" M2',v:3100000},{n:'MacBook Air 13" M2',v:2800000},
+      {n:'MacBook Pro 13" M2',v:2600000},{n:'MacBook Air M1',v:2000000},
+      {n:'MacBook Pro 13" M1',v:2200000},
+    ]},
+  watch:{hasBattery:true,hasStorage:false,hasIcloud:false,label:'Apple Watch',
+    models:[
+      {n:'Apple Watch Ultra 2',v:2800000},{n:'Apple Watch Ultra 1',v:2200000},
+      {n:'Apple Watch Series 10 46mm',v:1500000},{n:'Apple Watch Series 10 42mm',v:1300000},
+      {n:'Apple Watch Series 9 45mm',v:1100000},{n:'Apple Watch Series 9 41mm',v:900000},
+      {n:'Apple Watch SE 2 44mm',v:600000},{n:'Apple Watch SE 2 40mm',v:500000},
+      {n:'Apple Watch Series 8',v:800000},{n:'Apple Watch Series 7',v:600000},
+      {n:'Apple Watch Series 6',v:420000},
+    ]},
+};
+function suggestUpgrade(tradeValue,cat){
+  const all=(window.PRODUCTS||[]).filter(p=>p.published);
+  const CAT_MAP={iphone:'iPhone',ipad:'iPad',mac:'Mac',watch:'Apple Watch'};
+  const inCat=all.filter(p=>p.category===CAT_MAP[cat]).map(p=>({n:p.name,p:p.price})).sort((a,b)=>a.p-b.p);
+  const affordable=inCat.filter(p=>p.p>=tradeValue);
+  if(affordable.length)return affordable[0];
+  if(inCat.length)return inCat[inCat.length-1];
+  const anyList=all.map(p=>({n:p.name,p:p.price})).sort((a,b)=>a.p-b.p);
+  return anyList.find(p=>p.p>=tradeValue)||anyList[0]||{n:'un equipo Apple',p:tradeValue};
+}
+let quoteTimer=null;
+function startQuoteHold(){
+  const expiry=Date.now()+48*60*60*1000;
+  localStorage.setItem('tradeQuoteExpiry',String(expiry));
+  if(quoteTimer)clearInterval(quoteTimer);
+  const tick=()=>{
+    const remain=expiry-Date.now();
+    const el=document.getElementById('calcHold');
+    if(!el)return;
+    if(remain<=0){el.textContent='Cotización expirada — recalcula para renovarla';clearInterval(quoteTimer);return;}
+    const h=Math.floor(remain/3600000);const m=Math.floor((remain%3600000)/60000);
+    el.textContent=`⏳ Precio reservado por ${h}h ${m}m — escríbenos antes de que expire`;
+  };
+  tick();
+  quoteTimer=setInterval(tick,60000);
+}
+let currentCat='iphone';let condMult=1;let storageBon=0;
+
+function selectCat(btn){
+  document.querySelectorAll('.ccat').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  currentCat=btn.dataset.cat;
+  updateCalcUI();
+}
+function updateCalcUI(){
+  const cat=TRADE[currentCat];
+  const sel=document.getElementById('c-model');
+  sel.innerHTML='<option value="">Selecciona modelo</option>'+cat.models.map(m=>`<option value="${m.v}">${m.n}</option>`).join('');
+  const storageStep=document.getElementById('c-storage-step');
+  if(cat.hasStorage){
+    storageStep.style.display='';
+    document.getElementById('c-storage-radios').innerHTML=cat.storages.map((s,i)=>`<div class="cond-radio${i===0?' selected':''}" data-bonus="${s.b}" onclick="selectStorage(this)"><div class="cr-label">${s.n}</div><div class="cr-sub">${s.b?'+'+fmtCOP(s.b):'Base'}</div></div>`).join('');
+    storageBon=0;
+  }else{storageStep.style.display='none';storageBon=0;}
+  document.getElementById('c-battery-step').style.display=cat.hasBattery?'':'none';
+  document.getElementById('calcResult').classList.remove('show');
+  document.getElementById('calcResult').style.display='none';
+  updateStepNums();
+}
+function updateStepNums(){
+  const cat=TRADE[currentCat];
+  let n=3;
+  if(cat.hasStorage)n++;
+  document.getElementById('sn-cond').textContent=n++;
+  if(cat.hasBattery)document.getElementById('sn-bat').textContent=n;
+}
+function selectStorage(btn){
+  document.querySelectorAll('#c-storage-radios .cond-radio').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  storageBon=parseInt(btn.dataset.bonus)||0;
+}
+function selectCond(el){
+  document.querySelectorAll('.cond-radio[data-mult]').forEach(r=>r.classList.remove('selected'));
+  el.classList.add('selected');
+  condMult=parseFloat(el.dataset.mult);
+}
+function updateBatDisplay(){
+  const pct=parseInt(document.getElementById('c-battery').value);
+  document.getElementById('bat-pct').textContent=pct+'%';
+  const tag=pct>=90?'Excelente':pct>=80?'Buena':pct>=70?'Regular':'Baja — reemplazar';
+  document.getElementById('bat-tag').textContent=tag;
+  const sl=document.getElementById('c-battery');
+  const pctPos=(pct-60)/40*100;
+  sl.style.background=`linear-gradient(90deg,var(--blue) ${pctPos}%,rgba(255,255,255,.15) ${pctPos}%)`;
+}
+function calcular(){
+  const modelSel=document.getElementById('c-model');
+  if(!modelSel.value){modelSel.focus();return;}
+  const cat=TRADE[currentCat];
+  let base=parseInt(modelSel.value)+storageBon;
+  base*=condMult;
+  if(cat.hasBattery){
+    const pct=parseInt(document.getElementById('c-battery').value);
+    const bm=pct>=90?1:pct>=80?.94:pct>=70?.85:.72;
+    base*=bm;
+  }
+  const total=Math.round(base/10000)*10000;
+  const mn=Math.round(total*.88/10000)*10000;
+  const mx=Math.round(total*1.1/10000)*10000;
+  const modelName=modelSel.options[modelSel.selectedIndex].text;
+  const condEl=document.querySelector('.cond-radio.selected[data-mult]');
+  const condName=condEl?condEl.querySelector('.cr-label').textContent:'—';
+  document.getElementById('calcAmt').textContent=fmtCOP(total);
+  document.getElementById('calcRange').textContent=`Rango estimado: ${fmtCOP(mn)} – ${fmtCOP(mx)}`;
+  document.getElementById('rModelo').textContent=modelName;
+  document.getElementById('rEstado').textContent=condName;
+  const batRow=document.getElementById('r-bat-row');
+  const storageRow=document.getElementById('r-storage-row');
+  if(cat.hasBattery){batRow.style.display='';document.getElementById('rBateria').textContent=document.getElementById('c-battery').value+'%';}
+  else batRow.style.display='none';
+  if(cat.hasStorage){
+    storageRow.style.display='';
+    const sSel=document.querySelector('#c-storage-radios .selected');
+    document.getElementById('rStorage').textContent=sSel?sSel.querySelector('.cr-label').textContent:'—';
+  }else storageRow.style.display='none';
+  const up=document.getElementById('r-upgrade');
+  const target=suggestUpgrade(total,currentCat);
+  const diff=target.p-total;
+  let upgradeLine;
+  if(diff<=0){
+    upgradeLine=`Tu ${cat.label} <strong>cubre por completo</strong> un <strong>${target.n}</strong> (${fmtCOP(target.p)}). ¡Te lo llevas hoy mismo!`;
+  }else{
+    upgradeLine=`Con tu ${cat.label} + <strong>${fmtCOP(diff)}</strong> adicionales, te llevas un <strong>${target.n}</strong> (${fmtCOP(target.p)}) hoy.`;
+  }
+  up.innerHTML=`<div class="ru-title">🎯 Tu upgrade sugerido</div><div class="ru-line">${upgradeLine}</div>`;
+  let msg=`Hola Importech, quiero cotizar mi ${cat.label} para trade-in:\n`;
+  msg+=`• Modelo: ${modelName}\n• Estado: ${condName}\n`;
+  if(cat.hasStorage){const ss=document.querySelector('#c-storage-radios .selected');msg+=`• Almacenamiento: ${ss?ss.querySelector('.cr-label').textContent:''}\n`;}
+  if(cat.hasBattery)msg+=`• Batería: ${document.getElementById('c-battery').value}%\n`;
+  msg+=`• Valor estimado: ${fmtCOP(total)}\n\n`;
+  msg+=diff<=0?`Vi que mi equipo cubriría un ${target.n} por completo — ¿lo reservamos?`:`Me interesa el ${target.n} — ¿confirmamos la diferencia de ${fmtCOP(diff)}?`;
+  document.getElementById('calc-wa-link').href='https://wa.me/573023232833?text='+encodeURIComponent(msg);
+  const res=document.getElementById('calcResult');
+  res.style.display='block';res.classList.add('show');
+  startQuoteHold();
+  res.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+document.write('<script src="assets/js/products-data.js?v=' + Date.now() + '"><\/script>');
+</script>
+<script>updateCalcUI();</script>
+</body>
+</html>

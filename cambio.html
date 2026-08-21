@@ -298,15 +298,31 @@ const TRADE={
       {n:'Apple Watch Series 6',v:420000},
     ]},
 };
-function suggestUpgrade(tradeValue,cat){
+function normModel(s){return(s||'').toLowerCase().replace(/["″]/g,'').replace(/\s+/g,' ').trim();}
+// Rank within a category's trade-in ladder: 0 = newest/best, higher = older/lesser.
+// TRADE[cat].models is already ordered newest-and-best first, so this doubles as
+// a recency+tier ranking for matching catalog stock against it.
+function tradeRank(cat,name){
+  const list=(TRADE[cat]&&TRADE[cat].models)||[];
+  const norm=normModel(name);
+  return list.findIndex(m=>normModel(m.n)===norm);
+}
+function suggestUpgrade(tradeValue,cat,tradedModelName){
   const all=(window.PRODUCTS||[]).filter(p=>p.published);
   const CAT_MAP={iphone:'iPhone',ipad:'iPad',mac:'Mac',watch:'Apple Watch'};
-  const inCat=all.filter(p=>p.category===CAT_MAP[cat]).map(p=>({n:p.name,p:p.price})).sort((a,b)=>a.p-b.p);
-  const affordable=inCat.filter(p=>p.p>=tradeValue);
-  if(affordable.length)return affordable[0];
-  if(inCat.length)return inCat[inCat.length-1];
+  const inCat=all.filter(p=>p.category===CAT_MAP[cat]).map(p=>({n:p.name,p:p.price,r:tradeRank(cat,p.name)})).sort((a,b)=>a.p-b.p);
+  const tradedRank=tradeRank(cat,tradedModelName);
+  // A real upgrade: strictly newer/better tier than what they're trading in (lower rank
+  // number). Never suggest a lateral or older model just because it's above their trade value —
+  // that reads as a downgrade (e.g. trading a 15 Pro Max should never surface a plain 15 Pro).
+  const upgrades=inCat.filter(p=>p.r!==-1&&(tradedRank===-1||p.r<tradedRank));
+  if(upgrades.length){const pick=upgrades.find(p=>p.p>=tradeValue)||upgrades[0];return{n:pick.n,p:pick.p,isUpgrade:true};}
+  // Nothing in stock beats their current device (they already own the flagship) — offer
+  // the newest equivalent as a renewal, but never frame it as an "upgrade".
+  if(inCat.length){const newest=inCat.slice().sort((a,b)=>(a.r===-1?999:a.r)-(b.r===-1?999:b.r))[0];return{n:newest.n,p:newest.p,isUpgrade:false};}
   const anyList=all.map(p=>({n:p.name,p:p.price})).sort((a,b)=>a.p-b.p);
-  return anyList.find(p=>p.p>=tradeValue)||anyList[0]||{n:'un equipo Apple',p:tradeValue};
+  const fallback=anyList.find(p=>p.p>=tradeValue)||anyList[0]||{n:'un equipo Apple',p:tradeValue};
+  return{n:fallback.n,p:fallback.p,isUpgrade:true};
 }
 let quoteTimer=null;
 function startQuoteHold(){
@@ -404,15 +420,17 @@ function calcular(){
     document.getElementById('rStorage').textContent=sSel?sSel.querySelector('.cr-label').textContent:'—';
   }else storageRow.style.display='none';
   const up=document.getElementById('r-upgrade');
-  const target=suggestUpgrade(total,currentCat);
+  const target=suggestUpgrade(total,currentCat,modelName);
   const diff=target.p-total;
   let upgradeLine;
-  if(diff<=0){
+  if(!target.isUpgrade){
+    upgradeLine=`Ya tienes lo mejor de la línea actual. Renueva tu <strong>${modelName}</strong> por un <strong>${target.n}</strong> nuevo, sellado y con garantía completa — con tu equipo como parte de pago, la diferencia es <strong>${fmtCOP(Math.max(diff,0))}</strong>.`;
+  }else if(diff<=0){
     upgradeLine=`Tu ${cat.label} <strong>cubre por completo</strong> un <strong>${target.n}</strong> (${fmtCOP(target.p)}). ¡Te lo llevas hoy mismo!`;
   }else{
     upgradeLine=`Con tu ${cat.label} + <strong>${fmtCOP(diff)}</strong> adicionales, te llevas un <strong>${target.n}</strong> (${fmtCOP(target.p)}) hoy.`;
   }
-  up.innerHTML=`<div class="ru-title">🎯 Tu upgrade sugerido</div><div class="ru-line">${upgradeLine}</div>`;
+  up.innerHTML=`<div class="ru-title">${target.isUpgrade?'🎯 Tu upgrade sugerido':'✨ Renueva tu equipo'}</div><div class="ru-line">${upgradeLine}</div>`;
   let msg=`Hola Importech, quiero cotizar mi ${cat.label} para trade-in:\n`;
   msg+=`• Modelo: ${modelName}\n• Estado: ${condName}\n`;
   if(cat.hasStorage){const ss=document.querySelector('#c-storage-radios .selected');msg+=`• Almacenamiento: ${ss?ss.querySelector('.cr-label').textContent:''}\n`;}
